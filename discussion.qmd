@@ -1,0 +1,169 @@
+# Discussion {#sec-discussion}
+
+In this chapter, I will examine the results of this thesis in a broader context, addressing both the advantages and disadvantages of the various modelling approaches.
+Additionally, potential improvements will be explored, with a particular emphasis on radiative transfer models, but also aspects from which other methods could profit.
+Finally, certain peculiarities of the dataset, specifically nitrogen measurements, will be discussed and compared to similar research in the scientific literature.
+
+## Different modelling approaches
+
+In this thesis, I compared various approaches to modelling foliar nitrogen concentration in Californian almonds, including vegetation indices and other hand-crafted features, diverse machine learning algorithms, and physics-based radiative transfer models.
+This model intercomparison highlighted the remarkable capability of machine learning models to identify patterns in the data and generate impressive predictions compared to other methods.
+Linear models, in particular, performed exceptionally well when combined with linear dimensionality reduction, regularization, or prior feature selection.
+The underwhelming performance of decision-tree-based models, capable of capturing non-linear relationships, likely stems from the absence of strong non-linear relationships in the data, combined with a low signal-to-noise ratio --- a situation where decision-tree-based models easily overfit the data.
+
+However, these data characteristics are highly dependent on the specific dataset, such as the collection time, nitrogen measurement range, and almond cultivar.
+As a result, the performance of machine learning algorithms can be highly inconsistent.
+One dataset may favour lasso regularization, while another may be better suited for partial least squares or extreme gradient boosting.
+This issue underscores the primary challenge of machine learning models in this context: the lack of generalizability.
+A model trained in one setting often loses predictive power in another [@verrelst2019quantifying].
+Ideally, the training dataset should encompass all necessary variance, and the test set should reflect real-world deviations.
+However, acquiring such a dataset for agricultural practice would be extremely difficult.
+
+In contrast, physics-based models promise to address this generalizability problem [@verrelst2019quantifying; @berger2020crop].
+Identifying the correct functional form of a relationship enables models to reflect non-linear relationships without the need of giving the model more general flexibility.
+In this thesis, retrieved plant parameters, such as chlorophyll or carotenoid content, were linked to measured nitrogen concentrations.
+This connection only necessitates a handful of coefficients, contributing to the generalizability of physics-based models.
+
+The radiative transfer model [Prospect-Pro]{.smallcaps} can be viewed as a dimensionality reduction technique not completely unlike principal component analysis.
+However, compared to principal components, the latent variables identified by [Prospect-Pro]{.smallcaps} have a physical meaning, mostly relating to the content of specific plant pigments responsible for observed reflectance (and transmittance).
+As a dimensionality reduction technique, [Prospect-Pro]{.smallcaps} (and [Less]{.smallcaps} by extension) simplifies modelling any plant trait of interest, not just crop nitrogen, representing the highest level of generalizability where the orchard, crop, and response of interest can all vary.
+
+However, discovering the true physical relationship between variables is extremely labour-intensive and stands in a stark contrast to machine learning models, where data gathering is the most time-consuming aspect.
+However, once a functional form capturing the true relationship is found, physics-based models can enable even better predictions than machine learning models, as presented in [section @sec-ResultsAreaBased].
+Moreover, the physics-based modelling process enhances the understanding of nature, a benefit not offered by machine learning models.
+In particular, complex machine learning models, such as neural networks, are often referred to as black box models [@zhu2017deep; @rudin2019stop].
+While they may deliver impressive results, understanding the relationships they have learned can be extremely challenging.
+
+The fact that machine learning models do not require prior knowledge and rely solely on data for making predictions makes them highly useful when combined with radiative transfer models.
+Machine learning models excel at detecting patterns and correlations in high-dimensional spaces, serving as valuable indicators for potential flaws or shortcomings in physics-based models.
+For instance, the superior performance of some machine learning models in predicting mass-based nitrogen on a leaf-level suggests a knowledge gap.
+Without machine learning models, determining what model accuracy can realistically be expected would be much more challenging.
+
+The limitations of machine learning models can also be applied to vegetation indices.
+However, this vegetation indices generally performed poorly, especially when only using single vegetation indices.
+A primary advantage of vegetation indices is their computational efficiency and ease of implementation.
+However, this stems from a time when computational efficiency was a greater concern than it is today, meaning it is no longer a significant limitation.
+The results of this thesis suggest that single vegetation indices can hardly compete with either machine learning models or physics-based models.
+Nevertheless, new vegetation indices continue to be constructed using heuristics such as genetic algorithms [@costa2020new].
+In this approach, the authors essentially frame the problem in the same manner as a supervised machine learning problem, but they solve it in a computationally inefficient way.
+Similar to machine learning models, this solution may rely on fortuitous correlations and generally represents an inelegant approach given the widespread availability of machine learning algorithms.
+
+It is crucial to repeatedly acknowledge that the distinction between manual feature selection, machine learning, and physics-based models is somewhat arbitrary and exhibits considerable overlap.
+For example, both vegetation indices and the parameters retrieved by radiative transfer models are still connected to nitrogen measurements via linear regression, which can be considered a machine learning model.
+This link function could also be any other model, as @verrelst2019quantifying speaks of model hybridization --- machine learning and radiative transfer models are fused.
+Consequently, machine learning is undoubtedly an invaluable tool for physics-based modelling.
+
+## How radiative transfer models might be improved
+
+The machine learning models demonstrated slightly better performance than the radiative transfer models in predicting foliar nitrogen concentration, both at the canopy and leaf levels.
+This indicates a knowledge gap in the radiative transfer models.
+
+To enhance the radiative transfer models employed, several adjustments could be contemplated.
+For the [Prospect]{.smallcaps} model family, the chlorophyll parameter could be divided into two separate estimates for chlorophyll a and b concentrations.
+This distinction is crucial not only for more accurate chlorophyll content estimation but also for a better explanation of the observed spectral signature.
+@li2018factors demonstrated significant differences in chlorophyll a to b ratios among deciduous trees, shrubs, herbs, and grasses.
+The chlorophyll a to b ratio is also time-dependent, suggesting that dynamic models providing prior information could be incorporated.
+Dynamic crop models could be implemented to account for the change of the chlorophyll a to b ratio over time. Additionally, such models could also account for the accumulation of carbon-based content over time, which dilutes leaf nitrogen and thus reduces its measured concentration, even though the absolute nitrogen content may remain constant.
+
+In addition, prior information about leaf parameter distributions (instead of only box constraints) could be utilized for the inversion of the radiative transfer model, for instance, by adopting a Bayesian optimization method instead of a maximum likelihood estimation.
+While these approaches are considerably more computationally intensive, they offer the added benefit of uncertainty estimates for all parameters.
+
+The implementation of a ray tracing model like [Less]{.smallcaps}, as presented in this thesis, primarily serves as a proof-of-concept and offers numerous opportunities for improvement.
+For instance, trees could be generated rather than hand-crafted by utilizing models such as [Helios]{.smallcaps} [@bailey2019helios].
+This approach would enable the more precise integration of plant parameters, such as leaf area index, tree size and geometry, and leaf inclination distribution function, all of which influence the spectral signature of trees [@guyot1989factors; @bailey2017rapid].
+Some of these parameters can be quickly measured using terrestrial LiDAR scanning to support modelling, as proposed by @bailey2017rapid.
+[Less]{.smallcaps} simulates leaves as Lambertian planes, which reflect light equally in all directions --- which constitutes a certain departure from reality.
+In fact, reflectance depends on the solar incidence angle and viewing angle, together referred to as the bidirectional reflectance distribution function.
+Therefore, a more realistic ray tracing model simulating canopy reflectance should incorporate this process as well.
+However, measuring the bidirectional reflectance distribution function presents challenges due to the need to evaluate every possible combination of viewing and incidence angles for each material modelled.
+
+Finally, such comprehensive models would necessitate a large-scale sensitivity analysis to better understand the impact of parameters on the reflectance.
+
+## General possibilities for improvement
+
+There are several avenues for improvement which could benefit both machine learning and radiative transfer modelling: the spectral range covered by the sensors could be expanded, spatial and temporal dimensions in the data could considered, and the pre-processing of the data could be improved.
+
+Extending the spectral range of the hyperspectral camera may prove advantageous.
+The performance results of various models at the canopy level appear to be limited to a maximum of 25%.
+The canopy level data only spans from 400 to 900 nm in its spectral dimension.
+Consequently, models trained on data from the hyperspectral camera are confined to the direct relationship between nitrogen and chlorophyll, and any additional correlation with plant pigments absorbing in the visible light spectrum.
+Incorporating information from the short-wave-infrared region --- which covers protein absorption bands --- may significantly improve predictions [@camino2018improved].
+While the correlation matrix in [figure @fig-exploratory] indicates a weaker correlation between short-wave-infrared region reflectance and nitrogen compared to the visible light spectrum, it also reveals that the short-wave-infrared regions are almost entirely uncorrelated with visible light regions. 
+Therefore, crop nitrogen can likely be better modelled when utilizing data from both relevant regions.
+
+It is worth noting that although the spectral range covered seems important --- particularly with respect to short-wave-infrared --- a higher spectral resolution is likely unnecessary.
+The efficacy of many models requiring information from only a few bands suggests that a small fraction of the number of bands would be sufficient to adequately model crop nitrogen.
+For example, the best-performing model at the canopy level using the prior square feature selection algorithm only requires six bands for optimal performance (@tbl-hyperparameters).
+Thus, adding only a few bands in the short-wave-infrared region may significantly enhance model performance.
+
+Incorporating spatial information could further improve predictions.
+One possible approach involves learning the relationship between the shape and size of almond trees and their nitrogen foliar concentration, and using this knowledge to generate a synthetic labelled dataset.
+This dataset could enable the training of a convolutional neural network to learn the inverse function from spatial data.
+For example, similar research conducted by @jin2021combining demonstrated the successful training of a convolutional neural network to estimate forest canopy cover from satellite images.
+The convolutional neural network was initially trained on data generated using the three-dimensional radiative transfer model [Rapid]{.smallcaps} and subsequently transferred to real data.
+This approach was found to enhance accuracy in comparison to a similar model solely trained on real data.
+
+In addition to enhancing spectral and spatial information, temporal information could be included.
+Satellite imagery might be particularly useful for this purpose, as it captures orchards at regular intervals and provides standardized data formats --- especially in the context of future imaging spectroscopy satellite missions [@berger2020crop].
+
+Some final improvements could result from refining the data pre-processing steps applied to the hyperspectral images as described in [section @sec-HSIprocessing].
+For instance, using seam-carving for tree-cropping in a non-grid manner could result in more precise tree cropping and subsequently improve the prediction accuracy.
+
+## Addressing the quality and properties of the data
+
+Thus far, the attention has been solely directed towards potential enhancements in modelling or expanding the spectral, spatial, or temporal range or resolution of the data.
+In contrast, the ground-truth data utilized throughout this thesis was --- as its name suggests --- assumed to be fixed and entirely accurate.
+This assumption does not truly represent the real-world situation, as the ground-truth data is likely to contain considerable noise.
+As a result, fitting models to such noisy data can be challenging and give a wrong impression of the model's predictive power.
+After all, the notion that feeding low-quality data into a computational system leads to unfavourable outcomes has been recognized even before the emergence of modern computers.
+
+> *"On two occasions I have been asked [by members of Parliament], 'Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?' ... I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question."*
+>
+> Charles Babbage
+
+@burke2021using examined the implications of employing unreliable ground-truth data in remote sensing applications.
+Utilizing noisy data for calibrating models is not inherently problematic, provided that the data is unbiased.
+Nevertheless, a discrepancy between the measured nitrogen concentration and the actual tree-wide foliar nitrogen concentration can result in a substantial underestimation of model performance.
+But where could such noise in the labels come from?
+
+First, the nitrogen measurements might contain substantial noise arising from the sample preparation, equipment failures, and also human error [@saez2013overview].
+Thus, the nitrogen measurements themselves are not an absolute ground truth, even with respect to the leaves.
+
+Second, there exists a considerable disconnect between the nitrogen concentration of the sampled leaves and that of the entire tree.
+Previous research has shown that there is a high within-tree variance of the foliar nitrogen concentration [@khalsa2018understanding].
+Moreover, the tree crown typically contains more nitrogen than the bottom leaves due to its higher photosynthetic activity.
+Leaves sampled from a different area than that observed by the drones can also contribute to the noise.
+
+The inadequate representation of the true tree-wide nitrogen content is further emphasized by the band-wise correlation with the nitrogen measurements (@fig-exploratory): although the band-wise correlation appears similar between the canopy and leaf-level data, the magnitude of the correlation is much greater at the leaf level ($r = -0.48$ and $r = -0.32$, respectively).
+This strongly indicates a mismatch between leaf-level nitrogen measurements and the true tree-level foliar nitrogen concentration.
+
+In summary, canopy-level reflectance data exhibits a weaker correlation with nitrogen concentration compared to leaf-level reflectance data, possibly due to the sampled leaves not accurately representing the true tree-wide nitrogen content.
+Consequently, the performance of canopy level models may be underestimated, with their actual performance likely being considerably better.
+
+## Range of the nitrogen measurements
+
+The data utilized in this thesis was derived from a commercial almond orchard, which applied high nitrogen rates in line with recommendations by the Almond Board of California [@nitrogen2020].
+As a result, the measured foliar nitrogen concentrations almost all fell within a healthy range, between 1.96 and 3.17%, suggesting adequate nitrogen supply for most trees (@fig-PairsPanel).
+According to @micke1996, the optimal foliar nitrogen concentration would range between 2.2 and 2.5%, meaning that only a few almond trees would benefit from additional fertilization, while many could be considered slightly over-fertilized.
+
+It is essential to note that almonds are alternate bearing crops.
+In 2022, the Westfield almond orchard experienced a weak bearing year, resulting in higher foliar nitrogen concentrations compared to a strong yielding year due to less foliar nitrogen being mobilized for fruit production.
+Conversely, the Westwind 2021 orchard had lower nitrogen levels, leading to a higher number of nitrogen-deficient trees.
+This factor significantly contributes to the varying predictive power of the same model from year to year.
+
+Two critical implications arise from these observations concerning model evaluation.
+Firstly, the R^2^ metric, the most intuitive measure of model performance, is influenced by the response variable's range, as this range is part of its mathematical definition (@eq-RegressionPerformanceMetrics).
+This implies that a broader range of measured nitrogen concentration generally results in increased R^2^ values and result in a heightened sense of accuracy.
+Secondly, crop nitrogen status becomes more predictable when leaf nitrogen concentration is low, and plants exhibit nitrogen deficiency.
+This is attributed to the visual cues of nitrogen deficiency, manifesting as reduced chlorophyll content and visible leaf yellowing [@hawkesford2012functions].
+In contrast, nitrogen over-abundance leads to chlorophyll saturation without clear visual cues, making remote sensing detection more challenging [@munoz2013review].
+
+Several remote sensing studies investigating nitrogen concentrations have been conducted in tandem with nitrogen trials, where the experimental design specifically foresees certain blocks to be fertilized much less than others, or even not to be fertilized at all.
+This approach generally creates a wider range of foliar nitrogen, particularly at the lower end, which does not accurately represent real farming conditions.
+Due to the previously stated reasons, this increase range of the nitrogen labels result in a heightened sense of model accuracy.
+For instance, @wang2017non predicted foliar nitrogen concentration in pear leaves from an experiment with application rates ranging between 0 and 990 kg N ha^-1^ using spectrophotometric measurements.
+The authors achieved excellent predictions on their test data (R^2^ = 0.85) and concluded that their method would enable relatively inexpensive nitrogen monitoring in pear orchards.
+Similar conclusions based on modelling results using data from fertilization trials can be found throughout the scientific literature and for various crops [@zha2020improving; @perich2021proximal; @pancorbo2021simultaneous].
+
+To ensure the development of remote sensing technologies applicable in commercial agriculture, it is important to test these technologies in settings that accurately reflect commercial farming conditions --- especially when the conducted research promises to address the environmental problem of nitrogen leaching, rather than to detect plant stress from nitrogen deficiency.
+Consequently, further research focusing on remote sensing of crop nitrogen should focus on experimental settings that represent the reality of commercial farms.

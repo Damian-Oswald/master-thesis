@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 1&nbsp; Background</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./vegetation-indices-based-methods.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./resources/iconDO.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./background.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Background</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./background.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Background</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vegetation-indices-based-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Vegetation-indices-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./radiative-transfer-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./describing-processing-and-inspecting-the-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical-description-of-the-modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Technical description of the modelling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./results-of-the-model-performances.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results of the model performances</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-almonds" id="toc-sec-almonds" class="nav-link active" data-scroll-target="#sec-almonds"><span class="header-section-number">1.1</span> Almond production in California</a></li>
+  <li><a href="#sec-nitrogen" id="toc-sec-nitrogen" class="nav-link" data-scroll-target="#sec-nitrogen"><span class="header-section-number">1.2</span> Challenges with balancing crop nitrogen</a></li>
+  <li><a href="#sec-remotesensing" id="toc-sec-remotesensing" class="nav-link" data-scroll-target="#sec-remotesensing"><span class="header-section-number">1.3</span> The role of remote sensing in precision agriculture</a></li>
+  <li><a href="#sec-nitrogenRS" id="toc-sec-nitrogenRS" class="nav-link" data-scroll-target="#sec-nitrogenRS"><span class="header-section-number">1.4</span> Remote sensing of nitrogen</a></li>
+  <li><a href="#sec-aims" id="toc-sec-aims" class="nav-link" data-scroll-target="#sec-aims"><span class="header-section-number">1.5</span> Aims and structure of this thesis</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/background.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Background</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-almonds" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-almonds"><span class="header-section-number">1.1</span> Almond production in California</h2>
+<p>The United States of America is by far the world’s largest producer of almonds (<em>Prunus amygdalus</em> <span class="smallcaps">Batsch</span>) with a production share of roughly 80% <span class="citation" data-cites="almonds2020">(<a href="references.html#ref-almonds2020" role="doc-biblioref">CDFA 2020</a>)</span>. Almost all of this production takes place in the state of California, whose Mediterranean climate and well-developed water infrastructure make it possible to grow the crop commercially, even though almonds are not native to the state <span class="citation" data-cites="bjerga2018california">(<a href="references.html#ref-bjerga2018california" role="doc-biblioref">Bjerga et al. 2018</a>)</span>. Almond trees have an average life span of 20 to 25 years, whereby it typically takes three to four years for a tree to begin producing fruits. The almond trees in California begin blooming mid-February through March and harvest takes place in October before the wet season starts. The crops are alternate bearing, which means that strong harvests are succeeded by weaker ones in the following year <span class="citation" data-cites="almonds2016">(<a href="references.html#ref-almonds2016" role="doc-biblioref">WIFSS 2016</a>)</span>.</p>
+<p>One could argue that the expansion of its almond industry is California’s biggest agricultural success story <span class="citation" data-cites="bruno2021outlook">(<a href="references.html#ref-bruno2021outlook" role="doc-biblioref">Bruno et al. 2021</a>)</span>. Over the last three decades, the production volume increased almost eight-fold: the state produced about 1.27 million tons of almonds on 408’000 ha in 2020 <span class="citation" data-cites="almonds2021">(<a href="references.html#ref-almonds2021" role="doc-biblioref">USDA 2021</a>)</span>. The majority of the growing sites stretch along the Central Valley, most notably the counties <em>Fresno</em>, <em>Kern</em>, <em>Stanislaus</em>, <em>Merced</em>, and <em>Madera</em> (<a href="#fig-MapCalifornia">Figure&nbsp;<span>1.1</span></a>). The economic value of Californian almond production sums up to a staggering 5.62 billion U.S. dollars annually. Thus, almonds rank third place among California’s agricultural commodities, trailing only the dairy and grape industries <span class="citation" data-cites="bruno2021outlook">(<a href="references.html#ref-bruno2021outlook" role="doc-biblioref">Bruno et al. 2021</a>)</span>.</p>
+<p>This immense production comes at a cost. California is a comparatively dry state, where agriculture uses around 40% of the total available water supply — although that percentage varies dramatically between wet and dry years <span class="citation" data-cites="mount2016water">(<a href="references.html#ref-mount2016water" role="doc-biblioref">Mount and Hanak 2016</a>)</span>. It is estimated that Californian almond orchards alone use approximately 10% of the state’s water supply <span class="citation" data-cites="holthaus2015">(<a href="references.html#ref-holthaus2015" role="doc-biblioref">Holthaus 2015</a>)</span>. The scarcity of water is only expected to increase due to reduced amount of snowpack in the Sierras, depleting groundwater levels and climate change — the California Department of Water Resources expects a 10% reduction in water supply by 2040 <span class="citation" data-cites="watersupply2022">(<a href="references.html#ref-watersupply2022" role="doc-biblioref">DWR 2022</a>)</span>. Although discerning strong trends from climate projections is difficult, a drying trend for the Sacramento River Basin during the 21<sup>st</sup> century is observed through different climate scenarios developed <span class="citation" data-cites="california2015california">(<a href="references.html#ref-california2015california" role="doc-biblioref">DWR 2015</a>)</span>. As a consequence to these environmental changes, almond yields are predicted to decrease in the coming decades <span class="citation" data-cites="pathak2018climate">(<a href="references.html#ref-pathak2018climate" role="doc-biblioref">Pathak et al. 2018</a>)</span>.</p>
+<div id="fig-MapCalifornia" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/MapOfCalifornia.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.1: Map of California (Mercator projection). The shading of the counties relates to their almond production relative to the total Californian almond production. The counties with the highest almond production are <em>Fresno</em> (1), <em>Kern</em> (2), <em>Stanislaus</em> (3), <em>Merced</em> (4), and <em>Madera</em> (5). The area encircled by the dashed line indicates the approximate location of the Californian Central Valley. The data used to produce this map was obtained from the U.S. Department of Agriculture <span class="citation" data-cites="almonds2021">(<a href="references.html#ref-almonds2021" role="doc-biblioref">USDA 2021</a>)</span>.</figcaption>
+</figure>
+</div>
+<p>These trends are likely to increase the economic pressure on almond farmers and provide incentives to take up water-saving measures. While some older orchards in California may still be irrigated using flood irrigation, 85% of the orchards use low-volume irrigation, which is much preferable for water conservation <span class="citation" data-cites="almondsustainability2020">(<a href="references.html#ref-almondsustainability2020" role="doc-biblioref">ABC 2020</a>)</span>. In addition to that, some farmers already adopted the use of remote sensing for a more resourceful irrigation, either using water-stress-specific vegetation indices or thermal imaging <span class="citation" data-cites="ihuoma2017recent ceresimaging vineview almondsustainability2020">(<a href="references.html#ref-ihuoma2017recent" role="doc-biblioref">Ihuoma and Madramootoo 2017</a>, <a href="references.html#ref-almondsustainability2020" role="doc-biblioref">ABC 2020</a>, <a href="references.html#ref-ceresimaging" role="doc-biblioref">Ceres Imaging 2022</a>, <a href="references.html#ref-vineview" role="doc-biblioref">VineView 2022</a>)</span>.</p>
+<p>Another serious problem stemming from the intensive agriculture in California is nitrogen leaching due to over-fertilization. The subsequent excesses of nitrate in water resources have been found to contribute to environmental degradation in the state <span class="citation" data-cites="nitrogen2012">(<a href="references.html#ref-nitrogen2012" role="doc-biblioref">Viers et al. 2012</a>)</span>. For almond orchards, it is officially recommended to apply nitrogen in four rates: 20% of the total annual application at the end of the blooming stage, 30% during fruit growth, 30% during kernel fill and at last, 20% after the hull-split or after harvest <span class="citation" data-cites="nitrogen2020">(<a href="references.html#ref-nitrogen2020" role="doc-biblioref">Brown et al. 2020</a>)</span>. Thereby, it is not uncommon in intensive almond orchards to apply up to 300 kg nitrogen per hectare and year <span class="citation" data-cites="smart2014nitrogen">(<a href="references.html#ref-smart2014nitrogen" role="doc-biblioref">Smart et al. 2014</a>)</span>, although the Almond Board of California (ABC) states that the fertilization should consider both the almond tree’s age as well as the expected kernel yield <span class="citation" data-cites="nitrogen2020">(<a href="references.html#ref-nitrogen2020" role="doc-biblioref">Brown et al. 2020</a>)</span>. As such, recommendations for best management practices range between 130 and 285 kg nitrogen per hectare and year. Thus, under a new regulation of the Californian state to avoid environmental contamination, farmers are required to apply nitrogen fertilizations appropriately <span class="citation" data-cites="zhang2019california">(<a href="references.html#ref-zhang2019california" role="doc-biblioref">Zhang et al. 2019</a>)</span>.</p>
+</section>
+<section id="sec-nitrogen" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-nitrogen"><span class="header-section-number">1.2</span> Challenges with balancing crop nitrogen</h2>
+<p>Nitrogen (<span class="math inline">\(\text{N}\)</span>) is a vital element for plant growth. It is essential for the plant’s metabolism and is found in proteins, nucleic acids, chlorophyll, co-enzymes, phytohormones, and secondary metabolites. Plants take up nitrogen in the form of ammonium or nitrate and convert it into amino acids, either in their roots or shoots. Once inside the plant, nitrogen is transported as nitrate or amino acids <span class="citation" data-cites="hawkesford2012functions">(<a href="references.html#ref-hawkesford2012functions" role="doc-biblioref">Hawkesford et al. 2012</a>)</span>. The use of synthetic nitrogen fertilizers has drastically increased since the green revolution and has been a major driver for higher food production <span class="citation" data-cites="vitousek1997human">(<a href="references.html#ref-vitousek1997human" role="doc-biblioref">Vitousek et al. 1997</a>)</span>. However, the recovery of nitrogen from these fertilizers by plants is rather low and rarely exceeds 50% of the fertilizer input <span class="citation" data-cites="raun1999fertilizer">(<a href="references.html#ref-raun1999fertilizer" role="doc-biblioref">Raun et al. 1999</a>)</span>. The proportional uptake by plants is usually even lower in the case of organic fertilizers when compared to mineral fertilizers <span class="citation" data-cites="webb2013assessment">(<a href="references.html#ref-webb2013assessment" role="doc-biblioref">Webb et al. 2013</a>)</span>.</p>
+<p>The resulting loss of nitrogen from agricultural systems negatively impacts non-agricultural systems, such as terrestrial, ground, and freshwater ecosystems. Through leaching, nitrogen can move to other ecosystems in the form of nitrate (<span class="math inline">\(\text{NO}_3^-\)</span>) and cause eutrophication of surface water or contamination of drinking water <span class="citation" data-cites="yang2008mechanisms kapoor1997nitrate">(<a href="references.html#ref-kapoor1997nitrate" role="doc-biblioref">Kapoor and Viraraghavan 1997</a>, <a href="references.html#ref-yang2008mechanisms" role="doc-biblioref">Yang et al. 2008</a>)</span>. Agricultural production also contributes heavily to the emission of gaseous nitrogen in the form of ammonia (<span class="math inline">\(\text{NH}_3\)</span>), molecular nitrogen (<span class="math inline">\(\text{N}_2\)</span>) or nitrogen oxide (<span class="math inline">\(\text{NO}_2\)</span>) and nitrous oxide (<span class="math inline">\(\text{N}_2 \text O\)</span>), the latter two of which are greenhouse gases and thus accelerate climate change <span class="citation" data-cites="stark2008continuing">(<a href="references.html#ref-stark2008continuing" role="doc-biblioref">Stark and Richards 2008</a>)</span>. On the other hand, nitrogen deficiency negatively affects crop yields both in terms of quantity as well as quality. Therefore, there is also a substantial economic interest to continuously monitor the nitrogen status of crops during all growth stages <span class="citation" data-cites="baret2007quantification hank2019spaceborne">(<a href="references.html#ref-baret2007quantification" role="doc-biblioref">Baret et al. 2007</a>, <a href="references.html#ref-hank2019spaceborne" role="doc-biblioref">Hank et al. 2019</a>)</span>.</p>
+<p>Foliar nitrogen concentrations vary a lot among plant species, phenological stages and environmental conditions, ranging between 0.2 to 6.4% of the leaf dry weight <span class="citation" data-cites="wright2004worldwide">(<a href="references.html#ref-wright2004worldwide" role="doc-biblioref">Wright et al. 2004</a>)</span>. The optimal nitrogen concentration in almond leaves lies between 2.2 and 2.5%—the exact value depends on the time and the targeted yield <span class="citation" data-cites="micke1996">(<a href="references.html#ref-micke1996" role="doc-biblioref">Micke 1996</a>)</span>. In C<sub>3</sub> plant leaves, nitrogen is indispensable for photosynthesis, biosynthesis, carbon fixation and bioenergetics, since is a crucial element to both proteins and chlorophyll a and b (<a href="#fig-NitrogenInPlants">Figure&nbsp;<span>1.2</span></a>). Chlorophyll is a key component in the light harvesting process of plants and its porphyrin core contains four nitrogen atoms, which act as a stabilizer of the central magnesium ion <span class="citation" data-cites="evans1989photosynthesis">(<a href="references.html#ref-evans1989photosynthesis" role="doc-biblioref">Evans 1989</a>)</span>. However, in C<sub>3</sub> plants, chlorophyll a and b only bind 1.7% of the total leaf nitrogen <span class="citation" data-cites="chapin1987plant">(<a href="references.html#ref-chapin1987plant" role="doc-biblioref">Chapin et al. 1987</a>)</span>. Precise knowledge of the nitrogen concentration in plant leaves can be used for a more targeted fertilization and might even pave the way for variable rate fertilization <span class="citation" data-cites="guerrero2021current">(<a href="references.html#ref-guerrero2021current" role="doc-biblioref">Guerrero et al. 2021</a>)</span>. For example, one might consider the nitrogen nutrition index (NNI) introduced by <span class="citation" data-cites="justes1994determination">Justes et al. (<a href="references.html#ref-justes1994determination" role="doc-biblioref">1994</a>)</span>.</p>
+<p><span id="eq-NNI"><span class="math display">\[\text {NNI} = \frac{\text {N}_\%}{\text {N}_\text{crit.}} \tag{1.1}\]</span></span></p>
+<p>Here, N<sub>%</sub> is the measured nitrogen concentration and N<sub>crit.</sub> the critical nitrogen concentration. If NNI <span class="math inline">\(\geq\)</span> 1, the crop is sufficiently (or even excessively) provided with nitrogen. Vice versa NNI <span class="math inline">\(&lt;\)</span> 1 implies a nitrogen deficiency. Unfortunately, the retrieval of information about the foliar nitrogen concentration via chemical analyses is generally labour and cost intensive and thus not fit for monitoring the nitrogen concentration in plants throughout their seasonal development <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. This calls for surrogate strategies of estimating the foliar nitrogen concentration — for example via remote sensing. Remote sensing of crop nitrogen for more adequate fertilization is in fact one of the core promises of precision agriculture and smart farming <span class="citation" data-cites="zhang2002precision walter2017smart sishodia2020applications">(<a href="references.html#ref-zhang2002precision" role="doc-biblioref">Zhang et al. 2002</a>, <a href="references.html#ref-walter2017smart" role="doc-biblioref">Walter et al. 2017</a>, <a href="references.html#ref-sishodia2020applications" role="doc-biblioref">Sishodia et al. 2020</a>)</span>.</p>
+<div id="fig-NitrogenInPlants" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/NitrogenInPlants.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.2: This figure shows the proportional functional allocation of nitrogen in an average C<sub>3</sub> plant leaf. The percentages indicate what share of nitrogen is bound for a specific purpose. Adapted from <span class="citation" data-cites="chapin1987plant">Chapin et al. (<a href="references.html#ref-chapin1987plant" role="doc-biblioref">1987</a>)</span>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-remotesensing" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="sec-remotesensing"><span class="header-section-number">1.3</span> The role of remote sensing in precision agriculture</h2>
+<p>According to <span class="citation" data-cites="pierce1999aspects">Pierce and Nowak (<a href="references.html#ref-pierce1999aspects" role="doc-biblioref">1999</a>)</span>, precision agriculture involves using various technologies and principles to address the spatial and temporal variability in all elements of agricultural production, with the ultimate goal of enhancing crop performance and maintaining environmental quality. As such, precision agriculture is a part of smart farming, which aims at the optimization of agricultural systems driven by digitally available information <span class="citation" data-cites="wolfert2017big">(<a href="references.html#ref-wolfert2017big" role="doc-biblioref">Wolfert et al. 2017</a>)</span>. A core driver of precision agriculture is the increasing availability of remotely sensed data as well as the means of analyzing this data <span class="citation" data-cites="sishodia2020applications">(<a href="references.html#ref-sishodia2020applications" role="doc-biblioref">Sishodia et al. 2020</a>)</span>. Remote sensing describes the process of acquiring information about properties of an object without physical contact to said object, i.e., the attempt to measure something from distance rather than <em>in situ</em> <span class="citation" data-cites="schowengerdt2006remote">(<a href="references.html#ref-schowengerdt2006remote" role="doc-biblioref">Schowengerdt 2006</a>)</span>. This type of data is typically measured by satellites, aircraft, or unmanned aerial vehicles <span class="citation" data-cites="sishodia2020applications">(<a href="references.html#ref-sishodia2020applications" role="doc-biblioref">Sishodia et al. 2020</a>)</span>.</p>
+<p>For numerous agricultural applications, remote sensing focuses on measuring the electromagnetic radiation reflected or emitted from the Earth’s surface, primarily the reflection of sunlight in the visible and near-infrared spectrum <span class="citation" data-cites="jafarbiglu2022comprehensive">(<a href="references.html#ref-jafarbiglu2022comprehensive" role="doc-biblioref">Jafarbiglu and Pourreza 2022</a>)</span>. Sensors more effectively capture signals in the visible light spectrum between 380 and 750 nm wavelength because the electromagnetic radiation of the sun is the peaking there, whereas it tapers off in the ultraviolet and near- to short-wave-infrared regions (<a href="#fig-Electromagnetic">Figure&nbsp;<span>1.3</span></a>, A).</p>
+<p>The intensity of this electromagnetic radiation — its flux density — is typically measured in watts per square metre <span class="citation" data-cites="ISO9288">(W m<sup>−2</sup>, <a href="references.html#ref-ISO9288" role="doc-biblioref">ISO 2022</a>)</span>. If this radiation is received by a physical object, it is referred to as irradiance, if it is emitted by the object, it is called radiance. The spectral irradiance and radiance on the other hand are a measure of irradiance or radiance over a specific range of wavelengths (or frequencies) rather than across the entire electromagnetic spectrum, and thus typically measured in watts per square metre per nanometre <span class="citation" data-cites="ISO9288">(W m<sup>−2</sup> nm<sup>−1</sup>, <a href="references.html#ref-ISO9288" role="doc-biblioref">ISO 2022</a>)</span>. The solar irradiance measured at a particular time and location depends on many parameters such as the solar incidence angle, the height above mean sea level, or the current atmospheric conditions <span class="citation" data-cites="stickler2016educational blumthaler1997increase">(<a href="references.html#ref-blumthaler1997increase" role="doc-biblioref">Blumthaler et al. 1997</a>, <a href="references.html#ref-stickler2016educational" role="doc-biblioref">Stickler and Kyle 2016</a>)</span>. Because of that, remote sensing applications do not directly analyse the radiance — which is just as dependent on those parameters as the irradiance — but rather the so-called reflectance (<span class="math inline">\(\rho\)</span>). Reflectance is the share of electromagnetic radiation which is reflected by a body. Consequentially, the spectral reflectance is defined as the ratio between the spectral radiance <span class="math inline">\(\Phi_{\text e, \lambda} ^\text r\)</span> and the spectral irradiance <span class="math inline">\(\Phi_{\text e, \lambda} ^\text i\)</span> <span class="citation" data-cites="ISO9288">(<a href="references.html#ref-ISO9288" role="doc-biblioref">ISO 2022</a>)</span>.</p>
+<p><span id="eq-reflectance"><span class="math display">\[\rho_\lambda = \frac{\Phi_{\text e, \lambda} ^\text r}{\Phi_{\text e, \lambda} ^\text i} \tag{1.2}\]</span></span></p>
+<p>At which exact wavelengths <span class="math inline">\(\lambda\)</span> this reflectance is calculated depends on the available data. Data from an ordinary digital camera usually covers three bands: red (620-740 nm), green (500-560 nm), and blue (450-490 nm), which is why it is referred to as RGB imagery <span class="citation" data-cites="bruno2005crc">(<a href="references.html#ref-bruno2005crc" role="doc-biblioref">Bruno and Svoronos 2005</a>)</span>. In contrast to that, multispectral images are a type of remotely sensed data that consist of more than three bands beyond just the visible spectrum. For agricultural purposes, multispectral imagery typically combines RGB imagery with bands in the near-infrared spectrum <span class="citation" data-cites="hagen2013review">(<a href="references.html#ref-hagen2013review" role="doc-biblioref">Hagen and Kudenov 2013</a>)</span>. Because the infrared spectrum will be quite important within the scope of this thesis, I will often refer to certain subgroups of that range: near-infrared (NIR, 750-1400 nm), short-wavelength-infrared (SWIR, 1400-3000 nm), mid-wavelength infrared (MWIR, 3-8 <span class="math inline">\(\mu\)</span>m), long-wavelength infrared (LWIR, 8-15 <span class="math inline">\(\mu\)</span>m) and far infrared <span class="citation" data-cites="Byrnes2009">(FIR, 15-1000 <span class="math inline">\(\mu\)</span>m, <a href="references.html#ref-Byrnes2009" role="doc-biblioref">Byrnes 2009</a>)</span>.</p>
+<div id="fig-Electromagnetic" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/Electromagnetic.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1.3: This figure illustrates the spectral flux density of solar irradiance (<strong>A</strong>) in relation to the broader electromagnetic spectrum (<strong>B</strong>). A portion of the initial irradiance is absorbed by various gases or scattered by Rayleigh scattering, resulting in only a part of it reaching the Earth’s surface at sea level. The irradiance and radiance data at a given surface location (<strong>C</strong>) can be utilized to calculate the reflectance based on <a href="#eq-reflectance">equation&nbsp;<span>1.2</span></a> (<strong>D</strong>). This reflectance enables the determination of various physical and biochemical properties of the surface. This figure was adapted from work by <span class="citation" data-cites="Rohde2013">Rohde (<a href="references.html#ref-Rohde2013" role="doc-biblioref">2013</a>)</span> and created using data from the <span class="citation" data-cites="NREL">National Renewable Energy Laboratory (<a href="references.html#ref-NREL" role="doc-biblioref">2022</a>)</span>.</figcaption>
+</figure>
+</div>
+<p>When incorporating numerous additional spectral bands into the imaging process, it is referred to as hyperspectral imaging. Hyperspectral images (HSI) usually consist of hundreds of narrow, contiguous wavelength bands, which together with the spatial resolution form a hypercube <span class="math inline">\(\mathbf X \in \mathbb R^{w \times l \times d}\)</span> with the width <span class="math inline">\(w\)</span>, length <span class="math inline">\(l\)</span> and the depth <span class="math inline">\(d\)</span> (that is the number of spectral bands). The high spectral resolution is the main advantage of hyperspectral imaging, it is what allows for the detailed analysis of the chemical and physical properties of the imaged surface <span class="citation" data-cites="bioucas2013hyperspectral">(<a href="references.html#ref-bioucas2013hyperspectral" role="doc-biblioref">Bioucas-Dias et al. 2013</a>)</span>. This high spectral resolution however stands in a trade-off relationship with the spatial resolution, which is why hyperspectral imaging usually yields a lower spatial resolution than multispectral imaging <span class="citation" data-cites="yokoya2013hyperspectral">(<a href="references.html#ref-yokoya2013hyperspectral" role="doc-biblioref">Yokoya and Iwasaki 2013</a>)</span>. Sometimes, the continuous information about an object’s reflectance found solely in the spectral dimension of hyperspectral images is also referred to as its spectral signature. A very important property of the spectral dimension of hyperspectral images is the strong autocorrelation among spectral bands, which is expressed in extremely non-diagonal covariance matrices <span class="citation" data-cites="camps2011remote">(<a href="references.html#ref-camps2011remote" role="doc-biblioref">Camps-Valls et al. 2011</a>)</span>.</p>
+<p>In order to to capture hyperspectral images, specialized hyperspectral cameras are used. They typically consist of a spectrograph, which separates the incoming light into its individual wavelength bands, and of an array of detectors that measure the intensity of the light in each band <span class="citation" data-cites="elmasry2010principles">(<a href="references.html#ref-elmasry2010principles" role="doc-biblioref">El Masry and Sun 2010</a>)</span>. The spectrograph and detectors are combined into a single, integrated unit, which is mounted on the carrying platform. These sensors work well in the visible spectrum, but the quality starts to drop in the near-infrared region and especially in the short-wave-infrared region (after 900 nm wavelength, see <a href="#fig-Electromagnetic">figure&nbsp;<span>1.3</span></a>).</p>
+<p>There are several reasons for this. One reason is that the near-infrared and short-wavelength infrared regions are typically characterized by lower levels of radiance compared to the visible light spectrum, which can make it difficult to obtain high-quality, noise-free data. In addition, the short-wavelength infrared region is often affected by atmospheric absorption of different gases, especially water vapour, which can cause the signal strength to vary significantly depending on the atmospheric conditions (<a href="#fig-Electromagnetic">Figure&nbsp;<span>1.3</span></a> A). This noise is sometimes removed using atmospheric correction algorithms <span class="citation" data-cites="gao2009atmospheric">(<a href="references.html#ref-gao2009atmospheric" role="doc-biblioref">Gao et al. 2009</a>)</span>. A third challenge in the short-wavelength infrared region is the need for specialized detectors that are sensitive to the wavelengths of light in this region. These detectors are typically made of alloys such as indium gallium arsenide or mercury cadmium telluride, which are more expensive and less sensitive than the detectors used in the visible and near-infrared regions <span class="citation" data-cites="dyson2021 ciani2020comparison">(<a href="references.html#ref-ciani2020comparison" role="doc-biblioref">Ciani et al. 2020</a>, <a href="references.html#ref-dyson2021" role="doc-biblioref">Dyson 2021</a>)</span>.</p>
+<p>Due to these reasons, hyperspectral imaging of sufficient quality is often limited to the visible- and near-infrared spectrum. Acquiring exact spectral information in the short-wave-infrared spectrum is mostly reserved to spectroradiometric measurements, although this starts to change with the advancement of hyperspectral sensors <span class="citation" data-cites="weber2016extended">(<a href="references.html#ref-weber2016extended" role="doc-biblioref">Weber et al. 2016</a>)</span>.</p>
+</section>
+<section id="sec-nitrogenRS" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sec-nitrogenRS"><span class="header-section-number">1.4</span> Remote sensing of nitrogen</h2>
+<p>The first attempt to directly model crop nitrogen based on spectrophotometrically measured reflectance data has been made by <span class="citation" data-cites="thomas1972estimating">Thomas and Oerther (<a href="references.html#ref-thomas1972estimating" role="doc-biblioref">1972</a>)</span>, who worked on sweet potatoes. The authors stated:</p>
+<blockquote class="blockquote">
+<p><em>“The regression equation at the 550 nm wavelength suggests that near the 4% nitrogen level a 1% change in reflectance would change the predicted nitrogen content by 0.2%.”</em></p>
+</blockquote>
+<p>In other words, they proposed a simple linear regression model (on logarithmically transformed variables) to quickly estimate the nitrogen concentration — solely based on the reflectance at 550 nm wavelength. Back then, this relationship had to be found by calculating all band-wise correlations and simply choosing a suitable band for the regression. Ever since, much more advanced methods of modelling crop nitrogen have been developed. There are many ways to divide the modelling approaches into groups. For example, <span class="citation" data-cites="verrelst2019quantifying">Verrelst et al. (<a href="references.html#ref-verrelst2019quantifying" role="doc-biblioref">2019</a>)</span> proposed grouping the methods in parametric, non-parametric, physics-based and hybrid methods. <span class="citation" data-cites="berger2020crop">Berger et al. (<a href="references.html#ref-berger2020crop" role="doc-biblioref">2020</a>)</span> followed up on that division, but further distinguished between linear and non-linear methods — which they equate to the terms chemometrics and machine learning.</p>
+<p>However, the terms parametric and non-parametric as used by <span class="citation" data-cites="berger2020crop">Berger et al. (<a href="references.html#ref-berger2020crop" role="doc-biblioref">2020</a>)</span> collide with pre-occupied definitions in the field of machine learning. Furthermore, the formal definition of machine learning also applies to many of the other groups proposed by the authors. Therefore, I will use the following simplified classification throughout this thesis:</p>
+<ol type="1">
+<li>Hand-crafted features</li>
+<li>Machine learning</li>
+<li>Radiative transfer models</li>
+</ol>
+<p>The primary distinction between the first two methods lies in how the bands which are used to make predictions are selected. Hand-crafted features describe all methods which select a subset of bands or a mathematical combination thereof (as in the case of vegetation indices) which is made prior to the fitting of the regression model. Thereby, the band selection happens according to a certain imposed logic, or according to what is already used in the scientific literature. In contrast to that, the models classified as machine learning have access to the entire data, i.e., all available bands. The model automatically learns which bands or combinations of bands are the most important for accurately predicting crop nitrogen without prior information or manual feature engineering. Radiative transfer models, conversely, are primarily designed to simulate the detailed physical processes governing the transport of light and its interaction with a leaf or canopy. As a result, these models incorporate a substantial amount of prior knowledge. At this point, it is important to acknowledge that ultimately, these classifications possess a degree of arbitrariness and exhibit considerable overlap in their respective methodologies.</p>
+<p>All three listed methods have been explored in the scientific literature, but not in comparable detail. <span class="citation" data-cites="berger2020crop">Berger et al. (<a href="references.html#ref-berger2020crop" role="doc-biblioref">2020</a>)</span> found that 78 out of 125 evaluated studies that aimed to predict crop nitrogen via remote sensing relied on vegetation indices. Out of these, only a few studies have highlighted the limitations of indices-based approaches, such as their limited transferability to different sites. The studies mostly relied on the empirical relationship of certain vegetation indices to the chlorophyll content of crops, which in turn is related to nitrogen <span class="citation" data-cites="penuelas1994reflectance baret2007quantification">(<a href="references.html#ref-penuelas1994reflectance" role="doc-biblioref">Peñuelas et al. 1994</a>, <a href="references.html#ref-baret2007quantification" role="doc-biblioref">Baret et al. 2007</a>)</span>. The application of machine learning for crop nitrogen estimation was also investigated by numerous studies, where the most often applied model was the partial least squares regression model. Radiative transfer models on the other hand have only been used in three studies for modelling crop nitrogen <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>.</p>
+<p>Crop nitrogen or nitrogen content are both ambiguous terms, although very commonly used in the scientific literature. Ever since <span class="citation" data-cites="thomas1972estimating">Thomas and Oerther (<a href="references.html#ref-thomas1972estimating" role="doc-biblioref">1972</a>)</span> pioneered remote sensing of nitrogen, the focus lied on two different measurements: mass- and area-based nitrogen <span class="citation" data-cites="wright2004worldwide">(<a href="references.html#ref-wright2004worldwide" role="doc-biblioref">Wright et al. 2004</a>)</span>. Mass-based nitrogen (N<sub>%</sub>) is the nitrogen concentration in the leaves, typically relative to the leaf dry weight. Area-based nitrogen (N<sub>area</sub>) describes how much nitrogen is present in the biomass over a certain area. The two measures are linked together by the leaf mass per area (LMA), which is a widely used morphological trait that indicates good plant growth and functioning <span class="citation" data-cites="de2016leaf">(<a href="references.html#ref-de2016leaf" role="doc-biblioref">de la Riva et al. 2016</a>)</span>.</p>
+<p><span id="eq-LMA"><span class="math display">\[\text N_{\text{area}} = \text{LMA} \times \text N_{\%} \tag{1.3}\]</span></span></p>
+<p>The majority of the contemporary studies focus on multi- or hyperspectral data. However, there is still some ongoing research about the usage of broadly available and low cost RGB imagery for predicting nitrogen content in crops, although with no great success <span class="citation" data-cites="schirrmann2016monitoring zheng2018evaluation fu2020winter">(<a href="references.html#ref-schirrmann2016monitoring" role="doc-biblioref">Schirrmann et al. 2016</a>, <a href="references.html#ref-zheng2018evaluation" role="doc-biblioref">Zheng et al. 2018</a>, <a href="references.html#ref-fu2020winter" role="doc-biblioref">Fu et al. 2020</a>)</span>.</p>
+<p>Within the visible light spectrum, three types of plant pigments mainly determine the absorption process and thus the leaf colour: chlorophylls, carotenoids, and anthocyanins. Chlorophylls include chlorophyll a and b with their respective absorption bands, while carotenoids (e.g., <span class="math inline">\(\beta\)</span>-carotene and xanthophyll) and anthocyanins include numerous compounds <span class="citation" data-cites="feret2008prospect">(<a href="references.html#ref-feret2008prospect" role="doc-biblioref">Féret et al. 2008</a>)</span>. Out of these pigments, only chlorophyll is directly connected to nitrogen. It accounts for roughly 1.7% of total leaf nitrogen, which explains the rather loose Pearson correlation (<span class="math inline">\(\rho = 0.65 \pm 0.15\)</span>) between the chlorophyll and the nitrogen concentration in leaves <span class="citation" data-cites="kokaly2009characterizing homolova2013review">(<a href="references.html#ref-kokaly2009characterizing" role="doc-biblioref">Kokaly et al. 2009</a>, <a href="references.html#ref-homolova2013review" role="doc-biblioref">Homolová et al. 2013</a>)</span>. It remains to be noted that the Pearson correlation might not be the best metric to compare nitrogen and chlorophyll, as <span class="citation" data-cites="padilla2018different">Padilla et al. (<a href="references.html#ref-padilla2018different" role="doc-biblioref">2018</a>)</span> have found a second order polynomial model to slightly improve the model fit.</p>
+<p>Fully relying on chlorophyll for the remote sensing of crop nitrogen is highly limited and can even be misleading. First, the prediction will always be limited to the correlation between the two traits. Also, the relationship between chlorophyll and nitrogen changes over time, as nitrogen is reallocated from the vegetative organs to reproductive structures during the reproductive stage <span class="citation" data-cites="ohyama2010nitrogen">(<a href="references.html#ref-ohyama2010nitrogen" role="doc-biblioref">Ohyama 2010</a>)</span>. Finally, a lack of chlorophyll cannot certainly be ascribed to a nitrogen deficiency but also any other chlorosis-causing nutrient deficiency <span class="citation" data-cites="asner2009airborne bloem2005influence">(<a href="references.html#ref-bloem2005influence" role="doc-biblioref">Bloem et al. 2005</a>, <a href="references.html#ref-asner2009airborne" role="doc-biblioref">Asner and Martin 2009</a>)</span>.</p>
+<p>Due to these reasons, leaf protein content would be a more stable proxy for the foliar nitrogen concentration <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. The majority of plant nitrogen is bound to protein (<a href="#fig-NitrogenInPlants">Figure&nbsp;<span>1.2</span></a>), thus there is less room for decoupling between the two traits <span class="citation" data-cites="kokaly2009characterizing">(<a href="references.html#ref-kokaly2009characterizing" role="doc-biblioref">Kokaly et al. 2009</a>)</span>.</p>
+</section>
+<section id="sec-aims" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="sec-aims"><span class="header-section-number">1.5</span> Aims and structure of this thesis</h2>
+<p>In this master’s thesis, I pursue two primary objectives: First, I aim to gain a comprehensive understanding of the various methods for modelling crop nitrogen, as outlined in the previous section. Second, I search for a model capable of effectively mapping the spectral signature of almond canopies or leaves with their respective nitrogen concentrations, while maintaining generalizability across diverse temporal variations, including different times of the year, distinct years, and varied geographical locations.</p>
+<p>With these goals in mind, the thesis is structured as follows: The first part delves into each of the approaches previously introduced. <a href="vegetation-indices-based-methods.html">Chapter&nbsp;<span>2</span></a> examines remote sensing of nitrogen using vegetation indices. <a href="machine-learning-methods-for-hyperspectral-data-analysis.html">Chapter&nbsp;<span>3</span></a> is dedicated to selected machine learning algorithms suitable for hyperspectral data analysis. <a href="radiative-transfer-models.html">Chapter&nbsp;<span>4</span></a> investigates physics-based radiative transfer models, beginning at the leaf level and progressing to the canopy level.</p>
+<p>Please note that this thesis does not include a systematic literature review and, as such, does not claim to be complete with respect of the modelling methods regarded. For instance, the radiative transfer models discussed in <a href="radiative-transfer-models.html">chapter&nbsp;<span>4</span></a> represent merely a small subset of the available models. Instead, the primary objective is to understand the underlying principles as well as the distinctions among the three techniques.</p>
+<p>This thesis resulted in a collaboration with the Digital Agriculture Laboratory at the University of California, Davis, which is led by Dr.&nbsp;Alireza Pourreza. The lab’s members collected data from a Californian almond orchard prior to my involvement; however, the data was highly unstructured. Consequently, a portion of this thesis’ workload involved cleaning and pre-processing the data, which is described in detail in <a href="describing-processing-and-inspecting-the-data.html">chapter&nbsp;<span>5</span></a>.</p>
+<p>The modelling stage is documented in <a href="technical-description-of-the-modelling.html">chapter&nbsp;<span>6</span></a>, and the model performance results are presented in <a href="results-of-the-model-performances.html">chapter&nbsp;<span>7</span></a>. An in-depth discussion regarding the model’s generalizability and other relevant topics can be found in <a href="discussion.html">chapter&nbsp;<span>8</span></a>, with concluding remarks in <a href="conclusion.html">chapter&nbsp;<span>9</span></a>.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-almondsustainability2020" class="csl-entry" role="listitem">
+ABC. 2020. <a href="https://www.almonds.com/sites/default/files/2020-12/2020%20Growing%20Good%20Almond%20Sustainability.pdf">Growing good – almond sustainability</a>. Almond Board of California, 1150 Ninth Street, Suite 1500, Modesto, CA95354.
+</div>
+<div id="ref-asner2009airborne" class="csl-entry" role="listitem">
+Asner, G. P., and R. E. Martin. 2009. <a href="https://doi.org/10.1890/070152">Airborne spectranomics: Mapping canopy chemical and taxonomic diversity in tropical forests</a>. Frontiers in Ecology and the Environment 7:269–276.
+</div>
+<div id="ref-baret2007quantification" class="csl-entry" role="listitem">
+Baret, F., V. Houlès, and M. Guerif. 2007. <a href="https://doi.org/10.1093/jxb/erl231">Quantification of plant stress using remote sensing observations and crop models: The case of nitrogen management</a>. Journal of experimental botany 58:869–880.
+</div>
+<div id="ref-berger2020crop" class="csl-entry" role="listitem">
+Berger, K., J. Verrelst, J.-B. Feret, Z. Wang, M. Wocher, M. Strathmann, M. Danner, W. Mauser, and T. Hank. 2020. <a href="https://doi.org/10.1016/j.rse.2020.111758">Crop nitrogen monitoring: Recent progress and principal developments in the context of imaging spectroscopy missions</a>. Remote Sensing of Environment 242:111758.
+</div>
+<div id="ref-bioucas2013hyperspectral" class="csl-entry" role="listitem">
+Bioucas-Dias, J. M., A. Plaza, G. Camps-Valls, P. Scheunders, N. Nasrabadi, and J. Chanussot. 2013. <a href="https://doi.org/10.1109/MGRS.2013.2244672">Hyperspectral remote sensing data analysis and future challenges</a>. IEEE Geoscience and remote sensing magazine 1:6–36.
+</div>
+<div id="ref-bjerga2018california" class="csl-entry" role="listitem">
+Bjerga, A., D. Cohen, and C. Hoffman. 2018. California almonds are back after four years of brutal drought. Bloomberg.
+</div>
+<div id="ref-bloem2005influence" class="csl-entry" role="listitem">
+Bloem, E., S. Haneklaus, and E. Schnug. 2005. <a href="https://doi.org/10.1081/PLN-200026433">Influence of nitrogen and sulfur fertilization on the alliin content of onions and garlic</a>. Journal of Plant Nutrition 27:1827–1839.
+</div>
+<div id="ref-blumthaler1997increase" class="csl-entry" role="listitem">
+Blumthaler, M., W. Ambach, and R. Ellinger. 1997. <a href="https://doi.org/10.1016/S1011-1344(96)00018-8">Increase in solar UV radiation with altitude</a>. Journal of photochemistry and Photobiology B: Biology 39:130–134.
+</div>
+<div id="ref-nitrogen2020" class="csl-entry" role="listitem">
+Brown, P. H., S. Saa, S. Muhammad, and S. D. Khalsa. 2020. Nitrogen best management practices. Almond Board of California, 1150 Ninth Street, Suite 1500, Modesto, CA 95354.
+</div>
+<div id="ref-bruno2021outlook" class="csl-entry" role="listitem">
+Bruno, E. M., B. Goodrich, and R. J. Sexton. 2021. The outlook for california’s almond market. Calif. Almond Acreage Rep 24:9–11.
+</div>
+<div id="ref-bruno2005crc" class="csl-entry" role="listitem">
+Bruno, T. J., and P. D. Svoronos. 2005. CRC handbook of fundamental spectroscopic correlation charts. CRC Press.
+</div>
+<div id="ref-Byrnes2009" class="csl-entry" role="listitem">
+Byrnes, J. 2009. <a href="https://doi.org/10.1007/978-1-4020-9253-4">Unexploded ordnance detection and mitigation</a>. Springer Science &amp; Business Media.
+</div>
+<div id="ref-camps2011remote" class="csl-entry" role="listitem">
+Camps-Valls, G., D. Tuia, L. Gómez-Chova, S. Jiménez, and J. Malo. 2011. <a href="https://doi.org/10.1007/978-3-031-02247-0_1">Remote sensing image processing</a>. Synthesis Lectures on Image, Video, and Multimedia Processing 5:1–192.
+</div>
+<div id="ref-almonds2020" class="csl-entry" role="listitem">
+CDFA. 2020. California agriculture exports 2019-2020. <span>California Department of Food and Argiculture</span>, 1220 N Street, Sacramento, CA 95812.
+</div>
+<div id="ref-ceresimaging" class="csl-entry" role="listitem">
+Ceres Imaging. 2022. <a href="https://www.ceresimaging.net/water-stress-index">Water stress index</a>. Webpage.
+</div>
+<div id="ref-chapin1987plant" class="csl-entry" role="listitem">
+Chapin, F. S., A. J. Bloom, C. B. Field, and R. H. Waring. 1987. <a href="https://doi.org/10.2307/1310177">Plant responses to multiple environmental factors</a>. Bioscience 37:49–57.
+</div>
+<div id="ref-ciani2020comparison" class="csl-entry" role="listitem">
+Ciani, A. J., C. H. Grein, W. L. Sarney, S. P. Svensson, D. V. Donetski, and G. L. Belenky. 2020. <a href="https://doi.org/10.1063/5.0017924">A comparison of indium arsenide antimonide and mercury cadmium telluride as long wavelength infrared detector materials</a>. Journal of Applied Physics 128:075704.
+</div>
+<div id="ref-de2016leaf" class="csl-entry" role="listitem">
+de la Riva, E. G., M. Olmo, H. Poorter, J. L. Ubera, and R. Villar. 2016. <a href="https://doi.org/10.1371/journal.pone.0148788">Leaf mass per area (LMA) and its relationship with leaf structure and anatomy in 34 mediterranean woody species along a water availability gradient</a>. PloS one 11:e0148788.
+</div>
+<div id="ref-california2015california" class="csl-entry" role="listitem">
+DWR. 2015. California climate science and data for water resources management. California Department of Water Resources, 715 P Street Sacramento, CA 95814.
+</div>
+<div id="ref-watersupply2022" class="csl-entry" role="listitem">
+DWR. 2022. California’s water supply strategy – adapting to a hotter, drier future. California Department of Water Resources, 715 P Street, Sacramento, CA 95814.
+</div>
+<div id="ref-dyson2021" class="csl-entry" role="listitem">
+Dyson, M. 2021. <a href="https://www.idtechex.com/en/research-article/competing-short-wavelength-infra-red-sensing-technologies/24918">Competing short-wavelength infra-red sensing technologies</a>. Blog post.
+</div>
+<div id="ref-elmasry2010principles" class="csl-entry" role="listitem">
+El Masry, G., and D.-W. Sun. 2010. <a href="https://doi.org/10.1016/C2009-0-01853-4">Principles of hyperspectral imaging technology</a>. Pages 3–43 Hyperspectral imaging for food quality analysis and control. Elsevier.
+</div>
+<div id="ref-evans1989photosynthesis" class="csl-entry" role="listitem">
+Evans, J. R. 1989. <a href="https://doi.org/10.1007/BF00377192">Photosynthesis and nitrogen relationships in leaves of C3 plants</a>. Oecologia 78:9–19.
+</div>
+<div id="ref-feret2008prospect" class="csl-entry" role="listitem">
+Féret, J.-B., C. François, G. P. Asner, A. A. Gitelson, R. E. Martin, L. P. Bidel, S. L. Ustin, G. Le Maire, and S. Jacquemoud. 2008. <a href="https://doi.org/10.1016/j.rse.2008.02.012">PROSPECT-4 and 5: Advances in the leaf optical properties model separating photosynthetic pigments</a>. Remote Sensing of Environment 112:3030–3043.
+</div>
+<div id="ref-fu2020winter" class="csl-entry" role="listitem">
+Fu, Y., G. Yang, Z. Li, X. Song, Z. Li, X. Xu, P. Wang, and C. Zhao. 2020. <a href="https://doi.org/10.3390/rs12223778">Winter wheat nitrogen status estimation using UAV-based RGB imagery and gaussian processes regression</a>. Remote Sensing 12:3778.
+</div>
+<div id="ref-gao2009atmospheric" class="csl-entry" role="listitem">
+Gao, B.-C., M. J. Montes, C. O. Davis, and A. F. Goetz. 2009. <a href="https://doi.org/10.1016/j.rse.2007.12.015">Atmospheric correction algorithms for hyperspectral remote sensing data of land and ocean</a>. Remote Sensing of Environment 113:S17–S24.
+</div>
+<div id="ref-guerrero2021current" class="csl-entry" role="listitem">
+Guerrero, A., S. De Neve, and A. M. Mouazen. 2021. <a href="https://doi.org/10.1016/bs.agron.2021.02.001">Current sensor technologies for in situ and on-line measurement of soil nitrogen for variable rate fertilization: A review</a>. Advances in Agronomy 168:1–38.
+</div>
+<div id="ref-hagen2013review" class="csl-entry" role="listitem">
+Hagen, N. A., and M. W. Kudenov. 2013. <a href="https://doi.org/10.1117/1.OE.52.9.090901">Review of snapshot spectral imaging technologies</a>. Optical Engineering 52:090901.
+</div>
+<div id="ref-hank2019spaceborne" class="csl-entry" role="listitem">
+Hank, T. B., K. Berger, H. Bach, J. G. Clevers, A. Gitelson, P. Zarco-Tejada, and W. Mauser. 2019. <a href="https://doi.org/10.1007/s10712-018-9492-0">Spaceborne imaging spectroscopy for sustainable agriculture: Contributions and challenges</a>. Surveys in Geophysics 40:515–551.
+</div>
+<div id="ref-hawkesford2012functions" class="csl-entry" role="listitem">
+Hawkesford, M., W. Horst, T. Kichey, H. Lambers, J. Schjoerring, I. S. Møller, and P. White. 2012. <a href="https://doi.org/10.1016/B978-0-12-384905-2.00006-6">Functions of macronutrients</a>. Pages 135–189 Marschner’s mineral nutrition of higher plants. Elsevier.
+</div>
+<div id="ref-holthaus2015" class="csl-entry" role="listitem">
+Holthaus, E. 2015. 10 percent of california’s water goes to almond farming. That’s nuts.’. Slate Magazine.
+</div>
+<div id="ref-homolova2013review" class="csl-entry" role="listitem">
+Homolová, L., Z. Malenovskỳ, J. G. Clevers, G. Garcı́a-Santos, and M. E. Schaepman. 2013. <a href="https://doi.org/10.1016/j.ecocom.2013.06.003">Review of optical-based remote sensing for plant trait mapping</a>. Ecological Complexity 15:1–16.
+</div>
+<div id="ref-ihuoma2017recent" class="csl-entry" role="listitem">
+Ihuoma, S. O., and C. A. Madramootoo. 2017. <a href="https://doi.org/10.1016/j.compag.2017.07.026">Recent advances in crop water stress detection</a>. Computers and Electronics in Agriculture 141:267–275.
+</div>
+<div id="ref-ISO9288" class="csl-entry" role="listitem">
+ISO. 2022. Thermal insulation — heat transfer by radiation — vocabulary. Standard, International Organization for Standardization, Geneva, CH.
+</div>
+<div id="ref-jafarbiglu2022comprehensive" class="csl-entry" role="listitem">
+Jafarbiglu, H., and A. Pourreza. 2022. <a href="https://doi.org/10.1016/j.compag.2022.106844">A comprehensive review of remote sensing platforms, sensors, and applications in nut crops</a>. Computers and Electronics in Agriculture 197:106844.
+</div>
+<div id="ref-justes1994determination" class="csl-entry" role="listitem">
+Justes, E., B. Mary, J.-M. Meynard, J.-M. Machet, and L. Thelier-Huché. 1994. <a href="https://doi.org/10.1006/anbo.1994.1133">Determination of a critical nitrogen dilution curve for winter wheat crops</a>. Annals of botany 74:397–407.
+</div>
+<div id="ref-kapoor1997nitrate" class="csl-entry" role="listitem">
+Kapoor, A., and T. Viraraghavan. 1997. <a href="https://doi.org/10.1061/(ASCE)0733-9372(1997)123:4(371)">Nitrate removal from drinking water</a>. Journal of environmental engineering 123:371–380.
+</div>
+<div id="ref-kokaly2009characterizing" class="csl-entry" role="listitem">
+Kokaly, R. F., G. P. Asner, S. V. Ollinger, M. E. Martin, and C. A. Wessman. 2009. <a href="https://doi.org/10.1016/j.rse.2008.10.018">Characterizing canopy biochemistry from imaging spectroscopy and its application to ecosystem studies</a>. Remote Sensing of Environment 113:S78–S91.
+</div>
+<div id="ref-micke1996" class="csl-entry" role="listitem">
+Micke, W. 1996. Almond production manual. Regents of the University of California.
+</div>
+<div id="ref-mount2016water" class="csl-entry" role="listitem">
+Mount, J., and E. Hanak. 2016. Water use in california. Public Policy Institute of California, San Francisco, California 2.
+</div>
+<div id="ref-NREL" class="csl-entry" role="listitem">
+National Renewable Energy Laboratory. 2022. <a href="https://www.nrel.gov/grid/solar-resource/spectra-astm-e490.html">2000 ASTM standard extraterrestrial spectrum reference e-490-00</a>. Webpage.
+</div>
+<div id="ref-ohyama2010nitrogen" class="csl-entry" role="listitem">
+Ohyama, T. 2010. Nitrogen as a major essential element of plants. Nitrogen assimilation in plants 37:2–17.
+</div>
+<div id="ref-padilla2018different" class="csl-entry" role="listitem">
+Padilla, F. M., R. de Souza, M. T. Peña-Fleitas, M. Gallardo, C. Gimenez, and R. B. Thompson. 2018. <a href="https://doi.org/10.3389/fpls.2018.01752">Different responses of various chlorophyll meters to increasing nitrogen supply in sweet pepper</a>. Frontiers in plant science 9:1752.
+</div>
+<div id="ref-pathak2018climate" class="csl-entry" role="listitem">
+Pathak, T. B., M. L. Maskey, J. A. Dahlberg, F. Kearns, K. M. Bali, and D. Zaccaria. 2018. <a href="https://doi.org/10.3390/agronomy8030025">Climate change trends and impacts on california agriculture: A detailed review</a>. Agronomy 8:25.
+</div>
+<div id="ref-penuelas1994reflectance" class="csl-entry" role="listitem">
+Peñuelas, J., J. Gamon, A. Fredeen, J. Merino, and C. Field. 1994. <a href="https://doi.org/10.1016/0034-4257(94)90136-8">Reflectance indices associated with physiological changes in nitrogen-and water-limited sunflower leaves</a>. Remote Sensing of Environment 48:135–146.
+</div>
+<div id="ref-pierce1999aspects" class="csl-entry" role="listitem">
+Pierce, F. J., and P. Nowak. 1999. <a href="https://doi.org/10.1016/S0065-2113(08)60513-1">Aspects of precision agriculture</a>. Advances in Agronomy 67:1–85.
+</div>
+<div id="ref-raun1999fertilizer" class="csl-entry" role="listitem">
+Raun, W. R., G. Johnson, and R. Westerman. 1999. <a href="https://doi.org/10.2136/sssaj1999.03615995006300030030x">Fertilizer nitrogen recovery in long-term continuous winter wheat</a>. Soil Science Society of America Journal 63:645–650.
+</div>
+<div id="ref-Rohde2013" class="csl-entry" role="listitem">
+Rohde, R. A. 2013. <a href="https://commons.wikimedia.org/wiki/File:Solar_Spectrum.png#/media/File:Solar_spectrum_en.svg">Spectrum of solar radiation</a>. Webpage.
+</div>
+<div id="ref-schirrmann2016monitoring" class="csl-entry" role="listitem">
+Schirrmann, M., A. Giebel, F. Gleiniger, M. Pflanz, J. Lentschke, and K.-H. Dammer. 2016. <a href="https://doi.org/10.3390/rs8090706">Monitoring agronomic parameters of winter wheat crops with low-cost UAV imagery</a>. Remote Sensing 8:706.
+</div>
+<div id="ref-schowengerdt2006remote" class="csl-entry" role="listitem">
+Schowengerdt, R. A. 2006. Remote sensing: Models and methods for image processing. Elsevier.
+</div>
+<div id="ref-sishodia2020applications" class="csl-entry" role="listitem">
+Sishodia, R. P., R. L. Ray, and S. K. Singh. 2020. <a href="https://doi.org/10.3390/rs12193136">Applications of remote sensing in precision agriculture: A review</a>. Remote Sensing 12:3136.
+</div>
+<div id="ref-smart2014nitrogen" class="csl-entry" role="listitem">
+Smart, D., D. Schellenberg, S. Saa Silva, S. Muhammad, B. Sanden, and P. Brown. 2014. Nitrogen use efficiency of california almond orchards using advanced farming practices. Page 487 EGU general assembly conference abstracts.
+</div>
+<div id="ref-stark2008continuing" class="csl-entry" role="listitem">
+Stark, C. H., and K. G. Richards. 2008. The continuing challenge of agricultural nitrogen loss to the environment in the context of global change and advancing research. Dynamic Soil, Dynamic Plant 2:1–12.
+</div>
+<div id="ref-stickler2016educational" class="csl-entry" role="listitem">
+Stickler, G., and L. Kyle. 2016. Educational brief – solar radiation and the earth system. National Aeronautics and Space Administration.
+</div>
+<div id="ref-thomas1972estimating" class="csl-entry" role="listitem">
+Thomas, J. R., and G. F. Oerther. 1972. <a href="https://doi.org/10.2134/agronj1972.00021962006400010004x">Estimating nitrogen content of sweet pepper leaves by reflectance measurements</a>. Agronomy journal 64:11–13.
+</div>
+<div id="ref-almonds2021" class="csl-entry" role="listitem">
+USDA. 2021. California almond acreage report. United States Department of Agriculture, Pacific Region, P.O. Box 1258, Sacramento, CA 95812.
+</div>
+<div id="ref-verrelst2019quantifying" class="csl-entry" role="listitem">
+Verrelst, J., Z. Malenovskỳ, C. Van der Tol, G. Camps-Valls, J.-P. Gastellu-Etchegorry, P. Lewis, P. North, and J. Moreno. 2019. <a href="https://doi.org/10.1007/s10712-018-9478-y">Quantifying vegetation biophysical variables from imaging spectroscopy data: A review on retrieval methods</a>. Surveys in Geophysics 40:589–629.
+</div>
+<div id="ref-nitrogen2012" class="csl-entry" role="listitem">
+Viers, J. H., D. Liptzin, T. S. Rosenstock, V. B. Jensen, A. D. Hollander, A. McNally, A. M. King, G. Kourakos, E. M. Lopez, N. D. L. Mora, A. FryjoffHung, H. C. Kristin N. Dzurella, S. Laybourne, C. McKenney, J. Darby, J. F. Quinn, and T. Harter. 2012. Assessing nitrate in california’s drinking water with a focus on tulare lake basin and salinas valley groundwater. <span>Center for Watershed Sciences, University of California, Davis</span>.
+</div>
+<div id="ref-vineview" class="csl-entry" role="listitem">
+VineView. 2022. <a href="https://vineview.com/data-products/water-index/">Water index</a>. Webpage.
+</div>
+<div id="ref-vitousek1997human" class="csl-entry" role="listitem">
+Vitousek, P. M., J. D. Aber, R. W. Howarth, G. E. Likens, P. A. Matson, D. W. Schindler, W. H. Schlesinger, and D. G. Tilman. 1997. <a href="https://doi.org/10.1890/1051-0761(1997)007[0737:HAOTGN]2.0.CO;2">Human alteration of the global nitrogen cycle: Sources and consequences</a>. Ecological applications 7:737–750.
+</div>
+<div id="ref-walter2017smart" class="csl-entry" role="listitem">
+Walter, A., R. Finger, R. Huber, and N. Buchmann. 2017. <a href="https://doi.org/10.1073/pnas.1707462114">Smart farming is key to developing sustainable agriculture</a>. Proceedings of the National Academy of Sciences 114:6148–6150.
+</div>
+<div id="ref-webb2013assessment" class="csl-entry" role="listitem">
+Webb, J., P. Sørensen, G. Velthof, B. Amon, M. Pinto, L. Rodhe, E. Salomon, N. Hutchings, P. Burczyk, and J. Reid. 2013. <a href="https://doi.org/10.1016/B978-0-12-407247-3.00007-X">An assessment of the variation of manure nitrogen efficiency throughout europe and an appraisal of means to increase manure-n efficiency</a>. Advances in Agronomy 119:371–442.
+</div>
+<div id="ref-weber2016extended" class="csl-entry" role="listitem">
+Weber, A., M. Benecke, J. Wendler, A. Sieck, D. Hübner, H. Figgemeier, and R. Breiter. 2016. <a href="https://doi.org/10.1117/12.2223737">Extended SWIR imaging sensors for hyperspectral imaging applications</a>. Pages 42–56 Image sensing technologies: Materials, devices, systems, and applications III. SPIE.
+</div>
+<div id="ref-almonds2016" class="csl-entry" role="listitem">
+WIFSS. 2016. <a href="https://www.wifss.ucdavis.edu/wp-content/uploads/2016/10/Almonds_PDF.pdf">Almonds</a>. <span>Western Institute for Food Safety and Security</span>, 1477 Drew Ave, Davis, CA 95618.
+</div>
+<div id="ref-wolfert2017big" class="csl-entry" role="listitem">
+Wolfert, S., L. Ge, C. Verdouw, and M.-J. Bogaardt. 2017. <a href="https://doi.org/10.1016/j.agsy.2017.01.023">Big data in smart farming–a review</a>. Agricultural Systems 153:69–80.
+</div>
+<div id="ref-wright2004worldwide" class="csl-entry" role="listitem">
+Wright, I. J., P. B. Reich, M. Westoby, D. D. Ackerly, Z. Baruch, F. Bongers, J. Cavender-Bares, T. Chapin, J. H. Cornelissen, M. Diemer, and others. 2004. <a href="https://doi.org/10.1038/nature02403">The worldwide leaf economics spectrum</a>. Nature 428:821–827.
+</div>
+<div id="ref-yang2008mechanisms" class="csl-entry" role="listitem">
+Yang, X., X. Wu, H. Hao, and Z. He. 2008. <a href="https://doi.org/10.1631/jzus.B0710626">Mechanisms and assessment of water eutrophication</a>. Journal of zhejiang university Science B 9:197–209.
+</div>
+<div id="ref-yokoya2013hyperspectral" class="csl-entry" role="listitem">
+Yokoya, N., and A. Iwasaki. 2013. Hyperspectral and multispectral data fusion mission on hyperspectral imager suite (HISUI). Pages 4086–4089 2013 IEEE international geoscience and remote sensing symposium-IGARSS. IEEE.
+</div>
+<div id="ref-zhang2002precision" class="csl-entry" role="listitem">
+Zhang, N., M. Wang, and N. Wang. 2002. <a href="https://doi.org/10.1016/S0168-1699(02)00096-0">Precision agriculture—a worldwide overview</a>. Computers and electronics in agriculture 36:113–132.
+</div>
+<div id="ref-zhang2019california" class="csl-entry" role="listitem">
+Zhang, Z., Y. Jin, B. Chen, and P. Brown. 2019. <a href="https://doi.org/10.3389/fpls.2019.00809">California almond yield prediction at the orchard level with a machine learning approach</a>. Frontiers in plant science 10:809.
+</div>
+<div id="ref-zheng2018evaluation" class="csl-entry" role="listitem">
+Zheng, H., T. Cheng, D. Li, X. Zhou, X. Yao, Y. Tian, W. Cao, and Y. Zhu. 2018. <a href="https://doi.org/10.3390/rs10060824">Evaluation of RGB, color-infrared and multispectral images acquired from unmanned aerial systems for the estimation of nitrogen accumulation in rice</a>. Remote Sensing 10:824.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./vegetation-indices-based-methods.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Vegetation-indices-based methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
+    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Damian-Oswald">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/damian-oswald">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:damian.oswald@protonmail.com">
+      <i class="bi bi-envelope-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

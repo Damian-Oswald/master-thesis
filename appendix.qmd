@@ -1,0 +1,116 @@
+# Appendix {.unnumbered}
+
+This appendix features a list of abbreviations and symbols used throughout this thesis (@tbl-abbreviations) as well as the numerical values of the performance results of the models tested (@tbl-ResultsNarea, [-@tbl-ResultsNmass], and [-@tbl-ResultsHSI]).
+
+| **Abbreviation** | **Meaning**                            |
+|--------------|------------------------------------|
+| $\lambda$    | Wavelength                         |
+| $\boldsymbol \rho$ | Reflectance vector           |
+| $\rho_\lambda$ | Spectral reflectance at wavelength $\lambda$. |
+| $\boldsymbol \tau$ | Transmittance vector           |
+| $\tau_\lambda$ | Spectral transmittance at wavelength $\lambda$. |
+| $\text{N}_{\%}$ | Mass-based nitrogen, i.e., (foliar) nitrogen concentration. |
+| $\text{N}_{\text {area}}$ | Area-based nitrogen. |
+| LMA | Leaf mass per area. |
+| LAI | Leaf area index. |
+| $\mathbf X$ | Design matrix, matrix of input variables to a model. |
+| $\mathbf x_{(i)}$ | The $i$^th^ row of the design matrix $\mathbf X$, i.e., one single observation. |
+| $\mathbf y$ | Response vector, vector of output variables from a model. |
+| $\mathbf {\hat y}$ | Estimated values of $\mathbf y$. |
+| ${\bar y}$ | Arithmetic mean of all values in $\mathbf y$. |
+| $\mathcal D$ | The entire data set of $\mathbf X$ and $\mathbf y$. |
+| $n$ | Number of observations in $\mathcal D$. |
+| $d$ | Number of predictor variables, i.e., number of columns in $\mathbf X$. |
+| $p$ | Number of parameters in a model. |
+| $\boldsymbol \Sigma$ | Covariance matrix of $\mathbf X$. |
+| $\boldsymbol \beta$ | Coefficient vector (vector of parameters of a linear model). |
+| $\boldsymbol \theta$ | Parameter vector (vector of parameters of any model). |
+| $\mu_\mathbf{x}$ | Arithmetic mean of $\mathbf{x}$. |
+| $\sigma_\mathbf{x}$ | Standard deviation of $\mathbf{x}$. |
+| $J$ | Cost function. |
+| [Prospect]{.smallcaps} | Leaf-level radiative transfer model. |
+| [Less]{.smallcaps} | Canopy-level radiative transfer model. |
+
+: List of abbreviations. The abbreviations used are informed by the closest literature. {#tbl-abbreviations}
+
+|**Method**                  |**R^2^**       |**RMSE** [g mm^-2^] |**CLD** |
+|:---------------------------|:--------------|:--------------|:-------|
+|NDVI                        |-0.016 ± 0.024 |0.316 ± 0.0037 |a       |
+|NDRE                        |0.123 ± 0.007  |0.293 ± 0.0011 |b       |
+|EVI                         |0.115 ± 0.006  |0.295 ± 0.001  |c       |
+|GCI                         |-0.055 ± 0.015 |0.322 ± 0.0023 |d       |
+|GNDVI                       |-0.048 ± 0.013 |0.321 ± 0.002  |d       |
+|MCARI                       |0.01 ± 0.014   |0.312 ± 0.0021 |e       |
+|RECI                        |0.128 ± 0.004  |0.292 ± 8e-04  |f       |
+|TCARI                       |-0.016 ± 0.005 |0.316 ± 7e-04  |a       |
+|WDRVI                       |0.011 ± 0.016  |0.312 ± 0.0025 |e       |
+|R434                        |0.255 ± 0.008  |0.27 ± 0.0014  |g       |
+|Combined vegetation indices |0.464 ± 0.019  |0.229 ± 0.004  |h       |
+|Recursive feature selection |0.544 ± 0.01   |0.211 ± 0.0024 |i       |
+|Square feature selection    |0.61 ± 0.007   |0.195 ± 0.0019 |j       |
+|Lasso                       |0.542 ± 0.04   |0.212 ± 0.0089 |i       |
+|Ridge                       |0.496 ± 0.007  |0.222 ± 0.0015 |k       |
+|Elastic-net                 |0.537 ± 0.049  |0.213 ± 0.0106 |i       |
+|Principal components        |0.614 ± 0.021  |0.195 ± 0.0052 |jl      |
+|Partial least squares       |0.626 ± 0.02   |0.192 ± 0.0052 |l       |
+|Random forest               |0.492 ± 0.01   |0.223 ± 0.0021 |k       |
+|Extreme gradient boosting   |0.548 ± 0.03   |0.21 ± 0.007   |i       |
+|Cubist                      |0.276 ± 0.046  |0.266 ± 0.0083 |g       |
+|[Prospect-Pro]{.smallcaps}  |0.684 ± 0.004  |0.176 ± 0.0012 |m       |
+
+: Performances of different modelling methods trying to predict nitrogen per area-based on spectroradiometric data on a leaf level. The root mean squared error (RMSE) and coefficient of determination (R^2^) were computed based on a 20-fold 50 times repeated cross validation, where the mean and the standard deviation are reported ($\mu ± \sigma$). The compact letter display (CLD) is based on a pairwise Wilcoxon rank sum tests. {#tbl-ResultsNarea tbl-colwidths="[80,30,30,10]"}
+
+|**Method**                  |**R^2^**      |**RMSE** [%]   |**CLD** |
+|:---------------------------|:-------------|:--------------|:-------|
+|NDVI                        |0.184 ± 0.005 |0.22 ± 7e-04   |a       |
+|NDRE                        |0.177 ± 0.005 |0.221 ± 7e-04  |bc      |
+|EVI                         |0.177 ± 0.006 |0.221 ± 7e-04  |bc      |
+|GCI                         |0.089 ± 0.006 |0.233 ± 8e-04  |d       |
+|GNDVI                       |0.093 ± 0.007 |0.232 ± 8e-04  |d       |
+|MCARI                       |0.151 ± 0.005 |0.225 ± 7e-04  |e       |
+|RECI                        |0.174 ± 0.007 |0.222 ± 9e-04  |b       |
+|TCARI                       |0.148 ± 0.006 |0.225 ± 8e-04  |e       |
+|WDRVI                       |0.177 ± 0.005 |0.221 ± 6e-04  |bc      |
+|R434                        |0.065 ± 0.007 |0.236 ± 9e-04  |f       |
+|Combined vegetation indices |0.14 ± 0.02   |0.226 ± 0.0026 |e       |
+|Recursive feature selection |0.235 ± 0.006 |0.213 ± 9e-04  |g       |
+|Square feature selection    |0.22 ± 0.015  |0.215 ± 0.0021 |h       |
+|Lasso                       |0.407 ± 0.012 |0.188 ± 0.002  |ij      |
+|Ridge                       |0.182 ± 0.009 |0.221 ± 0.0012 |ac      |
+|Elastic-net                 |0.407 ± 0.01  |0.188 ± 0.0016 |i       |
+|Principal components        |0.417 ± 0.017 |0.186 ± 0.0028 |j       |
+|Partial least squares       |0.493 ± 0.022 |0.174 ± 0.0037 |k       |
+|Random forest               |0.27 ± 0.02   |0.208 ± 0.0028 |l       |
+|Extreme gradient boosting   |0.288 ± 0.05  |0.206 ± 0.0072 |l       |
+|Cubist                      |0.384 ± 0.034 |0.191 ± 0.0053 |i       |
+|Prospect-Pro                |0.453 ± 0.005 |0.18 ± 8e-04   |m       |
+
+: Performances of different modelling methods trying to predict foliar nitrogen concentration based on spectroradiometric data on a leaf level. The root mean squared error (RMSE) and coefficient of determination (R^2^) were computed based on a 20-fold 50 times repeated cross validation, where the mean and the standard deviation are reported ($\mu ± \sigma$). The compact letter display (CLD) is based on a pairwise Wilcoxon rank sum tests. {#tbl-ResultsNmass tbl-colwidths="[80,30,30,10]"}
+
+|**Method**                  |**R^2^**       |**RMSE** [%]   |**CLD** |
+|:---------------------------|:--------------|:--------------|:-------|
+|NDVI                        |-0.026 ± 0.027 |0.257 ± 0.0034 |a       |
+|NDRE                        |-0.003 ± 0.026 |0.254 ± 0.0033 |bc      |
+|EVI                         |-0.082 ± 0.011 |0.264 ± 0.0013 |d       |
+|GCI                         |-0.01 ± 0.026  |0.255 ± 0.0032 |abc     |
+|GNDVI                       |-0.012 ± 0.027 |0.255 ± 0.0034 |abc     |
+|MCARI                       |-0.001 ± 0.019 |0.254 ± 0.0024 |b       |
+|RECI                        |-0.007 ± 0.023 |0.254 ± 0.0029 |abc     |
+|TCARI                       |0.068 ± 0.006  |0.245 ± 8e-04  |e       |
+|WDRVI                       |-0.021 ± 0.023 |0.256 ± 0.0029 |ac      |
+|R434                        |0.198 ± 0.007  |0.227 ± 9e-04  |f       |
+|Combined vegetation indices |0.237 ± 0.011  |0.221 ± 0.0015 |g       |
+|Recursive feature selection |0.142 ± 0.022  |0.235 ± 0.003  |h       |
+|Square feature selection    |0.256 ± 0.014  |0.218 ± 0.0021 |i       |
+|Lasso                       |0.249 ± 0.012  |0.22 ± 0.0018  |i       |
+|Ridge                       |0.206 ± 0.008  |0.226 ± 0.0012 |j       |
+|Elastic-net                 |0.25 ± 0.012   |0.219 ± 0.0017 |i       |
+|Principal components        |0.236 ± 0.013  |0.221 ± 0.0019 |g       |
+|Partial least squares       |0.228 ± 0.013  |0.223 ± 0.0019 |g       |
+|Random forest               |0.102 ± 0.032  |0.24 ± 0.0042  |k       |
+|Extreme gradient boosting   |0.127 ± 0.018  |0.237 ± 0.0024 |hl      |
+|Cubist                      |0.175 ± 0.013  |0.23 ± 0.0018  |m       |
+|[Less]{.smallcaps}          |0.116 ± 0.011  |0.237 ± 0.0015 |kl      |
+|[Less]{.smallcaps} + interpolation |0.235 ± 0.009  |0.22 ± 0.0013  |g       |
+
+: Performances of different modelling methods trying to predict foliar nitrogen concentration based on hyperspectral images. The root mean squared error (RMSE) and coefficient of determination (R^2^) were computed based on a 20-fold 50 times repeated cross validation, where the mean and the standard deviation are reported ($\mu ± \sigma$). The compact letter display (CLD) is based on a pairwise Wilcoxon rank sum tests. {#tbl-ResultsHSI tbl-colwidths="[80,30,30,10]"}

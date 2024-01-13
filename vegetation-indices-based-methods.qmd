@@ -1,0 +1,90 @@
+# Vegetation-indices-based methods {#sec-VI}
+
+Vegetation indices are mathematical constructs --- typically expressed as ratios --- that are derived from the measurement of vegetation reflectance at two or more specific wavelengths [@huete2002overview].
+These indices are frequently employed to evaluate the health, biophysical properties, and biochemical characteristics of vegetation.
+Notably, vegetation indices have been utilized for applications such as estimating plant parameters such as the leaf area index, detecting water stress in crops, and classifying various types of vegetation for weed mapping purposes [@jackson1981canopy; @zheng2009retrieving].
+Of particular relevance to the subject of this thesis, they have also been commonly employed for estimating chlorophyll and nitrogen content in crops [@berger2020crop].
+Precision agriculture technologies relying on vegetation indices have been well-integrated into commercial applications, an outcome that can likely be attributed to the simplicity of their implementation and their comparatively early development [@xue2017significant; @sishodia2020applications].
+
+## Evolution of vegetation indices and their limitations
+
+Historically, one of the very first vegetation indices developed was the simple ratio index (RVI). It was proposed by @jordan1969derivation.
+
+$$\text{RVI} = \frac{\rho_\text{R}}{\rho_\text{NIR}}$${#eq-RVI}
+
+In this and the following equations, $\rho_\text{R}$ stands for the red band reflectance, whereas $\rho_\text{NIR}$ stands for the near-infrared band reflectance.
+Not too soon after introduction of the RVI, @rouse1973monitoring proposed the normalized difference vegetation index (NDVI), which until today remains the most widely used vegetation index [@xue2017significant].
+
+$$\text{NDVI} = \frac{\rho_\text{NIR}-\rho_\text{R}}{\rho_\text{NIR}+\rho_\text{R}}$${#eq-NDVI}
+
+Compared to the RVI, the NDVI is normalized between the values of −1 and +1.
+It is quite sensitive to green vegetation, even in sparsely covered areas.
+However, the NDVI is also influenced by soil colour, brightness, and shadows cast by canopy and clouds, which are undesirable traits for a vegetation index, as it should ideally be affected solely by the presence of vegetation [@xue2017significant].
+Consequently, numerous vegetation indices have been developed subsequent to the NDVI, aiming to address its limitations and incorporate atmospheric corrections [@kaufman1992atmospherically; @ren1996approach] or adjustments for soil colour and brightness [@huete1988soil; @qi1994modified; @richardson1977distinguishing; @baret1993soil].
+A recent review by @xue2017significant examined over one hundred vegetation indices, with many specifically targeting the shortcomings of the NDVI.
+The authors discovered that, in various specific scenarios --- considering factors such as a particular crop, soil type, and atmospheric conditions --- certain vegetation indices demonstrated superior performance over others.
+
+Early development of vegetation indices primarily relied on bands frequently captured by multispectral cameras, such as red, red edge, and near-infrared wavelengths [@chlingaryan2018machine].
+Blue bands were rarely employed, as blue light is more susceptible to atmospheric scattering, which can introduce greater uncertainty in measurements --- an aspect of particular significance in satellite-based remote sensing applications.
+However, the advent of hyperspectral imaging has ushered in the creation of vegetation indices tailored to very specific narrow bands, expanding the capabilities of these tools --- but at the same time massively increasing the risk of over-fitting [@thenkabail2013selection].
+
+In the end, relationships between vegetation indices and the trait of interest are purely empirical in nature. Typically, data on the plant trait is collected, and various vegetation indices are tested to determine the ones that correlate well with it. This approach can be critiqued as being somewhat unscientific, as it relies more on coincidentally found correlations than on fundamental principles or theories.
+
+@atzberger2011confining explicitly outlines five disadvantages associated with using vegetation indices-based methods for crop nitrogen estimation.
+The first disadvantage is the inverse problem, wherein high-dimensional data is reduced to a single value, which could potentially be derived from varying forms of reflectance.
+The second drawback involves the partial exploitation of multi- or hyperspectral data, as only a limited number of spectral bands are utilized.
+This issue is especially relevant to narrow-band vegetation indices, which may also be affected by measurement noise.
+The third challenge concerns the lack of transferability in the calibration of vegetation indices to specific sensors, as it does not extend to instruments with different characteristics.
+The fourth issue relates to overfitting, implying that vegetation index-based nitrogen models may be tailored too specifically to the dataset used for model calibration.
+This can lead to sensitivity regarding crop type, growth stage, underlying soil type, sun-sensor constellation, as well as time and date.
+Finally, the fifth drawback highlights the need to collect *in situ* reference data for model establishment, which demands manpower, instrument availability, and therefore imposes a high financial burden on the development.
+
+Despite this criticism, new vegetation indices keep being proposed in the scientific literature.
+Some of the drawbacks of vegetation indices are addressed by the usage of radiative transfer models: Synthetic data sets are generated, where new vegetation indices aim to correlate with the parameter used to generate the respective data sets [@hunt2013visible].
+For example, the radiative transfer model [Prosail]{.smallcaps} has been used to design new vegetation indices [@cheng2014estimating; @jin2014newly].
+This search for new vegetation indices is sometimes even implemented algorithmically, for example by the adoption of  =  algorithms [@costa2020new].
+
+## Nitrogen monitoring with vegetation indices {#sec-nitrogenVI}
+
+Vegetation indices represent the most prevalent method for remote detection of crop nitrogen content [@berger2020crop].
+Numerous indices have been intentionally designed to estimate crop nitrogen, while others have simply been found to correlate with it [@herrmann2010swir].
+These indices mostly capitalize on the correlation between crop nitrogen and chlorophyll content [@baret2007quantification].
+For instance, the transformed chlorophyll absorption in reflectance index (TCARI) has demonstrated a strong correlation with chlorophyll [@cui2017comparison].
+Some of the most notable vegetation indices employed for crop nitrogen detection can be found in [table @tbl-VegetationIndices].
+
+| **Index** | **Formula** |**Author** |
+|:------|:--------|:------|
+|Normalised Difference Vegetation Index (NDVI)|$$\frac{\rho_{\text{790}}-\rho_{\text{685}}}{\rho_{\text{790}}+\rho_{\text{685}}}$$| @rouse1973monitoring|
+|Normalized Difference Red Edge (NDRE)|$$\frac{\rho_{790} - \rho_{720}}{\rho_{790} + \rho_{720}}$$| @barnes2000coincident|
+|Modified Chlorophyll Absorption in Reflectance Index (MCARI)    |$$\frac{\rho_{700}}{\rho_{670}} \left[ 0.8 \cdot \rho_{700} - \rho_{670} - 0.2 \cdot \rho_{550} \right]$$| @daughtry2000estimating|
+|Transformed Chlorophyll Absorption in Reflectance Index (TCARI) |$$3 \left[ \rho_{700} - \rho_{670} - \frac{0.2\cdot\rho_{700}}{\rho_{670}} \left(\rho_{700} - \rho_{550} \right) \right]$$| @haboudane2002integrated|
+|Green Chlorophyll Index (GCI)|$$\frac{\rho_{\text{790}}}{\rho_{530}}-1$$| @gitelson2003relationships |
+|Red Edge Chlorophyll Index (RECI)|$$\frac{\rho_{\text{790}}}{\rho_{\text{720}}}-1$$| @gitelson2003relationships |
+|Green Normalised Difference Vegetation Index (GNDVI)            |$$\frac{\rho_{\text{790}}-\rho_{530}}{\rho_{\text{790}}+\rho_{530}}$$| @gitelson1996use           |
+|Enhanced Vegetation Index (EVI)|$$\frac{\frac{5}{2}(\rho_{\text{790}} - \rho_{\text{720}})}{\rho_{\text{790}} + 6 \ \rho_{\text{720}} + \frac{15}{2} \rho_{\text{470}} + 1}$$ | @huete2002overview         |
+|Wide Dynamic Range Vegetation Index (WDRVI)                     |$$\frac{\alpha \rho_{\text{790}}-\rho_{\text{720}}}{\alpha \rho_{\text{790}}+\rho_{\text{720}}}$$| @gitelson2004wide|
+|Normalized Difference Nitrogen Index (NDNI)|$$\frac{\log_{10} \rho_{1510}^{-1} - \log_{10} \rho_{1680}^{-1}}{\log_{10} \rho_{1510}^{-1} + \log_{10} \rho_{1680}^{-1}}$$| @serrano2002remote|
+|R434|$$\frac{\rho_{\text{434}}}{\rho_{\text{496}} - \rho_{\text{401}}}$$| @tian2011assessing         |
+
+: Overview of various vegetation indices that were used to estimate foliar nitrogen concentrations. $\rho_\lambda$ for the reflectance at a specific wavelength $\lambda$ ($\rho_{530}$ = green band, $\rho_{685}$ = red band, $\rho_{720}$ = red edge,  $\rho_{790}$ = near-infrared). This table was adapted from @herrmann2010swir and @tian2011assessing. {#tbl-VegetationIndices tbl-colwidths="[35,45,20]"}
+
+But how exactly is a regression model employing vegetation indices constructed?
+The utilization of vegetation indices on multi- or hyperspectral data results in a dimensionality reduction of the original data.
+While the initial data possesses multiple dimensions, vegetation indices are one-dimensional.
+Ideally, a vegetation index employed for crop nitrogen monitoring correlates more strongly with crop nitrogen than any individual band.
+However, the index itself lacks a unit and, as a consequence, cannot be used directly to estimate crop nitrogen.
+Therefore, any vegetation index must be linked to the trait of interest $y$ through a connecting function $f$ --- a so-called link function.
+
+$$f: g(\mathbf x) \rightarrow y$${#eq-VIlinkfunction}
+
+In this case, $g(\mathbf x)$ represents the vegetation index applied to the spectral data.
+Typically, a simple linear regression is employed to identify the linking function $f$.
+Nevertheless, $f$ could represent any function and might even accept multiple vegetation indices as inputs.
+For instance, @johnson2016crop found that a multiple linear regression model yielded better predictions based on multiple vegetation indices than relying on a single vegetation index at a time.
+
+The linking function $f$ could even take the form of a more flexible machine learning model able to represent intricate interactions, such as a random forest or support vector machines [@sonobe2018crop].
+This practice, however, raises the question of the necessity for vegetation indices in the first place.
+Machine learning models can be applied directly to the data, enabling the direct selection of relevant features.
+One could, so to say, "cut out the middleman".
+This effectively eliminates several of the issues addressed by @atzberger2011confining.
+Hence, the application of machine learning algorithms to hyperspectral data in order to estimate crop nitrogen will be the focus of the next chapter.

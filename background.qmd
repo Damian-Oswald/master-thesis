@@ -1,0 +1,192 @@
+# Background
+
+## Almond production in California {#sec-almonds}
+
+The United States of America is by far the world's largest producer of almonds (*Prunus amygdalus* [Batsch]{.smallcaps}) with a production share of roughly 80% [@almonds2020].
+Almost all of this production takes place in the state of California, whose Mediterranean climate and well-developed water infrastructure make it possible to grow the crop commercially, even though almonds are not native to the state [@bjerga2018california].
+Almond trees have an average life span of 20 to 25 years, whereby it typically takes three to four years for a tree to begin producing fruits.
+The almond trees in California begin blooming mid-February through March and harvest takes place in October before the wet season starts.
+The crops are alternate bearing, which means that strong harvests are succeeded by weaker ones in the following year [@almonds2016].
+
+One could argue that the expansion of its almond industry is California's biggest agricultural success story [@bruno2021outlook].
+Over the last three decades, the production volume increased almost eight-fold: the state produced about 1.27 million tons of almonds on 408'000 ha in 2020 [@almonds2021].
+The majority of the growing sites stretch along the Central Valley, most notably the counties *Fresno*, *Kern*, *Stanislaus*, *Merced*, and *Madera* (@fig-MapCalifornia). The economic value of Californian almond production sums up to a staggering 5.62 billion U.S. dollars annually.
+Thus, almonds rank third place among California's agricultural commodities, trailing only the dairy and grape industries [@bruno2021outlook].
+
+This immense production comes at a cost.
+California is a comparatively dry state, where agriculture uses around 40% of the total available water supply --- although that percentage varies dramatically between wet and dry years [@mount2016water].
+It is estimated that Californian almond orchards alone use approximately 10% of the state's water supply [@holthaus2015].
+The scarcity of water is only expected to increase due to reduced amount of snowpack in the Sierras, depleting groundwater levels and climate change --- the California Department of Water Resources expects a 10% reduction in water supply by 2040 [@watersupply2022].
+Although discerning strong trends from climate projections is difficult, a drying trend for the Sacramento River Basin during the 21^st^ century is observed through different climate scenarios developed [@california2015california].
+As a consequence to these environmental changes, almond yields are predicted to decrease in the coming decades [@pathak2018climate].
+
+![Map of California (Mercator projection). The shading of the counties relates to their almond production relative to the total Californian almond production. The counties with the highest almond production are *Fresno* (1), *Kern* (2), *Stanislaus* (3), *Merced* (4), and *Madera* (5). The area encircled by the dashed line indicates the approximate location of the Californian Central Valley. The data used to produce this map was obtained from the U.S. Department of Agriculture [@almonds2021].](resources/MapOfCalifornia.png){#fig-MapCalifornia}
+
+These trends are likely to increase the economic pressure on almond farmers and provide incentives to take up water-saving measures.
+While some older orchards in California may still be irrigated using flood irrigation, 85% of the orchards use low-volume irrigation, which is much preferable for water conservation [@almondsustainability2020].
+In addition to that, some farmers already adopted the use of remote sensing for a more resourceful irrigation, either using water-stress-specific vegetation indices or thermal imaging [@ihuoma2017recent; @ceresimaging; @vineview; @almondsustainability2020].
+
+Another serious problem stemming from the intensive agriculture in California is nitrogen leaching due to over-fertilization. The subsequent excesses of nitrate in water resources have been found to contribute to environmental degradation in the state [@nitrogen2012].
+For almond orchards, it is officially recommended to apply nitrogen in four rates: 20% of the total annual application at the end of the blooming stage, 30% during fruit growth, 30% during kernel fill and at last, 20% after the hull-split or after harvest [@nitrogen2020].
+Thereby, it is not uncommon in intensive almond orchards to apply up to 300 kg nitrogen per hectare and year [@smart2014nitrogen], although the Almond Board of California (ABC) states that the fertilization should consider both the almond tree's age as well as the expected kernel yield [@nitrogen2020].
+As such, recommendations for best management practices range between 130 and 285 kg nitrogen per hectare and year.
+Thus, under a new regulation of the Californian state to avoid environmental contamination, farmers are required to apply nitrogen fertilizations appropriately [@zhang2019california].
+
+## Challenges with balancing crop nitrogen {#sec-nitrogen}
+
+Nitrogen ($\text{N}$) is a vital element for plant growth. It is essential for the plant's metabolism and is found in proteins, nucleic acids, chlorophyll, co-enzymes, phytohormones, and secondary metabolites.
+Plants take up nitrogen in the form of ammonium or nitrate and convert it into amino acids, either in their roots or shoots.
+Once inside the plant, nitrogen is transported as nitrate or amino acids [@hawkesford2012functions].
+The use of synthetic nitrogen fertilizers has drastically increased since the green revolution and has been a major driver for higher food production [@vitousek1997human].
+However, the recovery of nitrogen from these fertilizers by plants is rather low and rarely exceeds 50% of the fertilizer input [@raun1999fertilizer].
+The proportional uptake by plants is usually even lower in the case of organic fertilizers when compared to mineral fertilizers [@webb2013assessment].
+
+The resulting loss of nitrogen from agricultural systems negatively impacts non-agricultural systems, such as terrestrial, ground, and freshwater ecosystems.
+Through leaching, nitrogen can move to other ecosystems in the form of nitrate ($\text{NO}_3^-$) and cause eutrophication of surface water or contamination of drinking water [@yang2008mechanisms; @kapoor1997nitrate].
+Agricultural production also contributes heavily to the emission of gaseous nitrogen in the form of ammonia ($\text{NH}_3$), molecular nitrogen ($\text{N}_2$) or nitrogen oxide ($\text{NO}_2$) and nitrous oxide ($\text{N}_2 \text O$), the latter two of which are greenhouse gases and thus accelerate climate change [@stark2008continuing].
+On the other hand, nitrogen deficiency negatively affects crop yields both in terms of quantity as well as quality. Therefore, there is also a substantial economic interest to continuously monitor the nitrogen status of crops during all growth stages [@baret2007quantification; @hank2019spaceborne].
+
+Foliar nitrogen concentrations vary a lot among plant species, phenological stages and environmental conditions, ranging between 0.2 to 6.4% of the leaf dry weight [@wright2004worldwide].
+The optimal nitrogen concentration in almond leaves lies between 2.2 and 2.5%---the exact value depends on the time and the targeted yield [@micke1996].
+In C~3~ plant leaves, nitrogen is indispensable for photosynthesis, biosynthesis, carbon fixation and bioenergetics, since is a crucial element to both proteins and chlorophyll a and b (@fig-NitrogenInPlants).
+Chlorophyll is a key component in the light harvesting process of plants and its porphyrin core contains four nitrogen atoms, which act as a stabilizer of the central magnesium ion [@evans1989photosynthesis].
+However, in C~3~ plants, chlorophyll a and b only bind 1.7% of the total leaf nitrogen [@chapin1987plant].
+Precise knowledge of the nitrogen concentration in plant leaves can be used for a more targeted fertilization and might even pave the way for variable rate fertilization [@guerrero2021current].
+For example, one might consider the nitrogen nutrition index (NNI) introduced by @justes1994determination.
+
+$$\text {NNI} = \frac{\text {N}_\%}{\text {N}_\text{crit.}}$${#eq-NNI}
+
+Here, N~%~ is the measured nitrogen concentration and N~crit.~ the critical nitrogen concentration.
+If NNI $\geq$ 1, the crop is sufficiently (or even excessively) provided with nitrogen. Vice versa NNI $<$ 1 implies a nitrogen deficiency.
+Unfortunately, the retrieval of information about the foliar nitrogen concentration via chemical analyses is generally labour and cost intensive and thus not fit for monitoring the nitrogen concentration in plants throughout their seasonal development [@berger2020crop].
+This calls for surrogate strategies of estimating the foliar nitrogen concentration --- for example via remote sensing.
+Remote sensing of crop nitrogen for more adequate fertilization is in fact one of the core promises of precision agriculture and smart farming [@zhang2002precision; @walter2017smart; @sishodia2020applications].
+
+![This figure shows the proportional functional allocation of nitrogen in an average C~3~ plant leaf. The percentages indicate what share of nitrogen is bound for a specific purpose. Adapted from @chapin1987plant.](resources/NitrogenInPlants.png){#fig-NitrogenInPlants}
+
+## The role of remote sensing in precision agriculture {#sec-remotesensing}
+
+According to @pierce1999aspects, precision agriculture involves using various technologies and principles to address the spatial and temporal variability in all elements of agricultural production, with the ultimate goal of enhancing crop performance and maintaining environmental quality.
+As such, precision agriculture is a part of smart farming, which aims at the optimization of agricultural systems driven by digitally available information [@wolfert2017big].
+A core driver of precision agriculture is the increasing availability of remotely sensed data as well as the means of analyzing this data [@sishodia2020applications].
+Remote sensing describes the process of acquiring information about properties of an object without physical contact to said object, i.e., the attempt to measure something from distance rather than *in situ* [@schowengerdt2006remote].
+This type of data is typically measured by satellites, aircraft, or unmanned aerial vehicles [@sishodia2020applications].
+
+For numerous agricultural applications, remote sensing focuses on measuring the electromagnetic radiation reflected or emitted from the Earth's surface, primarily the reflection of sunlight in the visible and near-infrared spectrum [@jafarbiglu2022comprehensive].
+Sensors more effectively capture signals in the visible light spectrum between 380 and 750 nm wavelength because the electromagnetic radiation of the sun is the peaking there, whereas it tapers off in the ultraviolet and near- to short-wave-infrared regions (@fig-Electromagnetic, A).
+
+The intensity of this electromagnetic radiation --- its flux density --- is typically measured in watts per square metre [W m^−2^, @ISO9288].
+If this radiation is received by a physical object, it is referred to as irradiance, if it is emitted by the object, it is called radiance.
+The spectral irradiance and radiance on the other hand are a measure of irradiance or radiance over a specific range of wavelengths (or frequencies) rather than across the entire electromagnetic spectrum, and thus typically measured in watts per square metre per nanometre [W m^−2^ nm^−1^, @ISO9288].
+The solar irradiance measured at a particular time and location depends on many parameters such as the solar incidence angle, the height above mean sea level, or the current atmospheric conditions [@stickler2016educational; @blumthaler1997increase].
+Because of that, remote sensing applications do not directly analyse the radiance --- which is just as dependent on those parameters as the irradiance --- but rather the so-called reflectance ($\rho$). Reflectance is the share of electromagnetic radiation which is reflected by a body.
+Consequentially, the spectral reflectance is defined as the ratio between the spectral radiance $\Phi_{\text e, \lambda} ^\text r$ and the spectral irradiance $\Phi_{\text e, \lambda} ^\text i$ [@ISO9288].
+
+$$\rho_\lambda = \frac{\Phi_{\text e, \lambda} ^\text r}{\Phi_{\text e, \lambda} ^\text i}$${#eq-reflectance}
+
+At which exact wavelengths $\lambda$ this reflectance is calculated depends on the available data.
+Data from an ordinary digital camera usually covers three bands: red (620-740 nm), green (500-560 nm), and blue (450-490 nm), which is why it is referred to as RGB imagery [@bruno2005crc].
+In contrast to that, multispectral images are a type of remotely sensed data that consist of more than three bands beyond just the visible spectrum.
+For agricultural purposes, multispectral imagery typically combines RGB imagery with bands in the near-infrared spectrum [@hagen2013review].
+Because the infrared spectrum will be quite important within the scope of this thesis, I will often refer to certain subgroups of that range: near-infrared (NIR, 750-1400 nm), short-wavelength-infrared (SWIR, 1400-3000 nm), mid-wavelength infrared (MWIR, 3-8 $\mu$m), long-wavelength infrared (LWIR, 8-15 $\mu$m) and far infrared [FIR, 15-1000 $\mu$m, @Byrnes2009].
+
+![This figure illustrates the spectral flux density of solar irradiance (**A**) in relation to the broader electromagnetic spectrum (**B**). A portion of the initial irradiance is absorbed by various gases or scattered by Rayleigh scattering, resulting in only a part of it reaching the Earth's surface at sea level. The irradiance and radiance data at a given surface location (**C**) can be utilized to calculate the reflectance based on [equation @eq-reflectance] (**D**). This reflectance enables the determination of various physical and biochemical properties of the surface. This figure was adapted from work by @Rohde2013 and created using data from the @NREL.](resources/Electromagnetic.png){#fig-Electromagnetic}
+
+When incorporating numerous additional spectral bands into the imaging process, it is referred to as hyperspectral imaging.
+Hyperspectral images (HSI) usually consist of hundreds of narrow, contiguous wavelength bands, which together with the spatial resolution form a hypercube $\mathbf X \in \mathbb R^{w \times l \times d}$ with the width $w$, length $l$ and the depth $d$ (that is the number of spectral bands).
+The high spectral resolution is the main advantage of hyperspectral imaging, it is what allows for the detailed analysis of the chemical and physical properties of the imaged surface [@bioucas2013hyperspectral].
+This high spectral resolution however stands in a trade-off relationship with the spatial resolution, which is why hyperspectral imaging usually yields a lower spatial resolution than multispectral imaging [@yokoya2013hyperspectral].
+Sometimes, the continuous information about an object's reflectance found solely in the spectral dimension of hyperspectral images is also referred to as its spectral signature.
+A very important property of the spectral dimension of hyperspectral images is the strong autocorrelation among spectral bands, which is expressed in extremely non-diagonal covariance matrices [@camps2011remote].
+
+In order to to capture hyperspectral images, specialized hyperspectral cameras are used.
+They typically consist of a spectrograph, which separates the incoming light into its individual wavelength bands, and of an array of detectors that measure the intensity of the light in each band [@elmasry2010principles].
+The spectrograph and detectors are combined into a single, integrated unit, which is mounted on the carrying platform.
+These sensors work well in the visible spectrum, but the quality starts to drop in the near-infrared region and especially in the short-wave-infrared region (after 900 nm wavelength, see [figure @fig-Electromagnetic D]).
+
+There are several reasons for this. One reason is that the near-infrared and short-wavelength infrared regions are typically characterized by lower levels of radiance compared to the visible light spectrum, which can make it difficult to obtain high-quality, noise-free data. In addition, the short-wavelength infrared region is often affected by atmospheric absorption of different gases, especially water vapour, which can cause the signal strength to vary significantly depending on the atmospheric conditions (@fig-Electromagnetic A). This noise is sometimes removed using atmospheric correction algorithms [@gao2009atmospheric].
+A third challenge in the short-wavelength infrared region is the need for specialized detectors that are sensitive to the wavelengths of light in this region. These detectors are typically made of alloys such as indium gallium arsenide or mercury cadmium telluride, which are more expensive and less sensitive than the detectors used in the visible and near-infrared regions [@dyson2021; @ciani2020comparison].
+
+Due to these reasons, hyperspectral imaging of sufficient quality is often limited to the visible- and near-infrared spectrum. Acquiring exact spectral information in the short-wave-infrared spectrum is mostly reserved to spectroradiometric measurements, although this starts to change with the advancement of hyperspectral sensors [@weber2016extended].
+
+## Remote sensing of nitrogen {#sec-nitrogenRS}
+
+The first attempt to directly model crop nitrogen based on spectrophotometrically measured reflectance data has been made by @thomas1972estimating, who worked on sweet potatoes.
+The authors stated:
+
+> *"The regression equation at the 550 nm wavelength suggests that near the 4% nitrogen level a 1% change in reflectance would change the predicted nitrogen content by 0.2%."*
+
+In other words, they proposed a simple linear regression model (on logarithmically transformed variables) to quickly estimate the nitrogen concentration --- solely based on the reflectance at 550 nm wavelength.
+Back then, this relationship had to be found by calculating all band-wise correlations and simply choosing a suitable band for the regression.
+Ever since, much more advanced methods of modelling crop nitrogen have been developed. There are many ways to divide the modelling approaches into groups. 
+For example, @verrelst2019quantifying proposed grouping the methods in parametric, non-parametric, physics-based and hybrid methods.
+@berger2020crop followed up on that division, but further distinguished between linear and non-linear methods --- which they equate to the terms chemometrics and machine learning.
+
+However, the terms parametric and non-parametric as used by @berger2020crop collide with pre-occupied definitions in the field of machine learning. Furthermore, the formal definition of machine learning also applies to many of the other groups proposed by the authors. Therefore, I will use the following simplified classification throughout this thesis:
+
+1. Hand-crafted features
+2. Machine learning
+3. Radiative transfer models
+
+The primary distinction between the first two methods lies in how the bands which are used to make predictions are selected.
+Hand-crafted features describe all methods which select a subset of bands or a mathematical combination thereof (as in the case of vegetation indices) which is made prior to the fitting of the regression model.
+Thereby, the band selection happens according to a certain imposed logic, or according to what is already used in the scientific literature.
+In contrast to that, the models classified as machine learning have access to the entire data, i.e., all available bands.
+The model automatically learns which bands or combinations of bands are the most important for accurately predicting crop nitrogen without prior information or manual feature engineering.
+Radiative transfer models, conversely, are primarily designed to simulate the detailed physical processes governing the transport of light and its interaction with a leaf or canopy.
+As a result, these models incorporate a substantial amount of prior knowledge.
+At this point, it is important to acknowledge that ultimately, these classifications possess a degree of arbitrariness and exhibit considerable overlap in their respective methodologies.
+
+All three listed methods have been explored in the scientific literature, but not in comparable detail.
+@berger2020crop found that 78 out of 125 evaluated studies that aimed to predict crop nitrogen via remote sensing relied on vegetation indices.
+Out of these, only a few studies have highlighted the limitations of indices-based approaches, such as their limited transferability to different sites.
+The studies mostly relied on the empirical relationship of certain vegetation indices to the chlorophyll content of crops, which in turn is related to nitrogen [@penuelas1994reflectance; @baret2007quantification].
+The application of machine learning for crop nitrogen estimation was also investigated by numerous studies, where the most often applied model was the partial least squares regression model.
+Radiative transfer models on the other hand have only been used in three studies for modelling crop nitrogen [@berger2020crop].
+
+Crop nitrogen or nitrogen content are both ambiguous terms, although very commonly used in the scientific literature.
+Ever since @thomas1972estimating pioneered remote sensing of nitrogen, the focus lied on two different measurements: mass- and area-based nitrogen [@wright2004worldwide].
+Mass-based nitrogen (N~%~) is the nitrogen concentration in the leaves, typically relative to the leaf dry weight.
+Area-based nitrogen (N~area~) describes how much nitrogen is present in the biomass over a certain area.
+The two measures are linked together by the leaf mass per area (LMA), which is a widely used morphological trait that indicates good plant growth and functioning [@de2016leaf].
+
+$$\text N_{\text{area}} = \text{LMA} \times \text N_{\%}$${#eq-LMA}
+
+The majority of the contemporary studies focus on multi- or hyperspectral data.
+However, there is still some ongoing research about the usage of broadly available and low cost RGB imagery for predicting nitrogen content in crops, although with no great success [@schirrmann2016monitoring; @zheng2018evaluation; @fu2020winter].
+
+Within the visible light spectrum, three types of plant pigments mainly determine the absorption process and thus the leaf colour: chlorophylls, carotenoids, and anthocyanins.
+Chlorophylls include chlorophyll a and b with their respective absorption bands, while carotenoids (e.g., $\beta$-carotene and xanthophyll) and anthocyanins include numerous compounds [@feret2008prospect].
+Out of these pigments, only chlorophyll is directly connected to nitrogen.
+It accounts for roughly 1.7% of total leaf nitrogen, which explains the rather loose Pearson correlation ($\rho = 0.65 \pm 0.15$) between the chlorophyll and the nitrogen concentration in leaves [@kokaly2009characterizing; @homolova2013review].
+It remains to be noted that the Pearson correlation might not be the best metric to compare nitrogen and chlorophyll, as @padilla2018different have found a second order polynomial model to slightly improve the model fit.
+
+Fully relying on chlorophyll for the remote sensing of crop nitrogen is highly limited and can even be misleading.
+First, the prediction will always be limited to the correlation between the two traits.
+Also, the relationship between chlorophyll and nitrogen changes over time, as nitrogen is reallocated from the vegetative organs to reproductive structures during the reproductive stage [@ohyama2010nitrogen].
+Finally, a lack of chlorophyll cannot certainly be ascribed to a nitrogen deficiency but also any other chlorosis-causing nutrient deficiency [@asner2009airborne; @bloem2005influence].
+
+Due to these reasons, leaf protein content would be a more stable proxy for the foliar nitrogen concentration [@berger2020crop].
+The majority of plant nitrogen is bound to protein (@fig-NitrogenInPlants), thus there is less room for decoupling between the two traits [@kokaly2009characterizing].
+
+## Aims and structure of this thesis {#sec-aims}
+
+In this master's thesis, I pursue two primary objectives:
+First, I aim to gain a comprehensive understanding of the various methods for modelling crop nitrogen, as outlined in the previous section.
+Second, I search for a model capable of effectively mapping the spectral signature of almond canopies or leaves with their respective nitrogen concentrations, while maintaining generalizability across diverse temporal variations, including different times of the year, distinct years, and varied geographical locations.
+
+With these goals in mind, the thesis is structured as follows:
+The first part delves into each of the approaches previously introduced.
+[Chapter @sec-VI] examines remote sensing of nitrogen using vegetation indices.
+[Chapter @sec-ML] is dedicated to selected machine learning algorithms suitable for hyperspectral data analysis.
+[Chapter @sec-RTM] investigates physics-based radiative transfer models, beginning at the leaf level and progressing to the canopy level.
+
+Please note that this thesis does not include a systematic literature review and, as such, does not claim to be complete with respect of the modelling methods regarded.
+For instance, the radiative transfer models discussed in [chapter @sec-RTM] represent merely a small subset of the available models.
+Instead, the primary objective is to understand the underlying principles as well as the distinctions among the three techniques.
+
+This thesis resulted in a collaboration with the Digital Agriculture Laboratory at the University of California, Davis, which is led by Dr. Alireza Pourreza.
+The lab's members collected data from a Californian almond orchard prior to my involvement; however, the data was highly unstructured.
+Consequently, a portion of this thesis' workload involved cleaning and pre-processing the data, which is described in detail in [chapter @sec-data].
+
+The modelling stage is documented in [chapter @sec-modelling], and the model performance results are presented in [chapter @sec-results]. An in-depth discussion regarding the model's generalizability and other relevant topics can be found in [chapter @sec-discussion], with concluding remarks in [chapter @sec-conclusion].

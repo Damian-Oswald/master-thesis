@@ -1,0 +1,220 @@
+# Machine learning methods for hyperspectral data analysis {#sec-ML}
+
+The term machine learning was first used by @samuel1959machine.
+He described it as the "field of study that gives computers the ability to learn without being explicitly programmed".
+Back then, only few people were interested in this particular field.
+Today, however, this could not be further from the truth:
+A quick [Scopus]{.smallcaps} search reveals, that in 2022 alone, 18'464 scientific publications use the term "machine learning" in their title --- that is more than 50 publications a day![^Scopus]
+
+[^Scopus]: The [Scopus]{.smallcaps} search for `machine AND learning` was conducted on March 7, 2023.
+Only the document type "article" was searched for.
+449'663 publications of all time contain "machine learning" in their title, abstract or keywords.
+57'926 contain "machine learning" in the title only. Out of all the articles ever using "machine learning" in their title, 32% were published in 2022.
+
+The substantial advancements witnessed in machine learning over the past two decades can be largely ascribed to the surge in computational power, the sudden availability of copious amounts of data, and the open-source culture that enables applications through readily accessible machine learning libraries and frameworks [@jordan2015machine; @fridman2019].
+
+In this thesis, I will use the term "machine learning" as originally defined by Arthur Samuels.
+As per his definition, machine learning includes a variety of mathematical models from chemometrics and statistics, despite the fact that many of these models were developed prior to the coining of the term itself.
+The essential aspect of these models lies in their primary function for making predictions, rather than serving as statistical models.
+Moreover, the machine learning models evaluated in this thesis are differentiated from hand-crafted features such as vegetation indices and radiative transfer models by their fully automatic process of selecting and combining spectral bands.
+
+Owing to their exceptional predictive capabilities and handling of high-dimensional input data, machine learning algorithms have emerged as a widely adopted tool for modern hyperspectral image analysis [@gewali2018machine].
+In this chapter, various machine learning algorithms that have been extensively used on hyperspectral data will be examined.
+To do this, I will loosely follow the route taken by @james2013introduction, commencing with the ordinary least squares model and addressing why it is a poor choice for hyperspectral data, and subsequently slowly relaxing the assumptions of the linear model.
+
+## Ordinary least squares and stepwise selection {#sec-stepwise}
+
+The simplest and also probably most prevalently used machine learning model is the linear regression model [@yan2009linear].
+In its univariate form, it can be represented as follows.
+
+$$\mathbf y = \mathbf X \boldsymbol \beta + \boldsymbol \varepsilon$${#eq-generalLinearModel}
+
+Here, $\mathbf y$ represents the labels, $\mathbf X$ denotes the design matrix comprising all predictors, $\boldsymbol \beta$ signifies the coefficients, and $\boldsymbol \varepsilon$ corresponds to the model's errors.
+The customary approach for estimating the coefficients ${\boldsymbol \beta}$ in [equation @eq-generalLinearModel] employs the analytical solution using the ordinary least squares estimator.
+
+$$\hat {\boldsymbol \beta} = (\mathbf X^\top\mathbf X)^{-1} \mathbf X^\top \mathbf y$${#eq-ols}
+
+This method was (allegedly) introduced independently by @legendre1806nouvelles in *Nouvelles méthodes pour la détermination des orbites des comètes* (new methods for the determination of comet orbits) and @gauss1809theoria in *Theoria Motus Corporum Coelestium* (theory of the motion of the heavenly bodies), eventually being formalized at a later date by @markov1912wahrscheinlichkeitsrechnung.
+However, it is worth noting that Markov did not contribute any novel proof [@plackett1949historical; @yan2009linear].
+
+In what is now known as the Gauss-Markov theorem, Markov asserts that the ordinary least squares estimator is the best linear unbiased estimator under the specific conditions that the error's expectation is zero ($\mathbb E(\varepsilon_i) = 0$), the error exhibits equal variance ($\text{Var}(\varepsilon_i) = \sigma^2$), and all distinct error terms are uncorrelated ($\text{Cov}(\varepsilon_i, \varepsilon_j) = 0$).
+
+Unprocessed hyperspectral reflectance data frequently violates the assumptions of the Gauss-Markov theorem --- particularly the third assumption regarding uncorrelated errors.
+While equal variance can be achieved through z-score normalization (a technique described in more detail in [section @sec-normalization]), and the expectation of zero error might be satisfied if the response is investigated on a small enough scale, the assumption of uncorrelated error terms cannot be fulfilled while retaining all available variables or information about all bands.
+The crux of the problem lies in so-called multicollinearity: the reflectance of neighbouring spectral bands is typically very strongly correlated.
+Consequently, the reflectance at one band can be predicted linearly from others with a very high precision [@chlingaryan2018machine].
+Because of multicollinearity, minor changes in the data or model specification can have a disproportional effect on parameter estimates [@ravikanth2017extraction].
+
+Ordinary least squares also encounter difficulties in hyperspectral data analysis due to the *small n, large p problem*. In many agricultural applications of hyperspectral data, there is often a limit to the number of samples taken, since the acquisition of observations can be both costly and labour-intensive [@ravikanth2017extraction]. When the design matrix $\mathbf X$ has fewer rows (observations, $n$) than columns (parameters, $p$), the inversion of $\mathbf X^\top\mathbf X$ in [equation @eq-ols] becomes impossible.
+
+If one wanted to strictly stick to linear regression using ordinary least squares, a potential workaround evading the *small n, large p problem* would be the application of a prior feature selection strategy to tackle multicollinearity (remember, vegetation indices as discussed in the chapter before essentially constituted such a feature selection method).
+Provided that there are more observations than parameters to estimate, feature selection methods like stepwise selection can also further create a subset of variables for the linear regression model such that it is no longer over-specified.
+These methods minimize a so-called information criterion.
+This metric balances both the model's likelihood and penalizes over-parametrization simultaneously.
+The Akaike information criterion (AIC), introduced by @akaike1998information, serves as one such criterion for comparing the fit of various regression models. It can be calculated as follows.
+
+$$\text{AIC} = k(p - \ln \hat {L})$${#eq-AIC}
+
+In this equation, $p$ represents the number of parameters, $k$ is a scalar, and $\ln \hat {L}$ denotes the estimated log-likelihood of the model.
+A true AIC is obtained when $k=2$, while $k=\ln(n)$ (where $n$ is the number of observations) is sometimes called the Bayesian information criterion (BIC) or Schwarz information criterion (SIC).
+Through stepwise selection, variables are iteratively added to and removed from the model so as to minimize the information criterion.
+
+A practical application of this approach can be seen in the research conducted by @castaldi2016data. The authors focused on predicting wheat grain nitrogen uptake from satellite data. To identify a suitable subset of spectral bands, they executed a stepwise selection process on the variables of a multiple linear regression model.
+
+However, the application of stepwise selection to hyperspectral data has faced substantial criticism [@bolster1996determination; @grossman1996critique]. The key issue is that its performance markedly declines as the number of utilized bands increases.
+When dealing with a too large number of variables, stepwise selection begins to select a seemingly random subset of bands for linear regression, which subsequently results in overfitting [@hastie2017extended].
+In situations where a linear regression model incorporating more than a handful of bands is sought, regularization of the model may prove to be a more suitable solution.
+
+## Regularization {#sec-regularization}
+
+Regularization is a technique extensively employed in machine learning in order to avoid overfitting and enhance the generalization of models.
+Applicable to linear models as well as more intricate ones, such as neural networks or decision-tree-based models, regularization operates by adding a penalty term to the original, unregularized cost function $J$, which in turn penalizes the magnitude of the estimated coefficient.
+Consequently, larger coefficient estimates lead to a greater penalty [@james2013introduction].
+This process forces the regression model to strike a balance between small (or few) coefficients and an effective explanation of the data.
+In that sense, regularization can be understood as Occam's Razor[^occamsrazor] applied to machine learning models, favouring simpler models over their more complex counterparts --- even if the more complex ones could better explain the data. The underlying reasoning for this approach is that, when given enough flexibility, models inherently tend to over-explain the data. As a countermeasure, regularization restricts some of that flexibility, promoting a more balanced model.
+
+[^occamsrazor]: Occam's razor is a philosophical principle that suggests that, among competing hypotheses, the simplest one with the fewest assumptions is preferable or more likely to be true [@van2018occam].
+
+The penalty term is typically based on various vector norms of the model coefficients, such as the $\ell^1$-norm (referred to as lasso regularization) or the $\ell^2$-norm (known as ridge regularization). The cost function $J$ for both lasso and ridge regression can be expressed in a single equation as follows.
+
+$$J(\boldsymbol \beta, \mathbf X, \mathbf y) =
+\| \mathbf {y -X\boldsymbol\beta} \|_2^2 +
+\lambda \left[ \frac{1}{2}(1-\alpha)\| \boldsymbol \beta \|_2^2 + \alpha \| \boldsymbol \beta \| \right]$${#eq-RLSloss}
+
+Here, $\| \cdot \|$ represents the absolute value norm or the $\ell^1$-norm, while $\| \cdot \|_2$ denotes the Euclidean norm or the $\ell^2$-norm.
+It is worth noting that the first term in [equation @eq-RLSloss] ($\| \mathbf {y -X\boldsymbol\beta} \|_2^2$) is simply the standard cost function for linear least squares regression, as it equates to the sum of squared errors.
+The second half constitutes the penalty term that regularizes the coefficients.
+The parameter $\lambda$ determines the magnitude of the penalty, as it is multiplied by a mixture of norms of the coefficient vector $\boldsymbol \beta$.
+If one exclusively selects $\alpha = 0$, that results in ridge regression, since only the $\ell^2$-norm is employed.
+Conversely, choosing $\alpha = 1$ relies solely on the $\ell^1$-norm, resulting in lasso regression.
+Any value between $0 < \alpha < 1$ yields a combination of the two, referred to as the elastic net [@zou2005regularization; @james2013introduction].
+Consequently, we can regard $\lambda \in [0, \infty)$ as a parameter controlling the penalty's magnitude and $\alpha \in [0,1]$ as a parameter directing the type of regularization applied.
+
+In general, regularization aids in mitigating multicollinearity issues, consequently reducing the variance of coefficient estimates.
+Ridge regression, based on the Euclidean norm, progressively decreases the penalty on coefficient estimates as they approach zero.
+This means, that for ridge regression, the variables in the model will always exert an effect, albeit a tiny one in the case of useless variables.
+
+Lasso regression on the other hand, initially introduced by @tibshirani1996, begins to induce sparsity in the data matrix as $\lambda$ increases [@james2013introduction].
+This property means that lasso regression leads to a selection of variables that effectively explain the response.
+Unlike stepwise selection, lasso regression does not suffer from a high number of simultaneously used variables [@hastie2017extended].
+Lasso regression emerges as a particularly appealing tool for hyperspectral data analysis, as it facilitates the selection of a limited number of bands that best explain the response variable [@takayama2016optimal].
+
+The number of selected bands can be effectively controlled via $\lambda$. Lasso regression has already been employed for spectral band selection in spectroradiometric leaf-level data, specifically in the context of foliar nitrogen prediction in vineyards [@omidi2020ensemble].
+
+## Dimensionality reduction regression {#sec-dimensionalityreduction}
+
+Thus far, the focus has been on regression methods that address multicollinearity and the small $n$, large $p$ problem by selecting features, penalizing coefficients, or both, as in the case of lasso regression.
+An alternative approach to tackling these issues involves formulating the regression after applying a dimensionality reduction technique.
+Principal component regression (PCR) and partial least squares regression (PLSR) stand out as the two most prominent methods for achieving this.
+Partial least squares, originally introduced by @wold1984collinearity, is particularly prevalent in chemometrics, even though it was initially introduction as an econometric tool for addressing multicollinearity [@geladi1986partial; @mehmood2016diversity].
+
+The two related methods can be mathematically expressed in a similar manner. Any design matrix $\mathbf X$ containing the original data can be represented by its score matrix $\mathbf T$.
+
+$$\mathbf T = \mathbf{XW}$${#eq-pca}
+
+Here, $\mathbf W$ is a $p \times p$ rotation matrix of weights.
+In the case of principal component analysis (PCA), the columns of $\mathbf W$ are the eigenvectors of $\text{Cov}(\mathbf X)$.
+The full matrix $\mathbf T$ is thus a linear re-combination of $\mathbf X$, but it conveniently contains maximal information in its first column, with the remaining information successively distributed in subsequent columns.
+The constructed variables in the score matrix, called principal components, are completely uncorrelated with each other.
+These principal components, also referred to as latent variables, are not directly measured but are constructed from the observed variables.
+
+The lack of multicollinearity among the latent variables in the score matrix makes them better suited for ordinary least squares regression than the observed data.
+The more collinear the original data, the fewer principal components are needed to capture the essence of the data.
+This effectively eliminates the small $n$, large $p$ problem.
+After performing linear dimensionality reduction on $\mathbf X$, linear regression can be applied to a limited number of variables in the score matrix $\mathbf T$ to avoid overfitting issues typically associated with stepwise selection [@hansen2003reflectance; @grossman1996critique].
+Both principal component and partial least squares regression can thus be formulated as follows.
+
+$$\mathbf y = \mathbf T_{[1,l]} \: \boldsymbol \beta + \boldsymbol \varepsilon$${#eq-pcr}
+
+Here, $l$ is the number of variables from $\mathbf T$ used for the regression, and the rest is analogous to [equation @eq-generalLinearModel].
+The difference between principal component and partial least square regression lies in how the score matrix $\mathbf T$ and the rotation matrix $\mathbf W$ are estimated.
+In principal component regression, a principal component analysis is performed without considering the response $\mathbf y$, but instead maximizing the variance in the columns of the score matrix $\mathbf T$ successively.
+However, this strategy could theoretically find principal components which explain maximal variance in the data, but do not in fact correlate with the labels [@geladi1986partial].
+
+Partial least squares regression, introduced by @wold1984collinearity, addresses this issue by informing the estimation of the rotation matrix with both the labels and the data at the same time, thus maximizing the predictive power of the latent variables.
+Specifically, partial least squares estimate $\mathbf W$ to maximize the covariance between $\mathbf y$ and $\mathbf T$:
+
+$$\mathbf W = \arg \max_{\mathbf W} \left\{ \text{Cov} \left( \mathbf y, \mathbf {XW} \right) \right\} \qquad\text{s.t. } \mathbf W ^\top \mathbf W = \mathbf I$${#eq-plsr}
+
+In this equation, $\mathbf I$ represents the identity matrix [@bennett2003optimization].
+Note that [equation @eq-plsr] describes the maximization task for univariate partial least squares, applicable to cases with a single response variable, although the model can also be applied to multivariate cases, where a rotation matrix is found to maximize the covariance of the principal components with respect to multiple responses simultaneously.
+
+In summary, principal component regression maximizes the variance of the principal components with respect to $\mathbf X$ and subsequently performs a regression on $\mathbf y$.
+In contrast, partial least squares regression maximizes the covariance between the components $\mathbf T$ and the independent variable $\mathbf y$.
+Therefore, if the primary goal is to make predictions using linear regression analysis, partial least squares regression is generally a better alternative compared to principal component regression [@inoue2012diagnostic; @liu2022partial].
+
+Due to these properties, partial least squares regression is an excellent method for predicting a response based on hyperspectral data.
+It is also the most widely tested model for predicting crop nitrogen [@berger2020crop].
+For instance, partial least squares were successfully used by @wang2017non to predict nitrogen in leaves from pear trees, with a validation R^2^ value of 0.85.
+
+However, there are two major weaknesses to the partial least squares approach when it comes to hyperspectral data that must be considered.
+First, the regression method utilizes the entire spectrum of the original variables to construct the latent variables.
+While this can provide some insights into which bands are more explanatory for the response, it is not as straightforward as other methods for selecting a minimum number of relevant bands that can adequately explain the response.
+Band selection via partial least squares requires additional analysis of the model [@mehmood2016diversity].
+Second, partial least squares regression is inherently linear in nature.
+As a result, despite its powerful capabilities in modelling linear relationships, it may fail to capture complex, non-linear relationships present in the data --- relationships that are known to exist between the foliar nitrogen concentration and the leaf's reflectance.
+
+When the underlying structure of the data is strongly non-linear, principal component and partial least squares regression may not produce satisfactory results.
+In such cases, their kernelized counterparts can be explored, which allow for non-linear dimensionality reduction before the regression stage [@rosipal2006overview].
+Alternatively, other machine learning techniques, such as decision-tree-based models, Gaussian process regression, support vector regression, or artificial neural networks, might be more appropriate for modelling intrinsically non-linear relationships.
+
+## Decision-tree-based learning {#sec-decisiontrees}
+
+Decision-tree-based methods are vastly different from the machine learning algorithms examined thus far.
+A decision tree can be constructed by recursively partitioning the data into subsets based on the values of individual features, and then establishing individual rules for the created subsets.
+The paths in these trees are called branches, and the terminal nodes are called leaves [@james2013introduction].
+Decision trees can be employed for both classification and regression; however, since the focus of this thesis is the prediction of foliar nitrogen concentration, the discussion will centre on regression trees.
+Decision-tree-based learning has been widely utilized in various applications, including remote sensing applications for nitrogen detection [@chlingaryan2018machine].
+
+When used individually, decision trees often either overfit the data or fail to effectively approximate the underlying function.
+However, their power is significantly enhanced when employed in ensemble learning, which combines multiple trees to improve performance.
+Two popular ensemble methods include bagging, where trees are trained on randomly selected subsets of the data, and boosting, where trees are iteratively trained to correct the errors of their predecessors [@james2013introduction].
+
+One of the most prevalent bagging methods is random forests, a model introduced by @breiman2001.
+Each tree within a random forest is trained on only a subset of the observations and a limited number of variables, which allows less informative variables to influence the outcome as well.
+Predictions made by a random forest are simply the mean of all individual predictions of decision trees [@james2013introduction].
+Random forests have been employed by @jin2020advancing due to their exceptional capability of handling non-linear relationships in order to determine which variables are essential for yield determination in Californian almonds.
+
+As an alternative to bagging and random forests, the technique of boosting combines multiple weak learners, which are decision trees that perform only slightly better than random guessing, into a robust model capable of making accurate predictions [@james2013introduction].
+The key aspect of this approach is that weak learners are fitted sequentially, with new trees attempting to reduce the error of their predecessors.
+Consequently, subsequent learners focus on the aspects that previous learners failed to capture.
+The final model is a weighted sum of the individual weak learners, with the weights determined by each learner's relative performance.
+One of the latest examples of boosting is the extreme gradient boosting (XGBoost) framework, introduced by @chen2016xgboost.
+This particular algorithm has proven particularly useful for predicting the foliar nitrogen concentration of grapevines in California [@moghimi2020novel].
+
+A third variation of ensemble learning with decision trees are cubist trees, which incorporate linear regression models as node rules.
+This adds flexibility to the model, making the response a linear function at any point --- unlike the prior two models, which are essentially limited to always be step functions.
+
+In general, decision-tree-based learning can be particularly effective when applied to hyperspectral data, as the trees can manage numerous dimensions and automatically select the most relevant bands at each node.
+They can adeptly handle non-linear relationships, a capability that some previously discussed methods lack.
+Additionally, their hierarchical structure is easy to understand and interpret, reflecting the decision-making process in a clear and comprehensible manner.
+This advantage enables drawing conclusions about the importance of specific variables for prediction, making decision-tree-based learning useful for spectral band selection, especially in classification tasks [@omidi2020ensemble].
+
+Decision-tree-based methods have the notable drawback in that they tend to be considerably slower during the inference stage compared to other models.
+Remember that when making predictions with an ensemble method, all the trained models need to calculate the result, which can contribute to a longer computation time compared to other models.
+This disadvantage becomes especially apparent when predictions must be for every pixel in a hyperspectral image which may potentially require billions of predictions.
+Additionally, in regression, decision-tree-based learning may suffer from the fact that they generate inherently non-smooth functions.
+If smooth non-linear functions are required, methods such as support vector regression, Gaussian process regression or even artificial neural networks might be more suitable alternatives.
+
+## Deep learning {#sec-deeplearning}
+
+Much of today's remarkable advances in the field of machine learning are largely based on a group of models called artificial neural networks.
+These models power the most advanced artificial intelligence systems, which effortlessly outperform humans in chess, Go, or video games [@stockfish2023; @silver2017mastering; @vinyals2019grandmaster].
+Artificial neural networks are also applied in various scientific domains, such as chaos control in fusion reactors [@degrave2022magnetic] or for highly accurate protein structure prediction [@jumper2021highly]. In addition, artificial neural networks have made a significant impact in recent years in the form of generative artificial intelligence that can produce images, audio, or text [@openai2023; @rombach2021highresolution].
+Some researchers even believe that the largest neural networks exhibit sparks of artificial general intelligence --- that is artificial intelligence with human-like understanding and adaptability [@bubeck2023sparks].
+
+Artificial neural networks are a type of machine learning algorithm that is loosely inspired by the structure and function of the human brain.
+The concept of artificial neural networks pre-dates many of the other models discussed so far: the so-called perceptron was formally introduced by @rosenblatt1958perceptron, with similar ideas dating as far back as to @mcculloch1943logical.
+Neural networks consist of multiple layers of interconnected nodes, known as neurons.
+Each neuron essentially functions as a generalized linear model.
+These neurons are organized into input, output, and hidden layers.
+The stacking of multiple hidden layers was referred to as deep neural networks, which gave rise to the term deep learning --- basically referring to the usage of neural networks in order to solve a task.
+
+Despite their numerous benefits, neural networks have some significant drawbacks: they only tend to excel in domains with large sample sizes, extremely non-linear functions, and very high-dimensional data.
+While the last of these characteristics applies to hyperspectral data, the first two are rarely satisfied in this context.
+A suitable application of neural networks in hyperspectral data analysis would therefore be one where ample data is available, such as in the case of synthetic data from simulations.
+Hence, artificial neural networks are commonly applied to approximate the inverse of radiative transfer models [@verger2011optimal].
+
+Moreover, training artificial neural networks is more challenging due to the large number of tuning parameters that must be set adequately [@chlingaryan2018machine].
+And more than any of the previously discussed machine learning models, artificial neural networks exemplify a common issue with all data-driven methods: while they may excel at recognizing patterns and making predictions, they do not necessarily enhance human understanding of processes.
+This is why @berger2020crop advocates for further exploration of physics-based models, particularly those modelling radiative transfer.

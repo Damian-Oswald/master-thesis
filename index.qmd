@@ -1,0 +1,38 @@
+## Preface {.unnumbered}
+
+Welcome to this site! Here, you can find my master's thesis which I wrote in Davis, California in 2022/23 to earn a master's degree in agricultural science from the Swiss Federal Institute of Technology, Zürich (ETHZ).
+
+Note that the web version of this thesis differs slightly from [the PDF version](https://github.com/damian-oswald/master-thesis/docs/damian-oswald-master-thesis.pdf) that I submitted at April 28, 2023 -- mainly because the web version uses colored graphics, and because some minor content was rearranged for a better legibility and user experience.
+
+Both the web version as well as the PDF document of this thesis were created with [Quarto](https://quarto.org/). Quarto is an amazing open-source scientific and technical publishing system that can be used to create reproducible books, simple articles, entire websites and much more. You can find the source code of the thesis on [this GitHub repository](https://github.com/damian-oswald/master-thesis).
+
+If you want to know more about this work, don't hesitate [to reach out via email](mailto:damian.oswald@protonmail.com) or on [LinkedIn](https://www.linkedin.com/in/damian-oswald).
+
+## Abstract
+
+Nitrogen is a crucial plant nutrient, but both its under-availability and over-abundance can harm crop yields as well as the environment and reduce water supply quality. This is particularly important for almond orchards in California, where nitrogen is applied in large quantities due to the crop's profitability. Remote sensing techniques show promise for quantifying foliar nitrogen concentration in crops, which can inform fertilization decisions and potentially reduce the risks of over-fertilization. In this thesis, I explore and test various remote sensing approaches for estimating the foliar nitrogen concentration in Californian almonds using spectroradiometric measurements at the leaf level and hyperspectral imaging at the canopy level. I evaluate numerous classical vegetation indices, various machine learning models, and two physics-informed radiative transfer models. Radiative transfer modelling, although less investigated in scientific literature, demonstrates potential as both a robust and generalizable technique, yielding results comparable to the best-performing machine learning models.
+
+## Acknowledgement
+
+First and foremost, I would like to express my gratitude to my project supervisors, Prof. Dr. Achim Walter and Prof. Dr. Alireza Pourreza, both for their guidance and for granting me the opportunity to write my master's thesis at the University of California in Davis.
+I would also like to express my appreciation to all the members of the *Digital Agriculture Laboratory* for their unwavering support and camaraderie.
+A special acknowledgement goes to Momtanu Chakraborty, Yuto Kamiya, and Hamid Jafarbiglu for their invaluable assistance in addressing technical and scientific queries.
+Finally, I am eternally grateful to my parents, Susannah and Armin, without whom this journey would not have been possible, and to Alice, who always stood by my side.
+
+## Attribution
+
+For attribution, please cite this work as:
+
+Oswald, Damian. *Remote Sensing of Foliar Nitrogen in Californian Almonds.* <https://damian-oswald.github.io/master-thesis> (2023).
+
+Here's the BibTeX citation:
+
+```bibtex
+@masterthesis{oswald2023nitrogen,
+  author = {Oswald, Damian},
+  title = {Remote Sensing of Foliar Nitrogen in Californian Almonds},
+  date = {2023-04-28},
+  url = {https://damian-oswald.github.io/master-thesis},
+  langid = {en}
+}
+```

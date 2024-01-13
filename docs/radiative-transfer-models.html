@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 4&nbsp; Radiative transfer models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./describing-processing-and-inspecting-the-data.html" rel="next">
+<link href="./machine-learning-methods-for-hyperspectral-data-analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./resources/iconDO.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+        <div class="quarto-navbar-tools ms-auto tools-wide">
+    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./radiative-transfer-models.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./background.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Background</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vegetation-indices-based-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Vegetation-indices-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./radiative-transfer-models.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./describing-processing-and-inspecting-the-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./technical-description-of-the-modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Technical description of the modelling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./results-of-the-model-performances.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results of the model performances</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendix</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#leaf-level-radiative-transfer-models" id="toc-leaf-level-radiative-transfer-models" class="nav-link active" data-scroll-target="#leaf-level-radiative-transfer-models"><span class="header-section-number">4.1</span> Leaf-level radiative transfer models</a></li>
+  <li><a href="#canopy-level-radiative-transfer-models" id="toc-canopy-level-radiative-transfer-models" class="nav-link" data-scroll-target="#canopy-level-radiative-transfer-models"><span class="header-section-number">4.2</span> Canopy-level radiative transfer models</a>
+  <ul class="collapse">
+  <li><a href="#one-dimensional-canopy-reflectance-models" id="toc-one-dimensional-canopy-reflectance-models" class="nav-link" data-scroll-target="#one-dimensional-canopy-reflectance-models">One-dimensional canopy reflectance models</a></li>
+  <li><a href="#ray-tracing" id="toc-ray-tracing" class="nav-link" data-scroll-target="#ray-tracing">Ray tracing</a></li>
+  <li><a href="#three-dimensional-canopy-reflectance-models" id="toc-three-dimensional-canopy-reflectance-models" class="nav-link" data-scroll-target="#three-dimensional-canopy-reflectance-models">Three-dimensional canopy reflectance models</a></li>
+  </ul></li>
+  <li><a href="#the-inversion-problem" id="toc-the-inversion-problem" class="nav-link" data-scroll-target="#the-inversion-problem"><span class="header-section-number">4.3</span> The inversion problem</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-optimization" id="toc-mathematical-optimization" class="nav-link" data-scroll-target="#mathematical-optimization">Mathematical optimization</a></li>
+  <li><a href="#look-up-tables" id="toc-look-up-tables" class="nav-link" data-scroll-target="#look-up-tables">Look-up tables</a></li>
+  <li><a href="#model-inversion-via-machine-learning" id="toc-model-inversion-via-machine-learning" class="nav-link" data-scroll-target="#model-inversion-via-machine-learning">Model inversion via machine learning</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/radiative-transfer-models.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-RTM" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Radiative transfer describes the energy exchange through electromagnetic radiation, with varying influences from different chemical compounds <span class="citation" data-cites="verrelst2017global">(<a href="references.html#ref-verrelst2017global" role="doc-biblioref">Verrelst and Rivera 2017</a>)</span>. Radiative transfer models leverage this physical knowledge by simulating energy transfer from plant leaves or vegetation canopies, enabling the retrieval of vegetation properties from remotely sensed data <span class="citation" data-cites="yang2020spart">(<a href="references.html#ref-yang2020spart" role="doc-biblioref">Yang et al. 2020</a>)</span>. Compared to machine learning approaches, radiative transfer models provide enhanced generalizability and robustness, as they embody a physical process rather than merely extracting a signal from data <span class="citation" data-cites="berger2018evaluation">(<a href="references.html#ref-berger2018evaluation" role="doc-biblioref">Berger et al. 2018</a>)</span>.</p>
+<div id="fig-PlateModel" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/PlateModel.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4.1: This image depicts an anonymous artist’s conception of cross section of a maple leaf on the left, and a graphical illustration of a simple radiative transfer model on the right. The model consists of 100 circular arcs simulating the scattering of light through the leaf. The illustration was originally published by <span class="citation" data-cites="allen1973willstatter">Allen et al. (<a href="references.html#ref-allen1973willstatter" role="doc-biblioref">1973</a>)</span>.</figcaption>
+</figure>
+</div>
+<section id="leaf-level-radiative-transfer-models" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="leaf-level-radiative-transfer-models"><span class="header-section-number">4.1</span> Leaf-level radiative transfer models</h2>
+<p>One of the most prevalent radiative transfer models is <span class="smallcaps">Prospect</span> (leaf optical <u>pro</u>perties <u>spect</u>ra), initially introduced by <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span>. Drawing upon the plate model by <span class="citation" data-cites="allen1969interaction">Allen et al. (<a href="references.html#ref-allen1969interaction" role="doc-biblioref">1969</a>)</span>, it simulates both reflectance and transmittance of a plant leaf across wavelengths ranging from 400 to 2500 nm. The first version of the <span class="smallcaps">Prospect</span> model featured only three input variables: leaf structure (<span class="math inline">\(N\)</span>), leaf chlorophyll content (<span class="math inline">\(c_{a+b}\)</span>), and leaf water content (<span class="math inline">\(c_w\)</span>). Based on that, the model returns the expected reflectance (<span class="math inline">\(\boldsymbol \rho\)</span>) and transmittance (<span class="math inline">\(\boldsymbol \tau\)</span>) for each simulated wavelength (<span class="math inline">\(\lambda\)</span>).</p>
+<p><span id="eq-prospect"><span class="math display">\[f: [N, c_{a+b}, c_w] \in \mathbb R^{3} \rightarrow [\boldsymbol \rho, \boldsymbol \tau] \in \mathbb R^{2\times 2101} \tag{4.1}\]</span></span></p>
+<p>Over the past four decades, the initial <span class="smallcaps">Prospect</span> model has undergone several updates to encompass leaf mass, tannins, anthocyanins, and carotenoids <span class="citation" data-cites="fourty1996leaf jacquemoud1996estimating baret1997estimation fourty1998spectral">(<a href="references.html#ref-fourty1996leaf" role="doc-biblioref">Fourty et al. 1996</a>, <a href="references.html#ref-jacquemoud1996estimating" role="doc-biblioref">Jacquemoud et al. 1996</a>, <a href="references.html#ref-baret1997estimation" role="doc-biblioref">Baret and Fourty 1997</a>, <a href="references.html#ref-fourty1998spectral" role="doc-biblioref">Fourty and Baret 1998</a>)</span>. For a long period, protein and other non-protein carbon-based compounds were consolidated into a single variable due to the challenge of disentangling them <span class="citation" data-cites="jacquemoud2000comparison">(<a href="references.html#ref-jacquemoud2000comparison" role="doc-biblioref">Jacquemoud et al. 2000</a>)</span>.</p>
+<p>In a notable development, the newest iteration of the <span class="smallcaps">Prospect</span> model, <span class="smallcaps">Prospect-Pro</span>, <span class="citation" data-cites="feret2021prospect">Féret et al. (<a href="references.html#ref-feret2021prospect" role="doc-biblioref">2021</a>)</span> successfully disentangled these components by splitting the earlier used variable of leaf mass into protein content and other carbon-based content, which include cellulose, lignin, hemicellulose, starch, and sugars. <span class="smallcaps">Prospect-Pro</span> was calibrated and validated using the leaf optical properties experiment (<span class="smallcaps">Lopex</span>) dataset, which comprises measurements from over fifty plant species collected in northern Italy <span class="citation" data-cites="hosgood1995leaf">(<a href="references.html#ref-hosgood1995leaf" role="doc-biblioref">Hosgood et al. 1995</a>)</span>. This model incorporates seven distinct classes of absorbing compounds, collectively referred to as vector <span class="math inline">\(\mathbf c\)</span>.</p>
+<p><span id="eq-prospectpro"><span class="math display">\[f: [N, \mathbf c, \alpha] \in \mathbb R^{9} \rightarrow [\boldsymbol \rho, \boldsymbol \tau] \in \mathbb R^{2\times 2101} \tag{4.2}\]</span></span></p>
+<p><span class="smallcaps">Prospect-Pro</span> also enables the adjustment of the solid angle <span class="math inline">\(\alpha\)</span> for incident light on the leaf surface, initially determined to be <span class="math inline">\(\alpha = 60^\circ\)</span> by <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span> using a limited dataset. Subsequently, <span class="citation" data-cites="feret2008prospect">Féret et al. (<a href="references.html#ref-feret2008prospect" role="doc-biblioref">2008</a>)</span> discovered that <span class="math inline">\(\alpha = 40^\circ\)</span> was a more accurate value. An overview of the parameters used in <span class="smallcaps">Prospect-Pro</span> can be found in <a href="#tbl-prospect">table&nbsp;<span>4.1</span></a>.</p>
+<div id="tbl-prospect" class="anchored">
+<table class="table">
+<caption>Table&nbsp;4.1: Input variables of the <span class="smallcaps">Prospect-Pro</span> model as documented by <span class="citation" data-cites="feret2022package">Féret and de Boissieu (<a href="references.html#ref-feret2022package" role="doc-biblioref">2022a</a>)</span>. The rows 2 - 7 show the elements of the constituents vector <span class="math inline">\(\mathbf c\)</span>.</caption>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 15%">
+<col style="width: 67%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Abbreviation</strong></th>
+<th></th>
+<th><strong>Parameter</strong></th>
+<th><strong>Unit</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(N\)</span></td>
+<td><code>N</code></td>
+<td>Leaf mesophyll structure parameter</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><br>
+<br>
+<br>
+<span class="math inline">\(\mathbf c\)</span></td>
+<td><code>CHL</code><br>
+<code>CAR</code><br>
+<code>ANT</code><br>
+<code>BROWN</code><br>
+<code>EWT</code><br>
+<code>PROT</code><br>
+<code>CBC</code></td>
+<td>Chlorophyll content<br>
+Carotenoid content<br>
+Anthocyanin content<br>
+Tannin content<br>
+Equivalent water thickness<br>
+Protein content<br>
+(Non-protein) carbon-based constituent content</td>
+<td><span class="math inline">\(\mu \text{g cm}^{-2}\)</span><br>
+<span class="math inline">\(\mu \text{g cm}^{-2}\)</span><br>
+<span class="math inline">\(\mu \text{g cm}^{-2}\)</span><br>
+<span class="math inline">\(-\)</span><br>
+<span class="math inline">\(\text{g cm}^{-2}\)</span><br>
+<span class="math inline">\(\text{g cm}^{-2}\)</span><br>
+<span class="math inline">\(\text{g cm}^{-2}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\alpha\)</span></td>
+<td><code>alpha</code></td>
+<td>Solid angle for incident light at surface of leaf</td>
+<td><span class="math inline">\(^{\circ}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <span class="smallcaps">Prospect</span> calculations rely on well-established laws of physics, with the Fresnel equations serving as the foundation. These equations describe the reflection and transmission of electromagnetic radiation between distinct optical media <span class="citation" data-cites="fresnel1821">(<a href="references.html#ref-fresnel1821" role="doc-biblioref">Fresnel 1821</a>)</span>. Both <span class="math inline">\(s\)</span> and <span class="math inline">\(p\)</span> polarizations are included in the equations, which necessitate a refractive index <span class="math inline">\(n\)</span> — assumed to be <span class="math inline">\(n &gt; 1\)</span> for the leaf and <span class="math inline">\(n = 1\)</span> for air — and an angle of incidence <span class="math inline">\(\theta\)</span>.</p>
+<p><span id="eq-fresnel"><span class="math display">\[t_s = \frac{4\sqrt{1-\sin^2 \theta} \sqrt{n^2-\sin^2 \theta}}{\left(\sqrt{1-\sin^2 \theta} + \sqrt{n^2-\sin^2 \theta}\right)^2}
+\quad
+t_p = \frac{4n^2\sqrt{1-\sin^2 \theta} \sqrt{n^2-\sin^2 \theta}}{\left(n^2\sqrt{1-\sin^2 \theta} + \sqrt{n^2-\sin^2 \theta}\right)^2}
+\tag{4.3}\]</span></span></p>
+<p>As the focus lies on the transmissivity for diffuse light originating from all angles <span class="math inline">\(\theta\)</span> between 0 and <span class="math inline">\(\frac{\pi}{2}\)</span>, it is necessary to integrate across all possible angles to obtain the average transmissivity <span class="math inline">\(\overline{T}\)</span>.</p>
+<p><span id="eq-TAVunintegrated"><span class="math display">\[\overline{T} = \frac{\int_0^{2\pi} d\varphi \int_0^{\alpha} t(\theta,n) \cos \theta \sin\theta d \theta}{\int_0^{2\pi} d\varphi \int_0^{\alpha}  \cos \theta \sin\theta d \theta} \tag{4.4}\]</span></span></p>
+<p>The integration for the special case where the maximum incidence angle <span class="math inline">\(\alpha\)</span> equals <span class="math inline">\(\frac{\pi}{2}\)</span> was performed by <span class="citation" data-cites="stern1964transmission">Stern (<a href="references.html#ref-stern1964transmission" role="doc-biblioref">1964</a>)</span>. Subsequently, <span class="citation" data-cites="allen1973transmission">Allen (<a href="references.html#ref-allen1973transmission" role="doc-biblioref">1973</a>)</span> conducted the integration of the average transmissivity <span class="math inline">\(\overline{T}\)</span> for a generalized angle of incidence <span class="math inline">\(\alpha\)</span>. This approach is currently employed in the <span class="smallcaps">Prospect-Pro</span> computation <span class="citation" data-cites="feret2022package">(<a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022a</a>)</span>. The expression for average transmissivity is rather complex, as to be seen in <a href="#eq-TavTsTp">equation&nbsp;<span>4.5</span></a>. A visual representation of how the average transmissivity varies as a function of the refractive index <span class="math inline">\(n\)</span> and the angular range <span class="math inline">\(\alpha\)</span> can be found in <a href="#fig-SAC">figure&nbsp;<span>4.3</span></a>, displayed at the bottom.</p>
+<div id="fig-LeafStructure" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/LeafStructure.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4.2: The <span class="smallcaps">Prospect</span> model simplifies a leaf’s structure by representing it as a flat plane, rather than accounting for its complex three-dimensional form, which consists of various components and a textured surface (<strong>A</strong>, created using content by <span class="citation" data-cites="wheeler2011">Wheeler (<a href="references.html#ref-wheeler2011" role="doc-biblioref">2011</a>)</span>). In this sketch inspired by <span class="citation" data-cites="jacquemoud1992utilisation">Jacquemoud (<a href="references.html#ref-jacquemoud1992utilisation" role="doc-biblioref">1992</a>)</span> (<strong>A</strong>), the different angles incorporated in <a href="#eq-TAVunintegrated">equation&nbsp;<span>4.4</span></a> are illustrated: the general angles for azimuth (<span class="math inline">\(\varphi\)</span>) and zenith (<span class="math inline">\(\theta\)</span>) as well as the angle of maximum incident (<span class="math inline">\(\alpha\)</span>). In addition to that, the arrows indicate the reflectance (<span class="math inline">\(\rho\)</span>) and transmittance (<span class="math inline">\(\tau\)</span>).</figcaption>
+</figure>
+</div>
+<p><span class="math display">\[
+\begin{aligned}
+T_s(\alpha, n) =
+\frac{1}{96}\frac{(n^2-1)^4}{\left[\sqrt{\left(\sin^2 \alpha -\frac{1}{2} (n^2 + 1)\right)^2 -\frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha +\frac{1}{2}  (n^2 + 1)\right]^3} -
+\\\
+\frac{1}{4}\frac{n^4 - 2n^2 +1}{\sqrt{\left(\sin^2 \alpha -\frac{1}{2} (n^2 + 1)\right)^2 -\frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha + \frac{1}{2} (n^2 + 1)} -
+\\\
+\frac{1}{2} \left( \sqrt{\left(\sin^2 \alpha -\frac{1}{2} (n^2 + 1)\right)^2 -\frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha + \frac{1}{2} (n^2 + 1) \right) +
+\\\
+\frac{1}{12} \frac{(n^2 - 1)^4}{(n + 1)^6} + \frac{1}{2} \frac{(n^2-1)^2}{(n+1)^2} + \frac{1}{4} (n^2+2n+1)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+T_p(\alpha, n) =
+\frac{-2 n^2}{(n^2 + 1)^2} \left[ \sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2 - \frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha + \frac{1}{2} (n^2 + 1) - \frac{1}{2} (n + 1)^2 \right] -
+\\\
+\frac{2  n^2  (n^2 + 1)}{(n^2-1)^2}  \cdot \ln \left[ \sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2 - \frac{1}{4} (n^2 - 1)^2} -
+\frac{\sin^2 \alpha - \frac{1}{2}(n^2 + 1)}{(n+1)^2}
+\right] +
+\\\
+\frac{1}{2} n^2 \left\{ \left[ \sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2 - \frac{1}{4} (n^2 - 1)^2} - \sin^2\alpha - \frac{1}{2} (n^2 + 1)\right]^{-1} - \frac{2}{(n + 1)^2} \right\} +
+\\
+\frac{16n^4 (n^4 + 1)}{(n^2+1)^3(n^2-1)^2} \cdot \ln \left[\frac{
+2 (n^2 + 1)  \left(\sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2} - \sin^2 \alpha + \frac{1}{2}  (n^2 + 1)\right)
+- (n^2 - 1)^2}{(n^2 + 1)(n + 1)^2  - (n^2-1)^2} \right] +
+\\\
+\frac{16 n^6}{(n^2 + 1)^3} \left[
+{2 (n^2 + 1)  \left(\sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2} - \sin^2 \alpha + \frac{1}{2}  (n^2 + 1)\right)
+- (n^2 - 1)^2} \right]^{-1} -
+\\\
+\frac{16n^6}{(n^2 + 1)^3\left( (n^2 + 1)   (n + 1)^2 - (n^2 - 1)^2 \right)}
+\end{aligned}
+\]</span></p>
+<p><span id="eq-TavTsTp"><span class="math display">\[
+\overline{T}(\alpha, n) = \frac{T_s(\alpha, n) + T_p(\alpha, n)}{2 \cdot \sin^2 \alpha}
+\tag{4.5}\]</span></span></p>
+<p>In the <span class="smallcaps">Prospect-Pro</span> model, reflectance and transmittance depend on multiple variables, as well as numerous fixed, empirically estimated parameters. These parameters encompass the refractive index (<span class="math inline">\(n\)</span>) and specific absorption coefficients (<span class="math inline">\(s\)</span>), which all are individually fitted for each absorbing compound in <span class="math inline">\(\mathbf c\)</span> across a diverse range of plant species. Additionally, these parameters are estimated for every wavelength <span class="math inline">\(\lambda\)</span> between 400 and 2500 nm. As a result, <span class="smallcaps">Prospect-Pro</span> relies on a total of 8 × 2101 = 16’808 empirically estimated internal parameters. With these parameters in hand, the overall absorption coefficient can be computed as follows.</p>
+<p><span id="eq-k"><span class="math display">\[k_\lambda = \frac{1}{N} \sum_i c_i s_{i,\lambda} \tag{4.6}\]</span></span></p>
+<p>Here, <span class="math inline">\(c_i\)</span> represents the content of the <span class="math inline">\(i\)</span><sup>th</sup> constituent in the vector <span class="math inline">\(\mathbf c\)</span> (as detailed in <a href="#tbl-prospect">table&nbsp;<span>4.1</span></a>), and <span class="math inline">\(s_i\)</span> denotes the specific absorption coefficient of the <span class="math inline">\(i\)</span><sup>th</sup> constituent and the <span class="math inline">\(\lambda\)</span><sup>th</sup> wavelength. Although the computation of reflectance and transmittance is not linear with respect to <span class="math inline">\(k\)</span>, it is still possible to discern the bandwidths in which a particular compound’s presence would have an impact based on the specific absorption coefficients <span class="math inline">\(s\)</span> displayed in <a href="#fig-SAC">figure&nbsp;<span>4.3</span></a>.</p>
+<div id="fig-SAC" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/SpecPROSPECT.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4.3: <em>Top:</em> This figure shows the refractive index (<strong>n</strong>) and the eight specific absorption coefficients (<span class="math inline">\(s\)</span>) for different constituents of the <span class="smallcaps">Prospect-Pro</span> model as functions of the wavelength <span class="math inline">\(\lambda\)</span>. This encompasses the parameters chlorophyll content (<strong>CHL</strong>), carotenoid content (<strong>CAR</strong>), anthocyanin content (<strong>ANT</strong>), brown pigment content (<strong>BROWN</strong>), equivalent water thickness (<strong>EWT</strong>), leaf mass per area (<strong>LMA</strong>), protein content (<strong>PROT</strong>), and (non-protein) carbon-based constituents content (<strong>CBC</strong>). <em>Bottom:</em> The average transmissivity <span class="math inline">\(\overline{T}\)</span> of a plane dielectric surface for different values of the refractive index <span class="math inline">\(n\)</span> over the angular range <span class="math inline">\(\alpha\)</span>. Adapted from <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span>.</figcaption>
+</figure>
+</div>
+<p>Utilizing the overall absorption coefficient <span class="math inline">\(k\)</span>, the transmission for isotropic light <span class="math inline">\(\varphi\)</span> can be calculated for each wavelength <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(k = k_\lambda\)</span> using the upper incomplete gamma function in accordance with the Beer-Lambert law <span class="citation" data-cites="lambert1760photometria beer1852bestimmung">(<a href="references.html#ref-lambert1760photometria" role="doc-biblioref">Lambert 1760</a>, <a href="references.html#ref-beer1852bestimmung" role="doc-biblioref">Beer 1852</a>)</span>.</p>
+<p><span id="eq-phi"><span class="math display">\[\varphi = (1 - k) \cdot e^{-k} + k^2 \cdot \Gamma(k) = \\
+(1 - k) \cdot e^{-k} + k^2 \cdot \int_k^\infty \frac{e^{-t}}{t} dt \tag{4.7}\]</span></span></p>
+<p>In the case of <span class="smallcaps">Prospect-Pro</span>, the upper incomplete Gamma function <span class="math inline">\(\Gamma(k)\)</span> is simplified and computed according to <span class="citation" data-cites="expint">Goulet (<a href="references.html#ref-expint" role="doc-biblioref">2016</a>)</span>. Using this information, the final equations for transmittance <span class="math inline">\(\tau\)</span> and reflectance <span class="math inline">\(\rho\)</span> can be expressed (<a href="#eq-rhoAndTau">Equation&nbsp;<span>4.9</span></a>). Due to space limitations, the substituting terms <span class="math inline">\(A, B, C, D, E, F\)</span>, and <span class="math inline">\(G\)</span> are employed (<a href="#eq-substitutions">Equation&nbsp;<span>4.8</span></a>).</p>
+<p><span id="eq-substitutions"><span class="math display">\[\begin{aligned}
+A = \frac{ \varphi \: \overline T(90, n)} { n^2\left[1 - \varphi^2 \: \left(1 - n^{-2} \: \overline T(90, n) \right)^2\right] }
+\qquad
+B = \overline T(90, n) \: A
+\\[15pt]
+C = 1 - \overline T(90, n) + \varphi \: B \: \left(1 - \frac{\overline T(90, n)}{n^2}\right)
+\\[15pt]
+D = \sqrt{(1 + C + B) \: (1 + C - B) \: (1 - C + B) \: (1 - C - B)}
+\qquad
+E = \frac{1 + C^2 - B^2 + D}{2\,C}
+\\[15pt]
+F = \frac{1 - C^2 + B^2 + D}{2\,B}
+\qquad
+G = F^{N-1}
+\qquad
+H = \frac{E \, (G^2 - 1)}{E^2 \, G^2 - 1}
+\end{aligned} \tag{4.8}\]</span></span></p>
+<p><span id="eq-rhoAndTau"><span class="math display">\[\rho = 1 - \overline T(\alpha, n) \left[ 1 + \varphi \, A \left(1 - \frac{\overline T(90, n)}{n^2}  \right) + \frac{A \, H \, B}{1 - H \, C}  \right]
+\quad
+\tau =  \frac{\overline T(\alpha, n) \, A \, G \, (E^2 - 1)}{(E^2 \, G^2 - 1) \, (1 - H \, C)} \tag{4.9}\]</span></span></p>
+<p>The impact of distinct compounds on absorption is demonstrated in <a href="#fig-ProspectModelOutput">figure&nbsp;<span>4.4</span></a>. This figure vividly portrays the absorption of electromagnetic radiation by proteins in the short-wave-infrared spectrum, specifically within the range of 1500 to 2500 nm wavelength. In contrast to carbon-based compounds, proteins exhibit no absorption in the near-infrared or visible light spectra.</p>
+<div id="fig-ProspectModelOutput" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="resources/ProspectModelOutput.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4.4: This figure illustrates the output of the <span class="smallcaps">Prospect-Pro</span> model. Every plot shows an overlay of 20 model runs where only one variable is changing <em>ceteris paribus</em>. The three variables illustrated are chlorophyll content (<strong>A</strong>: <code>CHL</code> <span class="math inline">\(\in [10,70]\; \mu\text{g} \: \text{cm}^{-2}\)</span>), (non-protein) carbon-based content (<strong>B</strong>: <code>CBC</code> <span class="math inline">\(\in [0,0.02] \; \text{g} \: \text{cm}^{-2}\)</span>), and protein content (<strong>C</strong>: <code>PROT</code> <span class="math inline">\(\in [0,0.02] \; \text{g} \: \text{cm}^{-2}\)</span>).</figcaption>
+</figure>
+</div>
+</section>
+<section id="canopy-level-radiative-transfer-models" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="canopy-level-radiative-transfer-models"><span class="header-section-number">4.2</span> Canopy-level radiative transfer models</h2>
+<p>The <span class="smallcaps">Prospect</span> model is specifically designed to simulate the reflectance and transmittance of an individual leaf. However, simulating the reflectance of an entire canopy proves to be far more intricate. Canopy reflectance is affected by numerous factors such as leaf inclination, solar irradiance angle, viewing angle of the canopy, and the interference of soil reflectance as well as atmospheric effects. To effectively account for these diverse variables, substantial extensions are necessary, which ultimately results in a significantly more complex simulation process. Consequently, this section outlines several approaches for utilizing the <span class="smallcaps">Prospect</span> model at the canopy level.</p>
+<section id="one-dimensional-canopy-reflectance-models" class="level3">
+<h3 class="anchored" data-anchor-id="one-dimensional-canopy-reflectance-models">One-dimensional canopy reflectance models</h3>
+<p>The radiative transfer model <span class="smallcaps">Sail</span> (<u>s</u>cattering by <u>a</u>rbitrary <u>i</u>nclined <u>l</u>eaves) was one of the earliest models to simulate the bidirectional reflectance of a canopy. <span class="smallcaps">Sail</span> makes reflectance a function of both solar incident and viewing angles <span class="citation" data-cites="verhoef1984light verhoef1985earth">(<a href="references.html#ref-verhoef1984light" role="doc-biblioref">Verhoef 1984</a>, <a href="references.html#ref-verhoef1985earth" role="doc-biblioref">1985</a>)</span>. As implied by its name, <span class="smallcaps">Sail</span> represents the canopy through the simulation of numerous randomly inclined leaves situated above the soil. These leaves are assumed to be uniformly distributed in space but inclined according to a specific leaf inclination angle distribution function.</p>
+<p>The most recent iteration of the <span class="smallcaps">Sail</span> model is known as <span class="smallcaps">4Sail</span>. While it simulates the same process as the original version, <span class="smallcaps">4Sail</span> is more numerically robust and optimized for enhanced speed <span class="citation" data-cites="verhoef2007unified">(<a href="references.html#ref-verhoef2007unified" role="doc-biblioref">Verhoef et al. 2007</a>)</span>. The parameters used in the <span class="smallcaps">Sail</span> model can be found in <a href="#tbl-SAIL">table&nbsp;<span>4.2</span></a>.</p>
+<div id="tbl-SAIL" class="anchored">
+<table class="table">
+<caption>Table&nbsp;4.2: Input variables of the <span class="smallcaps">4Sail</span> model as documented by <span class="citation" data-cites="feret2022prosail">Féret and de Boissieu (<a href="references.html#ref-feret2022prosail" role="doc-biblioref">2022b</a>)</span>.</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 70%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Unit</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>lai</code><br>
+<code>q</code><br>
+<span class="math inline">\(\rho_{\text{soil}}\)</span><br>
+<span class="math inline">\(\alpha_{\text{soil}}\)</span><br>
+<code>skyl</code><br>
+<span class="math inline">\(\theta_{\text{s}}\)</span><br>
+<span class="math inline">\(\theta_{\text{v}}\)</span><br>
+<code>rAA</code></td>
+<td style="text-align: left;">Leaf area index<br>
+Hot spot parameter<br>
+Soil reflectance<br>
+Soil brightness factor<br>
+Fraction of diffuse illumination<br>
+Sun zenith angle<br>
+Viewing (observer) zenith angle<br>
+Relative azimuth angle between sun and sensor</td>
+<td style="text-align: left;"><span class="math inline">\(\text{m}^2 \; \text{m}^{-2}\)</span><br>
+<span class="math inline">\(\text{m} \; \text{m}^{-1}\)</span><br>
+<span class="math inline">\(\%\)</span><br>
+<br>
+<br>
+<span class="math inline">\(^\circ\)</span><br>
+<span class="math inline">\(^\circ\)</span><br>
+<span class="math inline">\(^\circ\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In order to achieve accurate modelling with the <span class="smallcaps">Sail</span> model, specifying the reflectance and transmittance of leaves is crucial. These values can either be measured directly and integrated into the model or derived from the <span class="smallcaps">Prospect</span> model’s predictions. The coupling of these models was first accomplished by <span class="citation" data-cites="baret1992modeled">Baret et al. (<a href="references.html#ref-baret1992modeled" role="doc-biblioref">1992</a>)</span> following the development of the initial <span class="smallcaps">Prospect</span> model. This combined model is known as <span class="smallcaps">Prosail</span>, and its latest implementation unifies <span class="smallcaps">4Sail</span> and <span class="smallcaps">Prospect-Pro</span> <span class="citation" data-cites="jacquemoud2009prospect">(<a href="references.html#ref-jacquemoud2009prospect" role="doc-biblioref">Jacquemoud et al. 2009</a>)</span>. <span class="smallcaps">Prosail</span> provides an effective means of extending plant pigment retrieval techniques from leaf-level analysis to canopy-level assessment, thereby enriching the scope of vegetation studies.</p>
+<p>The <span class="smallcaps">Prosail</span> model simplifies light transport through a canopy into a one-dimensional process, in which light can travel either downwards or upwards. The canopy is assumed to consist of a homogeneous distribution of leaves. This simplification imposes certain limitations on the applicability of <span class="smallcaps">Prosail</span> and similar one-dimensional radiative transfer models <span class="citation" data-cites="bailey2020one">(<a href="references.html#ref-bailey2020one" role="doc-biblioref">Bailey et al. 2020</a>)</span>. Although the assumption proves reasonably effective for modelling canopies that can be approximated as a homogeneous mass, such as grass, wheat, or soybeans, it may not be well-suited for more heterogeneous canopies. As a result, the <span class="smallcaps">Prosail</span> model is not the most suitable choice for examining crops with intricate canopy structures such as almond trees — alternative models should be considered and explored for these specific applications.</p>
+</section>
+<section id="ray-tracing" class="level3">
+<h3 class="anchored" data-anchor-id="ray-tracing">Ray tracing</h3>
+<p>In order to simulate the impact of a specific three-dimensional canopy structure on the reflectance, a technique called ray tracing is required. Ray tracing is a method for modelling light transport and is widely employed in rendering algorithms to create realistic digital images. It is not the only rendering algorithm, nor is it the fastest, but it tends to deliver the most realistic results <span class="citation" data-cites="peddie2019ray">(<a href="references.html#ref-peddie2019ray" role="doc-biblioref">Peddie 2019</a>)</span>.</p>
+<p>The underlying reason for this is that ray tracing truthfully replicates the behaviour of light, offering a highly accurate simulation of its interactions within various environments. Within an environment containing various objects of interest, single rays of light are simulated, each assigned a specified (spectral) reflectance and transmittance. Each ray of light is represented by a direction and an energy level provided for every simulated spectral band. When a ray of light encounters an object, its direction changes according to a bidirectional reflectance distribution function (BRDF), and its energy level is reduced by multiplying it with the object’s surface reflectance. The ray of light is continuously losing energy, as an object’s reflectance is always <span class="math inline">\(\leq 1\)</span>. Ultimately, the ray either exits the modelled environment or strikes the simulated sensor, contributing to the values of simulated pixels.</p>
+<p>Forward path tracing is a technique in which ray tracing originates at the light source and may conclude at the simulated camera. The primary drawback of this approach is that most light rays leave the modelled environment without impacting the simulated image at all. Hence, a more computationally efficient strategy begins at the sensor position, sending light rays into the scene while calculating the appropriate spectral intensity for each individual ray. This process is known as backwards path tracing <span class="citation" data-cites="LessUserManual2022">(<a href="references.html#ref-LessUserManual2022" role="doc-biblioref">Jianbo 2022</a>)</span>.</p>
+<p>Ray tracing has advanced significantly over the last few decades, particularly due to the improvement efforts of the video game and computer animation industries. The implementation of many tricks such as backwards path tracing has constantly improved the performance of ray tracing algorithms. However, research has primarily focused on methods for increasing algorithm speed <span class="citation" data-cites="wyman2021rearchitecting lin2022generalized">(<a href="references.html#ref-wyman2021rearchitecting" role="doc-biblioref">Wyman and Panteleev 2021</a>, <a href="references.html#ref-lin2022generalized" role="doc-biblioref">Lin et al. 2022</a>)</span>. Accurate simulation of optical processes has been of lesser importance, as long as the resulting images appear visually pleasing to humans. Consequently, many ray tracing algorithms developed for computer graphics cannot be directly applied to simulating canopy reflectance <span class="citation" data-cites="LessUserManual2022">(<a href="references.html#ref-LessUserManual2022" role="doc-biblioref">Jianbo 2022</a>)</span>.</p>
+</section>
+<section id="three-dimensional-canopy-reflectance-models" class="level3">
+<h3 class="anchored" data-anchor-id="three-dimensional-canopy-reflectance-models">Three-dimensional canopy reflectance models</h3>
+<p>Specialized programs are necessary to carry out the ray tracing calculations required for scientific applications. One such program is the Less{.smallcaps} model, specifically designed for simulating forest canopy reflectance. <span class="smallcaps">Less</span> (<u>l</u>arge-scale <u>e</u>mulation <u>s</u>ystem for forest <u>s</u>imulation) was developed by <span class="citation" data-cites="qi2017large">Qi et al. (<a href="references.html#ref-qi2017large" role="doc-biblioref">2017</a>)</span> in 2017 and has been continuously maintained and updated in subsequent years <span class="citation" data-cites="qi2019less qi20223d qi2023fast">(<a href="references.html#ref-qi2019less" role="doc-biblioref">Qi et al. 2019</a>, <a href="references.html#ref-qi20223d" role="doc-biblioref">2022</a>, <a href="references.html#ref-qi2023fast" role="doc-biblioref">2023</a>)</span>. The model employs a backward path tracing method to generate large-scale spectral images, ranging from the visible to the thermal infrared spectral domain <span class="citation" data-cites="LessUserManual2022">(<a href="references.html#ref-LessUserManual2022" role="doc-biblioref">Jianbo 2022</a>)</span>.</p>
+<p>Access to <span class="smallcaps">Less</span> is provided through a freely available graphical user interface (GUI), which facilitates the arrangement of three-dimensional objects within a scene and allows for pre-rendering inspection. Each component in the modelled scene, such as leaves, stems, or soil, can be assigned specific optical properties — both reflectance and transmittance — that influence ray tracing. However, all simulated surfaces are assumed to be Lambertian, or perfectly matte, meaning that no bidirectional reflectance distribution function can be implemented for leaves in <span class="smallcaps">Less</span> <span class="citation" data-cites="qi2017large">(<a href="references.html#ref-qi2017large" role="doc-biblioref">Qi et al. 2017</a>)</span>.</p>
+<p>Nevertheless, <span class="smallcaps">Less</span> enables the configuration of numerous parameters, including zenith and azimuth angles for both sensor view and solar irradiance, sensor height, cloudiness type, and the desired quality of the produced image.</p>
+<p>It is worth noting that <span class="smallcaps">Less</span> is not the only model capable of rendering a three-dimensional canopy for scientific purposes. Another example is the ray tracing model <span class="smallcaps">Dart</span> (<u>d</u>iscrete <u>a</u>nisotropic <u>r</u>adiative <u>t</u>ransfer), introduced by <span class="citation" data-cites="malenovsky2013retrieval">Malenovskỳ et al. (<a href="references.html#ref-malenovsky2013retrieval" role="doc-biblioref">2013</a>)</span>.</p>
+</section>
+</section>
+<section id="the-inversion-problem" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="the-inversion-problem"><span class="header-section-number">4.3</span> The inversion problem</h2>
+<p>Thus far, the discussion has centred on radiative transfer models as a method for simulating leaf or canopy reflectance and transmittance, assuming that parameters such as chlorophyll, anthocyanin, or carotenoid content are already known. This is referred to as the forward mode of a radiative transfer model. In some cases, the forward mode of a model might be useful in and by itself, most notably for generating synthetic data. Such data can be used for the intercomparison of other models, to conduct a sensitivity analysis, or even to find new vegetation indices <span class="citation" data-cites="cheng2014estimating jin2014newly">(<a href="references.html#ref-cheng2014estimating" role="doc-biblioref">Cheng et al. 2014</a>, <a href="references.html#ref-jin2014newly" role="doc-biblioref">Jin et al. 2014</a>)</span>.</p>
+<p>However, in many cases, reflectance information is already available, and the objective shifts to identifying the set of parameters that, given a specific model, best explain the observed data. This is referred to as the <em>backward mode</em> of a radiative transfer model. The goal is to discover the inverse function <span class="math inline">\(f^{-1}\)</span> of the actual model <span class="math inline">\(f\)</span>. <span id="eq-inversion"><span class="math display">\[
+f: x \to y \qquad \qquad f^{-1}: y\to x
+\tag{4.10}\]</span></span> Upon successful model inversion, the output of the model becomes its input and vice versa. Unfortunately, inverting radiative transfer models such as <span class="smallcaps">Prospect</span> is considered mathematically ill-posed and cannot be accomplished algebraically by simply re-writing the equations <span class="citation" data-cites="daun2017">(<a href="references.html#ref-daun2017" role="doc-biblioref">Daun 2017</a>)</span>. Consequently, alternative methods must be employed to achieve the model inversion. Specifically, the inversion of a radiative transfer model can be achieved through mathematical optimization, look-up tables, or machine learning techniques.</p>
+<section id="mathematical-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-optimization">Mathematical optimization</h3>
+<p>The conventional approach to inverting <span class="smallcaps">Prospect-Pro</span> involves mathematical optimization, specifically sequential quadratic programming <span class="citation" data-cites="feret2022package borchers2022pracma">(<a href="references.html#ref-borchers2022pracma" role="doc-biblioref">Borchers 2022</a>, <a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022a</a>)</span>. This iterative optimization algorithm seeks to identify the parameters <span class="math inline">\(\boldsymbol \theta\)</span> for the model <span class="math inline">\(f\)</span> in order to minimize a cost function <span class="math inline">\(J\)</span>. Typically, the mean squared error is employed as the cost function, which represents the sum of the squared difference between the model’s predictions (<span class="math inline">\(f(\boldsymbol {\theta})_\lambda\)</span>) and the observed reflectance and transmittance data. <span id="eq-minimization"><span class="math display">\[
+\boldsymbol {\hat \theta}
+= \arg \min_{\boldsymbol {\theta}} J(\boldsymbol \theta, \boldsymbol \rho) =
+\arg \min_{\boldsymbol {\theta}} \sum_{\lambda=1}^{n} \left( f(\boldsymbol {\theta})_\lambda - \rho_\lambda \right)^2
+\tag{4.11}\]</span></span> Note that the formula in <a href="#eq-minimization">equation&nbsp;<span>4.11</span></a> only relates to reflectance but works analogous for transmittance as well. The optimization algorithm operates by iteratively running the model, numerically approximating the gradient (<span class="math inline">\(\nabla_J\)</span>) and the Hessian (<span class="math inline">\(\mathbf H_J\)</span>) of the cost function <span class="math inline">\(J\)</span>, and utilizing this information to adjust the parameters. This iteration is stopped when the gradient becomes sufficiently small (<span class="math inline">\(\nabla_J \approx \mathbf 0\)</span>). Inverting the <span class="smallcaps">Prospect-Pro</span> model necessitates approximately 132 model runs on average<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to achieve a tolerance level of 10<sup>−6</sup>.</p>
+<p>As an alternative to the maximum likelihood estimation effectively executed via the minimization task in <a href="#eq-minimization">equation&nbsp;<span>4.11</span></a>, a Bayesian framework could be employed to identify the model’s parameters <span class="citation" data-cites="daun2017">(<a href="references.html#ref-daun2017" role="doc-biblioref">Daun 2017</a>)</span>. This method requires information on the prior distribution of the parameter to compute the posterior probability distribution. Although it is computationally more demanding than the maximum likelihood estimation, it offers the advantage of producing credibility intervals for the parameters based on their joint distribution. For instance, <span class="citation" data-cites="zhang2005estimating">Zhang et al. (<a href="references.html#ref-zhang2005estimating" role="doc-biblioref">2005</a>)</span> and more recently <span class="citation" data-cites="shiklomanov2021cutting">Shiklomanov et al. (<a href="references.html#ref-shiklomanov2021cutting" role="doc-biblioref">2021</a>)</span> employed a Bayesian calibration method to invert the <span class="smallcaps">Prosail-2</span> and <span class="smallcaps">Prospect-5</span> models, respectively. Both teams utilized a Markov Chain Monte Carlo (MCMC) algorithm to achieve this inversion.</p>
+<p>There are three primary drawbacks associated with employing mathematical optimization as an inversion technique for radiative transfer models. The first drawback concerns the feasibility of the approach, which diminishes as the computational cost for a single evaluation of the model becomes too large. This typically occurs when the radiative transfer model grows increasingly complex and computationally demanding, thereby reducing the efficacy of mathematical optimization as an inversion method. The second disadvantage emerges when handling a substantial number of observations that necessitate individual parameter retrieval. In these instances, mathematical optimization loses its effectiveness, as the information obtained from inverting the model for one observation cannot be utilized for another. The final concern involves the risk of becoming trapped in a local minimum, contingent upon the selection of initial parameters. If these limitations prove to be insurmountable, it is prudent to explore alternative solutions such as look-up tables or machine learning techniques, which might offer greater efficiency and effectiveness in addressing such challenges. Consequently, for the inversion of more intricate models like <span class="smallcaps">Less</span>, mathematical optimization is not the most suitable approach.</p>
+</section>
+<section id="look-up-tables" class="level3">
+<h3 class="anchored" data-anchor-id="look-up-tables">Look-up tables</h3>
+<p>Look-up tables serve as a particularly valuable model inversion technique when the model in question is computationally expensive, yet its results can be cached easily <span class="citation" data-cites="selan2005using">(<a href="references.html#ref-selan2005using" role="doc-biblioref">Selan 2005</a>)</span>. Typically implemented as a fixed-size array, a look-up table consists of elements, each of which corresponds to a specific set of parameters. In the case of <span class="smallcaps">Prospect-Pro</span>, these elements represent the combined reflectance and transmittance data. This structure enables relatively rapid data access; however, it also necessitates pre-calculation and storage of the entire look-up table, encompassing all possible parameter combinations <span class="citation" data-cites="berger2018evaluation">(<a href="references.html#ref-berger2018evaluation" role="doc-biblioref">Berger et al. 2018</a>)</span>.</p>
+<p>The primary disadvantage of look-up tables is the potentially extensive time required for pre-calculating all elements, as well as the necessity of accessing the entire table — which may represent an exceptionally large data structure — for making predictions. It is important to highlight that the data within look-up tables often displays a high degree of collinearity. As a result, a machine learning model can be trained on the look-up table, significantly reducing its size, and thus facilitating the distribution of the inverted model and also the inference process <span class="citation" data-cites="verrelst2016active">(<a href="references.html#ref-verrelst2016active" role="doc-biblioref">Verrelst et al. 2016</a>)</span>.</p>
+</section>
+<section id="model-inversion-via-machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="model-inversion-via-machine-learning">Model inversion via machine learning</h3>
+<p>Inverting models through machine learning can be achieved by first generating a synthetic data set using the radiative transfer model, and then training a machine learning model on that synthetic data set. In this regard, artificial neural networks have gained particular prominence. As the number of observations rises, neural networks tend to outperform other machine learning models. Given the synthetic nature of the data, there is virtually no constraint on the number of observations <span class="citation" data-cites="kimes2000inversion verger2011optimal">(<a href="references.html#ref-kimes2000inversion" role="doc-biblioref">Kimes et al. 2000</a>, <a href="references.html#ref-verger2011optimal" role="doc-biblioref">Verger et al. 2011</a>)</span>. Moreover, artificial neural networks offer the advantage of producing relatively quick predictions during the inference stage once they are trained. For instance, the canopy level radiative transfer model <span class="smallcaps">Prosail</span> has been successfully inverted for crop trait retrieval using neural networks <span class="citation" data-cites="verger2011optimal">(<a href="references.html#ref-verger2011optimal" role="doc-biblioref">Verger et al. 2011</a>)</span>, but also using random forest regression <span class="citation" data-cites="doktor2014extraction">(<a href="references.html#ref-doktor2014extraction" role="doc-biblioref">Doktor et al. 2014</a>)</span>.</p>
+<p><span class="citation" data-cites="verrelst2015replacing">Verrelst et al. (<a href="references.html#ref-verrelst2015replacing" role="doc-biblioref">2015</a>)</span> refer to machine learning models that approximate the inverse of a radiative transfer model as emulators. The authors argue that the most significant advantages of emulators are their ability to interpolate effectively in regions where the radiative transfer model has not been executed and their rapid prediction capabilities compared to methods like look-up tables.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-allen1973transmission" class="csl-entry" role="listitem">
+Allen, W. A. 1973. <a href="https://doi.org/10.1364/JOSA.63.000664">Transmission of isotropic light across a dielectric surface in two and three dimensions</a>. JOSA 63:664–666.
+</div>
+<div id="ref-allen1969interaction" class="csl-entry" role="listitem">
+Allen, W. A., H. W. Gausman, A. J. Richardson, and J. R. Thomas. 1969. <a href="https://doi.org/10.1364/JOSA.59.001376">Interaction of isotropic light with a compact plant leaf</a>. JOSA 59:1376–1379.
+</div>
+<div id="ref-allen1973willstatter" class="csl-entry" role="listitem">
+Allen, W. A., H. Gausman, and A. Richardson. 1973. <a href="https://doi.org/10.1364/AO.12.002448">Willst<span>ä</span>tter-stoll theory of leaf reflectance evaluated by ray tracing</a>. Applied Optics 12:2448–2453.
+</div>
+<div id="ref-bailey2020one" class="csl-entry" role="listitem">
+Bailey, B. N., M. A. Ponce de León, and E. S. Krayenhoff. 2020. <a href="https://doi.org/10.5194/gmd-13-4789-2020">One-dimensional models of radiation transfer in heterogeneous canopies: A review, re-evaluation, and improved model</a>. Geoscientific Model Development 13:4789–4808.
+</div>
+<div id="ref-baret1997estimation" class="csl-entry" role="listitem">
+Baret, F., and T. Fourty. 1997. <a href="https://doi.org/10.1051/agro:19970903">Estimation of leaf water content and specific leaf weight from reflectance and transmittance measurements</a>. Agronomie 17:455–464.
+</div>
+<div id="ref-baret1992modeled" class="csl-entry" role="listitem">
+Baret, F., S. Jacquemoud, G. Guyot, and C. Leprieur. 1992. <a href="https://doi.org/10.1016/0034-4257(92)90073-S">Modeled analysis of the biophysical nature of spectral shifts and comparison with information content of broad bands</a>. Remote Sensing of Environment 41:133–142.
+</div>
+<div id="ref-beer1852bestimmung" class="csl-entry" role="listitem">
+Beer, A. 1852. <span class="nocase">Bestimmung der absorption des rothen lichts in farbigen flussigkeiten</span>. Ann. Physik 162:78–88.
+</div>
+<div id="ref-berger2018evaluation" class="csl-entry" role="listitem">
+Berger, K., C. Atzberger, M. Danner, G. D’Urso, W. Mauser, F. Vuolo, and T. Hank. 2018. <a href="https://doi.org/10.3390/rs10010085">Evaluation of the PROSAIL model capabilities for future hyperspectral model environments: A review study</a>. Remote Sensing 10:85.
+</div>
+<div id="ref-borchers2022pracma" class="csl-entry" role="listitem">
+Borchers, H. W. 2022. <a href="https://CRAN.R-project.org/package=pracma">Pracma: Practical numerical math functions</a>.
+</div>
+<div id="ref-cheng2014estimating" class="csl-entry" role="listitem">
+Cheng, X., G. Yang, X. Xu, T. Chen, Z. Li, H. Feng, D. Wang, and others. 2014. <a href="https://doi.org/10.3964/j.issn.1000-0593(2014)12-3391-06">Estimating canopy water content in wheat based on new vegetation water index</a>. Spectroscopy and Spectral Analysis 34:3391–3396.
+</div>
+<div id="ref-daun2017" class="csl-entry" role="listitem">
+Daun, K. J. 2017. <a href="https://doi.org/10.1007/978-3-319-32003-8_64-1">Inverse problems in radiative transfer</a>. Pages 1–51. Springer International Publishing.
+</div>
+<div id="ref-doktor2014extraction" class="csl-entry" role="listitem">
+Doktor, D., A. Lausch, D. Spengler, and M. Thurner. 2014. <a href="https://doi.org/10.3390/rs61212247">Extraction of plant physiological status from hyperspectral signatures using machine learning methods</a>. Remote Sensing 6:12247–12274.
+</div>
+<div id="ref-feret2021prospect" class="csl-entry" role="listitem">
+Féret, J.-B., K. Berger, F. De Boissieu, and Z. Malenovskỳ. 2021. <a href="https://doi.org/10.1016/j.rse.2020.112173">PROSPECT-PRO for estimating content of nitrogen-containing leaf proteins and other carbon-based constituents</a>. Remote Sensing of Environment 252:112173.
+</div>
+<div id="ref-feret2022prosail" class="csl-entry" role="listitem">
+Féret, J.-B., and F. de Boissieu. 2022b. <a href="https://gitlab.com/jbferet/prosail">Prosail: PROSAIL leaf and canopy radiative transfer model and inversion routines</a>.
+</div>
+<div id="ref-feret2022package" class="csl-entry" role="listitem">
+Féret, J.-B., and F. de Boissieu. 2022a. <a href="https://gitlab.com/jbferet/prospect">Prospect: PROSPECT leaf radiative transfer model and inversion routines</a>.
+</div>
+<div id="ref-feret2008prospect" class="csl-entry" role="listitem">
+Féret, J.-B., C. François, G. P. Asner, A. A. Gitelson, R. E. Martin, L. P. Bidel, S. L. Ustin, G. Le Maire, and S. Jacquemoud. 2008. <a href="https://doi.org/10.1016/j.rse.2008.02.012">PROSPECT-4 and 5: Advances in the leaf optical properties model separating photosynthetic pigments</a>. Remote Sensing of Environment 112:3030–3043.
+</div>
+<div id="ref-fourty1998spectral" class="csl-entry" role="listitem">
+Fourty, T., and F. Baret. 1998. <a href="https://doi.org/10.1080/014311698215441">On spectral estimates of fresh leaf biochemistry</a>. International Journal of Remote Sensing 19:1283–1297.
+</div>
+<div id="ref-fourty1996leaf" class="csl-entry" role="listitem">
+Fourty, T., F. Baret, S. Jacquemoud, G. Schmuck, and J. Verdebout. 1996. <a href="https://doi.org/10.1016/0034-4257(95)00234-0">Leaf optical properties with explicit description of its biochemical composition: Direct and inverse problems</a>. Remote Sensing of Environment 56:104–117.
+</div>
+<div id="ref-fresnel1821" class="csl-entry" role="listitem">
+Fresnel, A. 1821. Note sur le calcul des teintes que la polarisation d<span>é</span>veloppe dans leslames cristallis<span>é</span>es. Annales de Chimie et de Physique 17:102–111.
+</div>
+<div id="ref-expint" class="csl-entry" role="listitem">
+Goulet, V. 2016. <a href="https://cran.r-project.org/package=expint">Expint: Exponential integral and incomplete gamma function</a>.
+</div>
+<div id="ref-hosgood1995leaf" class="csl-entry" role="listitem">
+Hosgood, B., S. Jacquemoud, G. Andreoli, J. Verdebout, G. Pedrini, and G. Schmuck. 1995. Leaf optical properties experiment 93 (LOPEX93). Report EUR 16095.
+</div>
+<div id="ref-jacquemoud1992utilisation" class="csl-entry" role="listitem">
+Jacquemoud, S. 1992. Utilisation de la haute resolution spectrale pour l’etude des couverts vegetaux: Developpement d’un modele de reflectance spectrale. PhD thesis, Universit<span>é</span> Paris Diderot-Paris 7.
+</div>
+<div id="ref-jacquemoud2000comparison" class="csl-entry" role="listitem">
+Jacquemoud, S., C. Bacour, H. Poilve, and J.-P. Frangi. 2000. <a href="https://doi.org/10.1016/S0034-4257(00)00139-5">Comparison of four radiative transfer models to simulate plant canopies reflectance: Direct and inverse mode</a>. Remote Sensing of Environment 74:471–481.
+</div>
+<div id="ref-jacquemoud1990prospect" class="csl-entry" role="listitem">
+Jacquemoud, S., and F. Baret. 1990. <a href="https://doi.org/10.1016/0034-4257(90)90100-Z">PROSPECT: A model of leaf optical properties spectra</a>. Remote Sensing of Environment 34:75–91.
+</div>
+<div id="ref-jacquemoud1996estimating" class="csl-entry" role="listitem">
+Jacquemoud, S., S. Ustin, J. Verdebout, G. Schmuck, G. Andreoli, and B. Hosgood. 1996. <a href="https://doi.org/10.1016/0034-4257(95)00238-3">Estimating leaf biochemistry using the PROSPECT leaf optical properties model</a>. Remote Sensing of Environment 56:194–202.
+</div>
+<div id="ref-jacquemoud2009prospect" class="csl-entry" role="listitem">
+Jacquemoud, S., W. Verhoef, F. Baret, C. Bacour, P. Zarco-Tejada, G. Asner, C. François, and S. Ustin. 2009. <a href="https://doi.org/10.1016/j.rse.2008.01.026">PROSPECT + SAIL models: A review of use for vegetation characterization</a>. Remote Sensing of Environment 113:S56–S66.
+</div>
+<div id="ref-LessUserManual2022" class="csl-entry" role="listitem">
+Jianbo, Q. 2022. LESS user’s manual. 2.0 edition.
+</div>
+<div id="ref-jin2014newly" class="csl-entry" role="listitem">
+Jin, X., Z. Li, H. Feng, X. Xu, and G. Yang. 2014. <a href="https://doi.org/10.1109/JSTARS.2014.2360069">Newly combined spectral indices to improve estimation of total leaf chlorophyll content in cotton</a>. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing 7:4589–4600.
+</div>
+<div id="ref-kimes2000inversion" class="csl-entry" role="listitem">
+Kimes, D., Y. Knyazikhin, J. Privette, A. Abuelgasim, and F. Gao. 2000. <a href="https://doi.org/10.1080/02757250009532396">Inversion methods for physically-based models</a>. Remote Sensing Reviews 18:381–439.
+</div>
+<div id="ref-lambert1760photometria" class="csl-entry" role="listitem">
+Lambert, J. H. 1760. Photometria sive de mensura et gradibus luminis, colorum et umbrae. Sumptibus vidvae E. Klett, typis CP Detleffsen.
+</div>
+<div id="ref-lin2022generalized" class="csl-entry" role="listitem">
+Lin, D., M. Kettunen, B. Bitterli, J. Pantaleoni, C. Yuksel, and C. Wyman. 2022. <a href="https://doi.org/3528223.3530158">Generalized resampled importance sampling: Foundations of ReSTIR</a>. ACM Transactions on Graphics (TOG) 41:1–23.
+</div>
+<div id="ref-malenovsky2013retrieval" class="csl-entry" role="listitem">
+Malenovskỳ, Z., L. Homolová, R. Zurita-Milla, P. Lukeš, V. Kaplan, J. Hanuš, J.-P. Gastellu-Etchegorry, and M. E. Schaepman. 2013. <a href="https://doi.org/10.1016/j.rse.2012.12.015">Retrieval of spruce leaf chlorophyll content from airborne image data using continuum removal and radiative transfer</a>. Remote Sensing of Environment 131:85–102.
+</div>
+<div id="ref-peddie2019ray" class="csl-entry" role="listitem">
+Peddie, J. 2019. <a href="https://doi.org/10.1007/978-3-030-17490-3">Ray tracing: A tool for all</a>. Springer.
+</div>
+<div id="ref-qi2023fast" class="csl-entry" role="listitem">
+Qi, J., J. Jiang, K. Zhou, D. Xie, and H. Huang. 2023. <a href="https://doi.org/10.34133/remotesensing.0017">Fast and accurate simulation of canopy reflectance under wavelength-dependent optical properties using a semi-empirical 3D radiative transfer model</a>. Journal of Remote Sensing 3:0017.
+</div>
+<div id="ref-qi2017large" class="csl-entry" role="listitem">
+Qi, J., D. Xie, D. Guo, and G. Yan. 2017. <a href="https://doi.org/10.1109/JSTARS.2017.2714423">A large-scale emulation system for realistic three-dimensional (3-d) forest simulation</a>. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing 10:4834–4843.
+</div>
+<div id="ref-qi20223d" class="csl-entry" role="listitem">
+Qi, J., D. Xie, J. Jiang, and H. Huang. 2022. <a href="https://doi.org/10.1016/j.rse.2022.113301">3D radiative transfer modeling of structurally complex forest canopies through a lightweight boundary-based description of leaf clusters</a>. Remote Sensing of Environment 283:113301.
+</div>
+<div id="ref-qi2019less" class="csl-entry" role="listitem">
+Qi, J., D. Xie, T. Yin, G. Yan, J.-P. Gastellu-Etchegorry, L. Li, W. Zhang, X. Mu, and L. K. Norford. 2019. <a href="https://doi.org/10.1016/j.rse.2018.11.036">LESS: LargE-scale remote sensing data and image simulation framework over heterogeneous 3D scenes</a>. Remote Sensing of Environment 221:695–706.
+</div>
+<div id="ref-selan2005using" class="csl-entry" role="listitem">
+Selan, J. 2005. Using lookup tables to accelerate color transformations. GPU Gems 2:381–392.
+</div>
+<div id="ref-shiklomanov2021cutting" class="csl-entry" role="listitem">
+Shiklomanov, A. N., M. C. Dietze, I. Fer, T. Viskari, and S. P. Serbin. 2021. <a href="https://doi.org/10.5194/gmd-14-2603-2021">Cutting out the middleman: Calibrating and validating a dynamic vegetation model (ED2-PROSPECT5) using remotely sensed surface reflectance</a>. Geoscientific Model Development 14:2603–2633.
+</div>
+<div id="ref-stern1964transmission" class="csl-entry" role="listitem">
+Stern, F. 1964. <a href="https://doi.org/10.1364/AO.3.000111">Transmission of isotropic radiation across an interface between two dielectrics</a>. Applied Optics 3:111–113.
+</div>
+<div id="ref-verger2011optimal" class="csl-entry" role="listitem">
+Verger, A., F. Baret, and F. Camacho. 2011. <a href="https://doi.org/10.1016/j.rse.2010.09.012">Optimal modalities for radiative transfer-neural network estimation of canopy biophysical characteristics: Evaluation over an agricultural area with CHRIS/PROBA observations</a>. Remote Sensing of Environment 115:415–426.
+</div>
+<div id="ref-verhoef1984light" class="csl-entry" role="listitem">
+Verhoef, W. 1984. <a href="https://doi.org/10.1016/0034-4257(84)90057-9">Light scattering by leaf layers with application to canopy reflectance modeling: The SAIL model</a>. Remote Sensing of Environment 16:125–141.
+</div>
+<div id="ref-verhoef1985earth" class="csl-entry" role="listitem">
+Verhoef, W. 1985. <a href="https://doi.org/10.1016/0034-4257(85)90072-0">Earth observation modeling based on layer scattering matrices</a>. Remote Sensing of Environment 17:165–178.
+</div>
+<div id="ref-verhoef2007unified" class="csl-entry" role="listitem">
+Verhoef, W., L. Jia, Q. Xiao, and Z. Su. 2007. <a href="https://doi.org/10.1109/TGRS.2007.895844">Unified optical-thermal four-stream radiative transfer theory for homogeneous vegetation canopies</a>. IEEE Transactions on geoscience and remote sensing 45:1808–1822.
+</div>
+<div id="ref-verrelst2016active" class="csl-entry" role="listitem">
+Verrelst, J., S. Dethier, J. P. Rivera, J. Munoz-Mari, G. Camps-Valls, and J. Moreno. 2016. <a href="https://doi.org/10.1109/LGRS.2016.2560799">Active learning methods for efficient hybrid biophysical variable retrieval</a>. IEEE Geoscience and Remote Sensing Letters 13:1012–1016.
+</div>
+<div id="ref-verrelst2017global" class="csl-entry" role="listitem">
+Verrelst, J., and J. Rivera. 2017. <a href="https://doi.org/10.1016/B978-0-12-803011-0.00016-1">A global sensitivity analysis toolbox to quantify drivers of vegetation radiative transfer models</a>. Pages 319–339 Sensitivity analysis in earth observation modelling. Elsevier.
+</div>
+<div id="ref-verrelst2015replacing" class="csl-entry" role="listitem">
+Verrelst, J., J. P. Rivera, J. Gómez-Dans, G. Camps-Valls, and J. Moreno. 2015. <a href="https://doi.org/10.1109/IGARSS.2015.7325843">Replacing radiative transfer models by surrogate approximations through machine learning</a>. Pages 633–636 2015 IEEE international geoscience and remote sensing symposium (IGARSS). IEEE.
+</div>
+<div id="ref-wheeler2011" class="csl-entry" role="listitem">
+Wheeler, R. 2011. <a href="https://upload.wikimedia.org/wikipedia/commons/0/06/Leaf_Tissue_Structure.svg">Diagram of the internal structure of a leaf</a>. Webpage.
+</div>
+<div id="ref-wyman2021rearchitecting" class="csl-entry" role="listitem">
+Wyman, C., and A. Panteleev. 2021. Rearchitecting spatiotemporal resampling for production. Pages 23–41 Proceedings of the conference on high-performance graphics.
+</div>
+<div id="ref-yang2020spart" class="csl-entry" role="listitem">
+Yang, P., C. van der Tol, T. Yin, and W. Verhoef. 2020. <a href="https://doi.org/10.1016/j.rse.2020.111870">The SPART model: A soil-plant-atmosphere radiative transfer model for satellite measurements in the solar spectrum</a>. Remote Sensing of Environment 247:111870.
+</div>
+<div id="ref-zhang2005estimating" class="csl-entry" role="listitem">
+Zhang, Q., X. Xiao, B. Braswell, E. Linder, F. Baret, and B. Moore III. 2005. <a href="https://doi.org/10.1016/j.rse.2005.09.009">Estimating light absorption by chlorophyll, leaf and canopy in a deciduous broadleaf forest using MODIS data and a radiative transfer model</a>. Remote Sensing of Environment 99:357–371.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This statement highlights that the average number of model evaluations required for inverting the <span class="smallcaps">Prospect-Pro</span> model on the almond dataset was 132. While this number may vary for different datasets, the differences are not expected to be extreme, remaining within the same order of magnitude.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./describing-processing-and-inspecting-the-data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
+    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Damian-Oswald">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/damian-oswald">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:damian.oswald@protonmail.com">
+      <i class="bi bi-envelope-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

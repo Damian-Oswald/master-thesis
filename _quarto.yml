@@ -1,0 +1,69 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: Remote Sensing of Foliar Nitrogen in Californian Almonds
+  subtitle: Master Thesis
+  date: 2023-04-28
+  date-format: long
+  author:
+    - name: Damian Oswald
+      url: https://damianoswald.com
+      affiliation: Swiss Federal Institute of Technology, Zürich
+      orcid: 0009-0008-0658-7697
+  repo-url: https://github.com/damian-oswald/master-thesis/
+  repo-actions: [source, issue]
+  downloads: pdf
+  reader-mode: true
+  chapters:
+    - index.qmd
+    - background.qmd
+    - vegetation-indices-based-methods.qmd
+    - machine-learning-methods-for-hyperspectral-data-analysis.qmd
+    - radiative-transfer-models.qmd
+    - describing-processing-and-inspecting-the-data.qmd
+    - technical-description-of-the-modelling.qmd
+    - results-of-the-model-performances.qmd
+    - discussion.qmd
+    - conclusion.qmd
+    - appendix.qmd
+    - references.qmd
+  cover-image: resources/cover.png
+  navbar:
+    title: false
+    background: dark
+    foreground: light
+    search: true
+    logo: resources/iconDO.png
+    logo-href: https://damianoswald.com/index.html
+  tools:
+  - icon: linkedin
+    href: https://www.linkedin.com/in/damian-oswald
+  - icon: envelope-fill
+    href: mailto:damian.oswald@protonmail.com
+  page-footer:
+    border: false
+    left: © 2023, Damian Oswald
+    center: Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)
+    right: 
+    - icon: github
+      href: https://github.com/Damian-Oswald
+    - icon: linkedin
+      href: https://www.linkedin.com/in/damian-oswald
+    - icon: envelope-fill
+      href: mailto:damian.oswald@protonmail.com
+
+bibliography: resources/references.bib
+csl: resources/ecology.csl
+citation: true
+
+format:
+  html:
+    theme: resources/theme.scss
+    number-sections: true
+    number-depth: 2
+  pdf:
+    output-file: damian-oswald-master-thesis.pdf
+
+
