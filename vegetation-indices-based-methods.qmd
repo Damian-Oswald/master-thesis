@@ -52,8 +52,10 @@ These indices mostly capitalize on the correlation between crop nitrogen and chl
 For instance, the transformed chlorophyll absorption in reflectance index (TCARI) has demonstrated a strong correlation with chlorophyll [@cui2017comparison].
 Some of the most notable vegetation indices employed for crop nitrogen detection can be found in [table @tbl-VegetationIndices].
 
+:::{.column-page-inset-right}
+
 | **Index** | **Formula** |**Author** |
-|:------|:--------|:------|
+|:------|:-------:|:------|
 |Normalised Difference Vegetation Index (NDVI)|$$\frac{\rho_{\text{790}}-\rho_{\text{685}}}{\rho_{\text{790}}+\rho_{\text{685}}}$$| @rouse1973monitoring|
 |Normalized Difference Red Edge (NDRE)|$$\frac{\rho_{790} - \rho_{720}}{\rho_{790} + \rho_{720}}$$| @barnes2000coincident|
 |Modified Chlorophyll Absorption in Reflectance Index (MCARI)    |$$\frac{\rho_{700}}{\rho_{670}} \left[ 0.8 \cdot \rho_{700} - \rho_{670} - 0.2 \cdot \rho_{550} \right]$$| @daughtry2000estimating|
@@ -67,6 +69,8 @@ Some of the most notable vegetation indices employed for crop nitrogen detection
 |R434|$$\frac{\rho_{\text{434}}}{\rho_{\text{496}} - \rho_{\text{401}}}$$| @tian2011assessing         |
 
 : Overview of various vegetation indices that were used to estimate foliar nitrogen concentrations. $\rho_\lambda$ for the reflectance at a specific wavelength $\lambda$ ($\rho_{530}$ = green band, $\rho_{685}$ = red band, $\rho_{720}$ = red edge,  $\rho_{790}$ = near-infrared). This table was adapted from @herrmann2010swir and @tian2011assessing. {#tbl-VegetationIndices tbl-colwidths="[35,45,20]"}
+
+:::
 
 But how exactly is a regression model employing vegetation indices constructed?
 The utilization of vegetation indices on multi- or hyperspectral data results in a dimensionality reduction of the original data.

@@ -222,7 +222,7 @@ div.csl-indent {
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/vegetation-indices-based-methods.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -254,9 +254,10 @@ div.csl-indent {
 <p><span class="citation" data-cites="atzberger2011confining">Atzberger et al. (<a href="references.html#ref-atzberger2011confining" role="doc-biblioref">2011</a>)</span> explicitly outlines five disadvantages associated with using vegetation indices-based methods for crop nitrogen estimation. The first disadvantage is the inverse problem, wherein high-dimensional data is reduced to a single value, which could potentially be derived from varying forms of reflectance. The second drawback involves the partial exploitation of multi- or hyperspectral data, as only a limited number of spectral bands are utilized. This issue is especially relevant to narrow-band vegetation indices, which may also be affected by measurement noise. The third challenge concerns the lack of transferability in the calibration of vegetation indices to specific sensors, as it does not extend to instruments with different characteristics. The fourth issue relates to overfitting, implying that vegetation index-based nitrogen models may be tailored too specifically to the dataset used for model calibration. This can lead to sensitivity regarding crop type, growth stage, underlying soil type, sun-sensor constellation, as well as time and date. Finally, the fifth drawback highlights the need to collect <em>in situ</em> reference data for model establishment, which demands manpower, instrument availability, and therefore imposes a high financial burden on the development.</p>
 <p>Despite this criticism, new vegetation indices keep being proposed in the scientific literature. Some of the drawbacks of vegetation indices are addressed by the usage of radiative transfer models: Synthetic data sets are generated, where new vegetation indices aim to correlate with the parameter used to generate the respective data sets <span class="citation" data-cites="hunt2013visible">(<a href="references.html#ref-hunt2013visible" role="doc-biblioref">Hunt Jr et al. 2013</a>)</span>. For example, the radiative transfer model <span class="smallcaps">Prosail</span> has been used to design new vegetation indices <span class="citation" data-cites="cheng2014estimating jin2014newly">(<a href="references.html#ref-cheng2014estimating" role="doc-biblioref">Cheng et al. 2014</a>, <a href="references.html#ref-jin2014newly" role="doc-biblioref">Jin et al. 2014</a>)</span>. This search for new vegetation indices is sometimes even implemented algorithmically, for example by the adoption of = algorithms <span class="citation" data-cites="costa2020new">(<a href="references.html#ref-costa2020new" role="doc-biblioref">Costa et al. 2020</a>)</span>.</p>
 </section>
-<section id="sec-nitrogenVI" class="level2" data-number="2.2">
+<section id="sec-nitrogenVI" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-nitrogenVI"><span class="header-section-number">2.2</span> Nitrogen monitoring with vegetation indices</h2>
 <p>Vegetation indices represent the most prevalent method for remote detection of crop nitrogen content <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. Numerous indices have been intentionally designed to estimate crop nitrogen, while others have simply been found to correlate with it <span class="citation" data-cites="herrmann2010swir">(<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">Herrmann et al. 2010</a>)</span>. These indices mostly capitalize on the correlation between crop nitrogen and chlorophyll content <span class="citation" data-cites="baret2007quantification">(<a href="references.html#ref-baret2007quantification" role="doc-biblioref">Baret et al. 2007</a>)</span>. For instance, the transformed chlorophyll absorption in reflectance index (TCARI) has demonstrated a strong correlation with chlorophyll <span class="citation" data-cites="cui2017comparison">(<a href="references.html#ref-cui2017comparison" role="doc-biblioref">Cui and Zhou 2017</a>)</span>. Some of the most notable vegetation indices employed for crop nitrogen detection can be found in <a href="#tbl-VegetationIndices">table&nbsp;<span>2.1</span></a>.</p>
+<div class="column-page-inset-right">
 <div id="tbl-VegetationIndices" class="anchored">
 <table class="table">
 <caption>Table&nbsp;2.1: Overview of various vegetation indices that were used to estimate foliar nitrogen concentrations. <span class="math inline">\(\rho_\lambda\)</span> for the reflectance at a specific wavelength <span class="math inline">\(\lambda\)</span> (<span class="math inline">\(\rho_{530}\)</span> = green band, <span class="math inline">\(\rho_{685}\)</span> = red band, <span class="math inline">\(\rho_{720}\)</span> = red edge, <span class="math inline">\(\rho_{790}\)</span> = near-infrared). This table was adapted from <span class="citation" data-cites="herrmann2010swir">Herrmann et al. (<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">2010</a>)</span> and <span class="citation" data-cites="tian2011assessing">Tian et al. (<a href="references.html#ref-tian2011assessing" role="doc-biblioref">2011</a>)</span>.</caption>
@@ -268,68 +269,69 @@ div.csl-indent {
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>Index</strong></th>
-<th style="text-align: left;"><strong>Formula</strong></th>
+<th style="text-align: center;"><strong>Formula</strong></th>
 <th style="text-align: left;"><strong>Author</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Normalised Difference Vegetation Index (NDVI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{\text{790}}-\rho_{\text{685}}}{\rho_{\text{790}}+\rho_{\text{685}}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{\text{790}}-\rho_{\text{685}}}{\rho_{\text{790}}+\rho_{\text{685}}}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="rouse1973monitoring">Rouse Jr et al. (<a href="references.html#ref-rouse1973monitoring" role="doc-biblioref">1973</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Normalized Difference Red Edge (NDRE)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{790} - \rho_{720}}{\rho_{790} + \rho_{720}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{790} - \rho_{720}}{\rho_{790} + \rho_{720}}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="barnes2000coincident">Barnes et al. (<a href="references.html#ref-barnes2000coincident" role="doc-biblioref">2000</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Modified Chlorophyll Absorption in Reflectance Index (MCARI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{700}}{\rho_{670}} \left[ 0.8 \cdot \rho_{700} - \rho_{670} - 0.2 \cdot \rho_{550} \right]\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{700}}{\rho_{670}} \left[ 0.8 \cdot \rho_{700} - \rho_{670} - 0.2 \cdot \rho_{550} \right]\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="daughtry2000estimating">Daughtry et al. (<a href="references.html#ref-daughtry2000estimating" role="doc-biblioref">2000</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Transformed Chlorophyll Absorption in Reflectance Index (TCARI)</td>
-<td style="text-align: left;"><span class="math display">\[3 \left[ \rho_{700} - \rho_{670} - \frac{0.2\cdot\rho_{700}}{\rho_{670}} \left(\rho_{700} - \rho_{550} \right) \right]\]</span></td>
+<td style="text-align: center;"><span class="math display">\[3 \left[ \rho_{700} - \rho_{670} - \frac{0.2\cdot\rho_{700}}{\rho_{670}} \left(\rho_{700} - \rho_{550} \right) \right]\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="haboudane2002integrated">Haboudane et al. (<a href="references.html#ref-haboudane2002integrated" role="doc-biblioref">2002</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Green Chlorophyll Index (GCI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{\text{790}}}{\rho_{530}}-1\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{\text{790}}}{\rho_{530}}-1\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="gitelson2003relationships">Gitelson et al. (<a href="references.html#ref-gitelson2003relationships" role="doc-biblioref">2003</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Red Edge Chlorophyll Index (RECI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{\text{790}}}{\rho_{\text{720}}}-1\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{\text{790}}}{\rho_{\text{720}}}-1\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="gitelson2003relationships">Gitelson et al. (<a href="references.html#ref-gitelson2003relationships" role="doc-biblioref">2003</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Green Normalised Difference Vegetation Index (GNDVI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{\text{790}}-\rho_{530}}{\rho_{\text{790}}+\rho_{530}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{\text{790}}-\rho_{530}}{\rho_{\text{790}}+\rho_{530}}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="gitelson1996use">Gitelson et al. (<a href="references.html#ref-gitelson1996use" role="doc-biblioref">1996</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Enhanced Vegetation Index (EVI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\frac{5}{2}(\rho_{\text{790}} - \rho_{\text{720}})}{\rho_{\text{790}} + 6 \ \rho_{\text{720}} + \frac{15}{2} \rho_{\text{470}} + 1}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\frac{5}{2}(\rho_{\text{790}} - \rho_{\text{720}})}{\rho_{\text{790}} + 6 \ \rho_{\text{720}} + \frac{15}{2} \rho_{\text{470}} + 1}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="huete2002overview">Huete et al. (<a href="references.html#ref-huete2002overview" role="doc-biblioref">2002</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Wide Dynamic Range Vegetation Index (WDRVI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\alpha \rho_{\text{790}}-\rho_{\text{720}}}{\alpha \rho_{\text{790}}+\rho_{\text{720}}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\alpha \rho_{\text{790}}-\rho_{\text{720}}}{\alpha \rho_{\text{790}}+\rho_{\text{720}}}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="gitelson2004wide">Gitelson (<a href="references.html#ref-gitelson2004wide" role="doc-biblioref">2004</a>)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Normalized Difference Nitrogen Index (NDNI)</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\log_{10} \rho_{1510}^{-1} - \log_{10} \rho_{1680}^{-1}}{\log_{10} \rho_{1510}^{-1} + \log_{10} \rho_{1680}^{-1}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\log_{10} \rho_{1510}^{-1} - \log_{10} \rho_{1680}^{-1}}{\log_{10} \rho_{1510}^{-1} + \log_{10} \rho_{1680}^{-1}}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="serrano2002remote">Serrano et al. (<a href="references.html#ref-serrano2002remote" role="doc-biblioref">2002</a>)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">R434</td>
-<td style="text-align: left;"><span class="math display">\[\frac{\rho_{\text{434}}}{\rho_{\text{496}} - \rho_{\text{401}}}\]</span></td>
+<td style="text-align: center;"><span class="math display">\[\frac{\rho_{\text{434}}}{\rho_{\text{496}} - \rho_{\text{401}}}\]</span></td>
 <td style="text-align: left;"><span class="citation" data-cites="tian2011assessing">Tian et al. (<a href="references.html#ref-tian2011assessing" role="doc-biblioref">2011</a>)</span></td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <p>But how exactly is a regression model employing vegetation indices constructed? The utilization of vegetation indices on multi- or hyperspectral data results in a dimensionality reduction of the original data. While the initial data possesses multiple dimensions, vegetation indices are one-dimensional. Ideally, a vegetation index employed for crop nitrogen monitoring correlates more strongly with crop nitrogen than any individual band. However, the index itself lacks a unit and, as a consequence, cannot be used directly to estimate crop nitrogen. Therefore, any vegetation index must be linked to the trait of interest <span class="math inline">\(y\)</span> through a connecting function <span class="math inline">\(f\)</span> — a so-called link function.</p>
 <p><span id="eq-VIlinkfunction"><span class="math display">\[f: g(\mathbf x) \rightarrow y \tag{2.3}\]</span></span></p>
