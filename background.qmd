@@ -62,7 +62,11 @@ Unfortunately, the retrieval of information about the foliar nitrogen concentrat
 This calls for surrogate strategies of estimating the foliar nitrogen concentration --- for example via remote sensing.
 Remote sensing of crop nitrogen for more adequate fertilization is in fact one of the core promises of precision agriculture and smart farming [@zhang2002precision; @walter2017smart; @sishodia2020applications].
 
+:::{.column-page-inset-right}
+
 ![This figure shows the proportional functional allocation of nitrogen in an average C~3~ plant leaf. The percentages indicate what share of nitrogen is bound for a specific purpose. Adapted from @chapin1987plant.](resources/NitrogenInPlants.png){#fig-NitrogenInPlants}
+
+:::
 
 ## The role of remote sensing in precision agriculture {#sec-remotesensing}
 
@@ -90,7 +94,11 @@ In contrast to that, multispectral images are a type of remotely sensed data tha
 For agricultural purposes, multispectral imagery typically combines RGB imagery with bands in the near-infrared spectrum [@hagen2013review].
 Because the infrared spectrum will be quite important within the scope of this thesis, I will often refer to certain subgroups of that range: near-infrared (NIR, 750-1400 nm), short-wavelength-infrared (SWIR, 1400-3000 nm), mid-wavelength infrared (MWIR, 3-8 $\mu$m), long-wavelength infrared (LWIR, 8-15 $\mu$m) and far infrared [FIR, 15-1000 $\mu$m, @Byrnes2009].
 
+:::{.column-body-outset-right}
+
 ![This figure illustrates the spectral flux density of solar irradiance (**A**) in relation to the broader electromagnetic spectrum (**B**). A portion of the initial irradiance is absorbed by various gases or scattered by Rayleigh scattering, resulting in only a part of it reaching the Earth's surface at sea level. The irradiance and radiance data at a given surface location (**C**) can be utilized to calculate the reflectance based on [equation @eq-reflectance] (**D**). This reflectance enables the determination of various physical and biochemical properties of the surface. This figure was adapted from work by @Rohde2013 and created using data from the @NREL.](resources/Electromagnetic.png){#fig-Electromagnetic}
+
+:::
 
 When incorporating numerous additional spectral bands into the imaging process, it is referred to as hyperspectral imaging.
 Hyperspectral images (HSI) usually consist of hundreds of narrow, contiguous wavelength bands, which together with the spatial resolution form a hypercube $\mathbf X \in \mathbb R^{w \times l \times d}$ with the width $w$, length $l$ and the depth $d$ (that is the number of spectral bands).

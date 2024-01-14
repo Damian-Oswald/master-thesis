@@ -13,7 +13,7 @@ Only the document type "article" was searched for.
 
 The substantial advancements witnessed in machine learning over the past two decades can be largely ascribed to the surge in computational power, the sudden availability of copious amounts of data, and the open-source culture that enables applications through readily accessible machine learning libraries and frameworks [@jordan2015machine; @fridman2019].
 
-In this thesis, I will use the term "machine learning" as originally defined by Arthur Samuels.
+In this thesis, I will use the term "machine learning" as originally defined by Arthur Samuel.
 As per his definition, machine learning includes a variety of mathematical models from chemometrics and statistics, despite the fact that many of these models were developed prior to the coining of the term itself.
 The essential aspect of these models lies in their primary function for making predictions, rather than serving as statistical models.
 Moreover, the machine learning models evaluated in this thesis are differentiated from hand-crafted features such as vegetation indices and radiative transfer models by their fully automatic process of selecting and combining spectral bands.
