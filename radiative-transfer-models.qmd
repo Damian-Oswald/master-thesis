@@ -65,7 +65,7 @@ This approach is currently employed in the [Prospect-Pro]{.smallcaps} computatio
 The expression for average transmissivity is rather complex, as to be seen in [equation @eq-TavTsTp].
 A visual representation of how the average transmissivity varies as a function of the refractive index $n$ and the angular range $\alpha$ can be found in [figure @fig-SAC], displayed at the bottom.
 
-![The [Prospect]{.smallcaps} model simplifies a leaf's structure by representing it as a flat plane, rather than accounting for its complex three-dimensional form, which consists of various components and a textured surface (**A**, created using content by @wheeler2011). In this sketch inspired by @jacquemoud1992utilisation (**A**), the different angles incorporated in [equation @eq-TAVunintegrated] are illustrated: the general angles for azimuth ($\varphi$) and zenith ($\theta$) as well as the angle of maximum incident ($\alpha$). In addition to that, the arrows indicate the reflectance ($\rho$) and transmittance ($\tau$).](resources/LeafStructure.png){#fig-LeafStructure}
+![The [Prospect]{.smallcaps} model simplifies a leaf's structure by representing it as a flat plane, rather than accounting for its complex three-dimensional form, which consists of various components and a textured surface (**A**, created using content by @wheeler2011). In the sketch inspired by @jacquemoud1992utilisation (**B**), the different angles incorporated in [equation @eq-TAVunintegrated] are illustrated: the general angles for azimuth ($\varphi$) and zenith ($\theta$) as well as the angle of maximum incident ($\alpha$). In addition to that, the arrows indicate the reflectance ($\rho$) and transmittance ($\tau$).](resources/LeafStructure.png){#fig-LeafStructure}
 
 $$
 \begin{aligned}
