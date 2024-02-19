@@ -86,7 +86,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -227,7 +227,7 @@ div.csl-indent {
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/technical-description-of-the-modelling.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -465,7 +465,7 @@ Canopy-level</td>
 </table>
 </div>
 </section>
-<section id="running-the-radiative-transfer-models" class="level2" data-number="6.3">
+<section id="running-the-radiative-transfer-models" class="level2 page-columns page-full" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="running-the-radiative-transfer-models"><span class="header-section-number">6.3</span> Running the radiative transfer models</h2>
 <p>Establishing the radiative transfer models proved to be the most labour-intensive task among all modelling approaches. This can be attributed to the highly specialized nature of these models, coupled with the scarcity of guidance available for their application, particularly at the canopy level.</p>
 <section id="leaf-level-radiative-modelling" class="level3">
@@ -527,7 +527,7 @@ Carbon-based constituents</td>
 <p>Nonetheless, as many parameters retrieved by <span class="smallcaps">Prospect-Pro</span> in this phase resided at the lower or upper bounds, the parameter restrictions were relaxed in a subsequent phase. Parameters obtained under relaxed constraints generally resulted in a better alignment between simulated and observed data, as well as improved leaf-level predictions of foliar nitrogen concentration. Interestingly, reduced discrepancies between simulated and observed data did not consistently lead to enhanced nitrogen predictions. For instance, increasing the maximum incident angle <span class="math inline">\(\alpha\)</span> in <span class="smallcaps">Prospect-Pro</span> to <span class="math inline">\(\alpha = 80^\circ\)</span> decreased the difference between simulated and observed data, but worsened predictions of the foliar nitrogen concentration based on the retrieved parameters. Consequently, the maximum incident angle was set to <span class="math inline">\(\alpha = 40^\circ\)</span> as proposed by <span class="citation" data-cites="feret2008prospect">Féret et al. (<a href="references.html#ref-feret2008prospect" role="doc-biblioref">2008</a>)</span>.</p>
 <p>After successfully retrieving the plant parameters, they needed to be associated with the measured nitrogen labels. This was accomplished by employing stepwise selection to a multiple linear model, which allowed for the inclusion of all plant parameters as input variables. The fundamental assumption here is that the foliar nitrogen concentration can be modelled as a linear response to the concentrations of chlorophyll and protein.</p>
 </section>
-<section id="canopy-level-radiative-modelling" class="level3">
+<section id="canopy-level-radiative-modelling" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="canopy-level-radiative-modelling">Canopy level radiative modelling</h3>
 <p>To model radiative transfer at the canopy level, the ray tracing model <span class="smallcaps">Less</span> was adapted. This three-dimensional forest scene simulator offers a freely accessible graphical user interface (GUI) and can be downloaded via the model’s website (<a href="https://lessrt.org" class="uri">https://lessrt.org</a>). Unfortunately, <span class="smallcaps">Less</span> does not provide an application programming interface (API), limiting customization possibilities for the simulations.</p>
 <p>A virtual scene of an almond tree, where reflectance may interact with neighbouring trees and the soil, was created using a single three-dimensional model of an almond tree. This model was obtained from the <a href="https://www.cgtrader.com/">cgtrader</a> platform, where it was sold by the anonymous artist <span class="smallcaps">XFrog</span>. <span class="smallcaps">Less</span> enables users to upload any <code>.obj</code> file and arrange the objects as desired. Thus, a typical orchard scene could be recreated in <span class="smallcaps">Less</span>, with a central focus tree surrounded by 24 other trees in a 5 × 5 grid design. The trees were aligned similarly to the average trees in the Westwind orchard, with an inter-row distance of 6.73 m and a distance of 4.56 m between trees along the rows. The generated data cubes had dimensions of 56 × 38 × 200 = 425’600 values, closely corresponding to the average dimensions of the cropped hyperspectral images. The simulated image was specified to be orthographic, akin to the georectified real image (<a href="#fig-lessmodelling">Figure&nbsp;<span>6.2</span></a>).</p>
@@ -584,7 +584,7 @@ Carbon-based constituents</td>
 i^* = \arg \min_{i \in \{1 .. d\}} J(i) \tag{6.1}\]</span></span></p>
 <p>In this context, <span class="math inline">\(i\)</span> represents the index of the simulated reflectance, and <span class="math inline">\(d\)</span> denotes the total number of simulations in the look-up table. To ensure a consistent treatment of the error, it is crucial that both the look-up table and the observed reflectance undergo z-score normalization prior to determining <span class="math inline">\(i^*\)</span>.</p>
 <p>A straightforward method for performing regression using the look-up table <span class="math inline">\(\mathbf L\)</span> involves calculating the cost <span class="math inline">\(J\)</span> with respect to a single observation for each row in <span class="math inline">\(\mathbf L\)</span>, and then selecting <span class="math inline">\(i^*\)</span> associated with the lowest cost <span class="math inline">\(J(i)\)</span> as written in <a href="#eq-LUTminimization">equation&nbsp;<span>6.1</span></a>. Given that the parameter matrix is <span class="math inline">\(\mathbf P\)</span>, the retrieved parameters are <span class="math inline">\(\mathbf P_{(i^*)}\)</span>, or the parameters in the <span class="math inline">\(i^*\)</span><sup>th</sup> row of <span class="math inline">\(\mathbf P\)</span>. This implies that the retrieved parameters may only be any combination of those listed in <a href="#tbl-LessParameters">table&nbsp;<span>6.4</span></a>, resulting in discrete predictions.</p>
-<p>To enable the retrieval of continuous parameters, a hyper-dimensional interpolation must be applied to the look-up table. This involves modelling the cost <span class="math inline">\(J\)</span> with respect to a single observation as a function of the parameters, an approach known as surrogate modelling <span class="citation" data-cites="gramacy2020surrogates">(<a href="references.html#ref-gramacy2020surrogates" role="doc-biblioref">Gramacy 2020</a>)</span>. Gaussian processes would be the most mathematically elegant surrogate model; however, due to their computational inefficiency, a multicubic polynomial surrogate model was chosen instead.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> To facilitate surrogate modelling, a subset of the parameter matrix <span class="math inline">\(\mathbf P\)</span> was created after computing <span class="math inline">\(J\)</span>, which includes only the closest neighbours of the found parameters <span class="math inline">\(\mathbf P_{(i^*)}\)</span>. The multicubic polynomial was fitted to this subset to model <span class="math inline">\(J\)</span> as a response to the parameters, allowing for easy minimization and therefore the retrieval of smooth parameters.</p>
+<div class="page-columns page-full"><p>To enable the retrieval of continuous parameters, a hyper-dimensional interpolation must be applied to the look-up table. This involves modelling the cost <span class="math inline">\(J\)</span> with respect to a single observation as a function of the parameters, an approach known as surrogate modelling <span class="citation" data-cites="gramacy2020surrogates">(<a href="references.html#ref-gramacy2020surrogates" role="doc-biblioref">Gramacy 2020</a>)</span>. Gaussian processes would be the most mathematically elegant surrogate model; however, due to their computational inefficiency, a multicubic polynomial surrogate model was chosen instead.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> To facilitate surrogate modelling, a subset of the parameter matrix <span class="math inline">\(\mathbf P\)</span> was created after computing <span class="math inline">\(J\)</span>, which includes only the closest neighbours of the found parameters <span class="math inline">\(\mathbf P_{(i^*)}\)</span>. The multicubic polynomial was fitted to this subset to model <span class="math inline">\(J\)</span> as a response to the parameters, allowing for easy minimization and therefore the retrieval of smooth parameters.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Bear in mind that the surrogate model must be re-trained once for each observation, making computational efficiency an important aspect of this step.</p></li></div></div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
@@ -636,12 +636,7 @@ Tian, Y., X. Yao, J. Yang, W. Cao, D. Hannaway, and Y. Zhu. 2011. <a href="https
 </div>
 </section>
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Bear in mind that the surrogate model must be re-trained once for each observation, making computational efficiency an important aspect of this step.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

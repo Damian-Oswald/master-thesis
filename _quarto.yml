@@ -63,6 +63,7 @@ format:
     theme: resources/theme.scss
     number-sections: true
     number-depth: 2
+    reference-location: margin
   pdf:
     output-file: damian-oswald-master-thesis.pdf
 
