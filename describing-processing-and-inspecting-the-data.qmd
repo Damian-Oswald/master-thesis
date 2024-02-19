@@ -111,7 +111,11 @@ The reflectance signal beyond 900 nm wavelength becomes highly unstable due to w
 Consequently, the data was further reduced by discarding any bands beyond 900 nm wavelength.
 This reduction meant that the reflectance of each tree was effectively condensed to a vector containing only 161 values.
 
+:::{.column-page-inset-right}
+
 ![Here, four examples of cropped trees are presented. From the original hyperspectral data, the NDVI, along with several other vegetation indices, was calculated (**A**). Using this information, an XGBoost model semantically segmented the cropped image (**B**). The slope of a linear regression model, fitted on the mean vertical NDVI values, indicated how well the cropped image was centred around the tree (**C**). From only the pixels classified as bright leaf area, the mean reflectance was calculated for further use (**D**).](resources/Segmentation.png){#fig-exampleCroppedImages}
+
+:::
 
 ## Z-score normalization {#sec-normalization}
 
