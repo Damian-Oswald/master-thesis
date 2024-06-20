@@ -10,7 +10,8 @@ The crops are alternate bearing, which means that strong harvests are succeeded 
 
 One could argue that the expansion of its almond industry is California's biggest agricultural success story [@bruno2021outlook].
 Over the last three decades, the production volume increased almost eight-fold: the state produced about 1.27 million tons of almonds on 408'000 ha in 2020 [@almonds2021].
-The majority of the growing sites stretch along the Central Valley, most notably the counties *Fresno*, *Kern*, *Stanislaus*, *Merced*, and *Madera* (@fig-MapCalifornia). The economic value of Californian almond production sums up to a staggering 5.62 billion U.S. dollars annually.
+The majority of the growing sites stretch along the Central Valley, most notably the counties *Fresno*, *Kern*, *Stanislaus*, *Merced*, and *Madera* (@fig-MapCalifornia).
+The economic value of Californian almond production sums up to a staggering 5.62 billion U.S. dollars annually.
 Thus, almonds rank third place among California's agricultural commodities, trailing only the dairy and grape industries [@bruno2021outlook].
 
 This immense production comes at a cost.
@@ -130,7 +131,9 @@ Ever since, much more advanced methods of modelling crop nitrogen have been deve
 For example, @verrelst2019quantifying proposed grouping the methods in parametric, non-parametric, physics-based and hybrid methods.
 @berger2020crop followed up on that division, but further distinguished between linear and non-linear methods --- which they equate to the terms chemometrics and machine learning.
 
-However, the terms parametric and non-parametric as used by @berger2020crop collide with pre-occupied definitions in the field of machine learning. Furthermore, the formal definition of machine learning also applies to many of the other groups proposed by the authors. Therefore, I will use the following simplified classification throughout this thesis:
+However, the terms parametric and non-parametric as used by @berger2020crop collide with pre-occupied definitions in the field of machine learning.
+Furthermore, the formal definition of machine learning also applies to many of the other groups proposed by the authors.
+Therefore, I will use the following simplified classification throughout this thesis:
 
 1. Hand-crafted features
 2. Machine learning
@@ -197,4 +200,5 @@ This thesis resulted in a collaboration with the Digital Agriculture Laboratory 
 The lab's members collected data from a Californian almond orchard prior to my involvement; however, the data was highly unstructured.
 Consequently, a portion of this thesis' workload involved cleaning and pre-processing the data, which is described in detail in [chapter @sec-data].
 
-The modelling stage is documented in [chapter @sec-modelling], and the model performance results are presented in [chapter @sec-results]. An in-depth discussion regarding the model's generalizability and other relevant topics can be found in [chapter @sec-discussion], with concluding remarks in [chapter @sec-conclusion].
+The modelling stage is documented in [chapter @sec-modelling], and the model performance results are presented in [chapter @sec-results].
+An in-depth discussion regarding the model's generalizability and other relevant topics can be found in [chapter @sec-discussion], with concluding remarks in [chapter @sec-conclusion].
