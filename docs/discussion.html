@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 8&nbsp; Discussion</title>
+<title>8&nbsp; Discussion – Remote Sensing of Foliar Nitrogen in Californian Almonds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -56,17 +57,23 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a01a0c2d2b11ceb43c7631533aab2727.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,14 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,16 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
     <img src="./resources/iconDO.png" alt="" class="navbar-logo">
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/damian-oswald/master-thesis/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -111,27 +146,19 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discussion.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Discussion</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discussion.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Discussion</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +236,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -222,7 +249,7 @@ div.csl-indent {
   <li><a href="#addressing-the-quality-and-properties-of-the-data" id="toc-addressing-the-quality-and-properties-of-the-data" class="nav-link" data-scroll-target="#addressing-the-quality-and-properties-of-the-data"><span class="header-section-number">8.4</span> Addressing the quality and properties of the data</a></li>
   <li><a href="#range-of-the-nitrogen-measurements" id="toc-range-of-the-nitrogen-measurements" class="nav-link" data-scroll-target="#range-of-the-nitrogen-measurements"><span class="header-section-number">8.5</span> Range of the nitrogen measurements</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/discussion.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/discussion.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -242,7 +269,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p>In this chapter, I will examine the results of this thesis in a broader context, addressing both the advantages and disadvantages of the various modelling approaches. Additionally, potential improvements will be explored, with a particular emphasis on radiative transfer models, but also aspects from which other methods could profit. Finally, certain peculiarities of the dataset, specifically nitrogen measurements, will be discussed and compared to similar research in the scientific literature.</p>
 <section id="different-modelling-approaches" class="level2" data-number="8.1">
@@ -251,7 +280,7 @@ div.csl-indent {
 <p>However, these data characteristics are highly dependent on the specific dataset, such as the collection time, nitrogen measurement range, and almond cultivar. As a result, the performance of machine learning algorithms can be highly inconsistent. One dataset may favour lasso regularization, while another may be better suited for partial least squares or extreme gradient boosting. This issue underscores the primary challenge of machine learning models in this context: the lack of generalizability. A model trained in one setting often loses predictive power in another <span class="citation" data-cites="verrelst2019quantifying">(<a href="references.html#ref-verrelst2019quantifying" role="doc-biblioref">Verrelst et al. 2019</a>)</span>. Ideally, the training dataset should encompass all necessary variance, and the test set should reflect real-world deviations. However, acquiring such a dataset for agricultural practice would be extremely difficult.</p>
 <p>In contrast, physics-based models promise to address this generalizability problem <span class="citation" data-cites="verrelst2019quantifying berger2020crop">(<a href="references.html#ref-verrelst2019quantifying" role="doc-biblioref">Verrelst et al. 2019</a>, <a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. Identifying the correct functional form of a relationship enables models to reflect non-linear relationships without the need of giving the model more general flexibility. In this thesis, retrieved plant parameters, such as chlorophyll or carotenoid content, were linked to measured nitrogen concentrations. This connection only necessitates a handful of coefficients, contributing to the generalizability of physics-based models.</p>
 <p>The radiative transfer model <span class="smallcaps">Prospect-Pro</span> can be viewed as a dimensionality reduction technique not completely unlike principal component analysis. However, compared to principal components, the latent variables identified by <span class="smallcaps">Prospect-Pro</span> have a physical meaning, mostly relating to the content of specific plant pigments responsible for observed reflectance (and transmittance). As a dimensionality reduction technique, <span class="smallcaps">Prospect-Pro</span> (and <span class="smallcaps">Less</span> by extension) simplifies modelling any plant trait of interest, not just crop nitrogen, representing the highest level of generalizability where the orchard, crop, and response of interest can all vary.</p>
-<p>However, discovering the true physical relationship between variables is extremely labour-intensive and stands in a stark contrast to machine learning models, where data gathering is the most time-consuming aspect. However, once a functional form capturing the true relationship is found, physics-based models can enable even better predictions than machine learning models, as presented in <a href="results-of-the-model-performances.html#sec-ResultsAreaBased">section&nbsp;<span>7.1.1</span></a>. Moreover, the physics-based modelling process enhances the understanding of nature, a benefit not offered by machine learning models. In particular, complex machine learning models, such as neural networks, are often referred to as black box models <span class="citation" data-cites="zhu2017deep rudin2019stop">(<a href="references.html#ref-zhu2017deep" role="doc-biblioref">Zhu et al. 2017</a>, <a href="references.html#ref-rudin2019stop" role="doc-biblioref">Rudin 2019</a>)</span>. While they may deliver impressive results, understanding the relationships they have learned can be extremely challenging.</p>
+<p>However, discovering the true physical relationship between variables is extremely labour-intensive and stands in a stark contrast to machine learning models, where data gathering is the most time-consuming aspect. However, once a functional form capturing the true relationship is found, physics-based models can enable even better predictions than machine learning models, as presented in <a href="results-of-the-model-performances.html#sec-ResultsAreaBased" class="quarto-xref">section&nbsp;<span>7.1.1</span></a>. Moreover, the physics-based modelling process enhances the understanding of nature, a benefit not offered by machine learning models. In particular, complex machine learning models, such as neural networks, are often referred to as black box models <span class="citation" data-cites="zhu2017deep rudin2019stop">(<a href="references.html#ref-zhu2017deep" role="doc-biblioref">Zhu et al. 2017</a>, <a href="references.html#ref-rudin2019stop" role="doc-biblioref">Rudin 2019</a>)</span>. While they may deliver impressive results, understanding the relationships they have learned can be extremely challenging.</p>
 <p>The fact that machine learning models do not require prior knowledge and rely solely on data for making predictions makes them highly useful when combined with radiative transfer models. Machine learning models excel at detecting patterns and correlations in high-dimensional spaces, serving as valuable indicators for potential flaws or shortcomings in physics-based models. For instance, the superior performance of some machine learning models in predicting mass-based nitrogen on a leaf-level suggests a knowledge gap. Without machine learning models, determining what model accuracy can realistically be expected would be much more challenging.</p>
 <p>The limitations of machine learning models can also be applied to vegetation indices. However, this vegetation indices generally performed poorly, especially when only using single vegetation indices. A primary advantage of vegetation indices is their computational efficiency and ease of implementation. However, this stems from a time when computational efficiency was a greater concern than it is today, meaning it is no longer a significant limitation. The results of this thesis suggest that single vegetation indices can hardly compete with either machine learning models or physics-based models. Nevertheless, new vegetation indices continue to be constructed using heuristics such as genetic algorithms <span class="citation" data-cites="costa2020new">(<a href="references.html#ref-costa2020new" role="doc-biblioref">Costa et al. 2020</a>)</span>. In this approach, the authors essentially frame the problem in the same manner as a supervised machine learning problem, but they solve it in a computationally inefficient way. Similar to machine learning models, this solution may rely on fortuitous correlations and generally represents an inelegant approach given the widespread availability of machine learning algorithms.</p>
 <p>It is crucial to repeatedly acknowledge that the distinction between manual feature selection, machine learning, and physics-based models is somewhat arbitrary and exhibits considerable overlap. For example, both vegetation indices and the parameters retrieved by radiative transfer models are still connected to nitrogen measurements via linear regression, which can be considered a machine learning model. This link function could also be any other model, as <span class="citation" data-cites="verrelst2019quantifying">Verrelst et al. (<a href="references.html#ref-verrelst2019quantifying" role="doc-biblioref">2019</a>)</span> speaks of model hybridization — machine learning and radiative transfer models are fused. Consequently, machine learning is undoubtedly an invaluable tool for physics-based modelling.</p>
@@ -267,11 +296,11 @@ div.csl-indent {
 <section id="general-possibilities-for-improvement" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="general-possibilities-for-improvement"><span class="header-section-number">8.3</span> General possibilities for improvement</h2>
 <p>There are several avenues for improvement which could benefit both machine learning and radiative transfer modelling: the spectral range covered by the sensors could be expanded, spatial and temporal dimensions in the data could considered, and the pre-processing of the data could be improved.</p>
-<p>Extending the spectral range of the hyperspectral camera may prove advantageous. The performance results of various models at the canopy level appear to be limited to a maximum of 25%. The canopy level data only spans from 400 to 900 nm in its spectral dimension. Consequently, models trained on data from the hyperspectral camera are confined to the direct relationship between nitrogen and chlorophyll, and any additional correlation with plant pigments absorbing in the visible light spectrum. Incorporating information from the short-wave-infrared region — which covers protein absorption bands — may significantly improve predictions <span class="citation" data-cites="camino2018improved">(<a href="references.html#ref-camino2018improved" role="doc-biblioref">Camino et al. 2018</a>)</span>. While the correlation matrix in <a href="describing-processing-and-inspecting-the-data.html#fig-exploratory">figure&nbsp;<span>5.5</span></a> indicates a weaker correlation between short-wave-infrared region reflectance and nitrogen compared to the visible light spectrum, it also reveals that the short-wave-infrared regions are almost entirely uncorrelated with visible light regions. Therefore, crop nitrogen can likely be better modelled when utilizing data from both relevant regions.</p>
-<p>It is worth noting that although the spectral range covered seems important — particularly with respect to short-wave-infrared — a higher spectral resolution is likely unnecessary. The efficacy of many models requiring information from only a few bands suggests that a small fraction of the number of bands would be sufficient to adequately model crop nitrogen. For example, the best-performing model at the canopy level using the prior square feature selection algorithm only requires six bands for optimal performance (<a href="technical-description-of-the-modelling.html#tbl-hyperparameters">Table&nbsp;<span>6.2</span></a>). Thus, adding only a few bands in the short-wave-infrared region may significantly enhance model performance.</p>
+<p>Extending the spectral range of the hyperspectral camera may prove advantageous. The performance results of various models at the canopy level appear to be limited to a maximum of 25%. The canopy level data only spans from 400 to 900 nm in its spectral dimension. Consequently, models trained on data from the hyperspectral camera are confined to the direct relationship between nitrogen and chlorophyll, and any additional correlation with plant pigments absorbing in the visible light spectrum. Incorporating information from the short-wave-infrared region — which covers protein absorption bands — may significantly improve predictions <span class="citation" data-cites="camino2018improved">(<a href="references.html#ref-camino2018improved" role="doc-biblioref">Camino et al. 2018</a>)</span>. While the correlation matrix in <a href="describing-processing-and-inspecting-the-data.html#fig-exploratory" class="quarto-xref">figure&nbsp;<span>5.5</span></a> indicates a weaker correlation between short-wave-infrared region reflectance and nitrogen compared to the visible light spectrum, it also reveals that the short-wave-infrared regions are almost entirely uncorrelated with visible light regions. Therefore, crop nitrogen can likely be better modelled when utilizing data from both relevant regions.</p>
+<p>It is worth noting that although the spectral range covered seems important — particularly with respect to short-wave-infrared — a higher spectral resolution is likely unnecessary. The efficacy of many models requiring information from only a few bands suggests that a small fraction of the number of bands would be sufficient to adequately model crop nitrogen. For example, the best-performing model at the canopy level using the prior square feature selection algorithm only requires six bands for optimal performance (<a href="technical-description-of-the-modelling.html#tbl-hyperparameters" class="quarto-xref">Table&nbsp;<span>6.2</span></a>). Thus, adding only a few bands in the short-wave-infrared region may significantly enhance model performance.</p>
 <p>Incorporating spatial information could further improve predictions. One possible approach involves learning the relationship between the shape and size of almond trees and their nitrogen foliar concentration, and using this knowledge to generate a synthetic labelled dataset. This dataset could enable the training of a convolutional neural network to learn the inverse function from spatial data. For example, similar research conducted by <span class="citation" data-cites="jin2021combining">Jin et al. (<a href="references.html#ref-jin2021combining" role="doc-biblioref">2021</a>)</span> demonstrated the successful training of a convolutional neural network to estimate forest canopy cover from satellite images. The convolutional neural network was initially trained on data generated using the three-dimensional radiative transfer model <span class="smallcaps">Rapid</span> and subsequently transferred to real data. This approach was found to enhance accuracy in comparison to a similar model solely trained on real data.</p>
 <p>In addition to enhancing spectral and spatial information, temporal information could be included. Satellite imagery might be particularly useful for this purpose, as it captures orchards at regular intervals and provides standardized data formats — especially in the context of future imaging spectroscopy satellite missions <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>.</p>
-<p>Some final improvements could result from refining the data pre-processing steps applied to the hyperspectral images as described in <a href="describing-processing-and-inspecting-the-data.html#sec-HSIprocessing">section&nbsp;<span>5.3</span></a>. For instance, using seam-carving for tree-cropping in a non-grid manner could result in more precise tree cropping and subsequently improve the prediction accuracy.</p>
+<p>Some final improvements could result from refining the data pre-processing steps applied to the hyperspectral images as described in <a href="describing-processing-and-inspecting-the-data.html#sec-HSIprocessing" class="quarto-xref">section&nbsp;<span>5.3</span></a>. For instance, using seam-carving for tree-cropping in a non-grid manner could result in more precise tree cropping and subsequently improve the prediction accuracy.</p>
 </section>
 <section id="addressing-the-quality-and-properties-of-the-data" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="addressing-the-quality-and-properties-of-the-data"><span class="header-section-number">8.4</span> Addressing the quality and properties of the data</h2>
@@ -283,19 +312,19 @@ div.csl-indent {
 <p><span class="citation" data-cites="burke2021using">Burke et al. (<a href="references.html#ref-burke2021using" role="doc-biblioref">2021</a>)</span> examined the implications of employing unreliable ground-truth data in remote sensing applications. Utilizing noisy data for calibrating models is not inherently problematic, provided that the data is unbiased. Nevertheless, a discrepancy between the measured nitrogen concentration and the actual tree-wide foliar nitrogen concentration can result in a substantial underestimation of model performance. But where could such noise in the labels come from?</p>
 <p>First, the nitrogen measurements might contain substantial noise arising from the sample preparation, equipment failures, and also human error <span class="citation" data-cites="saez2013overview">(<a href="references.html#ref-saez2013overview" role="doc-biblioref">Sáez-Plaza et al. 2013</a>)</span>. Thus, the nitrogen measurements themselves are not an absolute ground truth, even with respect to the leaves.</p>
 <p>Second, there exists a considerable disconnect between the nitrogen concentration of the sampled leaves and that of the entire tree. Previous research has shown that there is a high within-tree variance of the foliar nitrogen concentration <span class="citation" data-cites="khalsa2018understanding">(<a href="references.html#ref-khalsa2018understanding" role="doc-biblioref">Khalsa and Brown 2018</a>)</span>. Moreover, the tree crown typically contains more nitrogen than the bottom leaves due to its higher photosynthetic activity. Leaves sampled from a different area than that observed by the drones can also contribute to the noise.</p>
-<p>The inadequate representation of the true tree-wide nitrogen content is further emphasized by the band-wise correlation with the nitrogen measurements (<a href="describing-processing-and-inspecting-the-data.html#fig-exploratory">Figure&nbsp;<span>5.5</span></a>): although the band-wise correlation appears similar between the canopy and leaf-level data, the magnitude of the correlation is much greater at the leaf level (<span class="math inline">\(r = -0.48\)</span> and <span class="math inline">\(r = -0.32\)</span>, respectively). This strongly indicates a mismatch between leaf-level nitrogen measurements and the true tree-level foliar nitrogen concentration.</p>
+<p>The inadequate representation of the true tree-wide nitrogen content is further emphasized by the band-wise correlation with the nitrogen measurements (<a href="describing-processing-and-inspecting-the-data.html#fig-exploratory" class="quarto-xref">Figure&nbsp;<span>5.5</span></a>): although the band-wise correlation appears similar between the canopy and leaf-level data, the magnitude of the correlation is much greater at the leaf level (<span class="math inline">\(r = -0.48\)</span> and <span class="math inline">\(r = -0.32\)</span>, respectively). This strongly indicates a mismatch between leaf-level nitrogen measurements and the true tree-level foliar nitrogen concentration.</p>
 <p>In summary, canopy-level reflectance data exhibits a weaker correlation with nitrogen concentration compared to leaf-level reflectance data, possibly due to the sampled leaves not accurately representing the true tree-wide nitrogen content. Consequently, the performance of canopy level models may be underestimated, with their actual performance likely being considerably better.</p>
 </section>
 <section id="range-of-the-nitrogen-measurements" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="range-of-the-nitrogen-measurements"><span class="header-section-number">8.5</span> Range of the nitrogen measurements</h2>
-<p>The data utilized in this thesis was derived from a commercial almond orchard, which applied high nitrogen rates in line with recommendations by the Almond Board of California <span class="citation" data-cites="nitrogen2020">(<a href="references.html#ref-nitrogen2020" role="doc-biblioref">Brown et al. 2020</a>)</span>. As a result, the measured foliar nitrogen concentrations almost all fell within a healthy range, between 1.96 and 3.17%, suggesting adequate nitrogen supply for most trees (<a href="describing-processing-and-inspecting-the-data.html#fig-PairsPanel">Figure&nbsp;<span>5.6</span></a>). According to <span class="citation" data-cites="micke1996">Micke (<a href="references.html#ref-micke1996" role="doc-biblioref">1996</a>)</span>, the optimal foliar nitrogen concentration would range between 2.2 and 2.5%, meaning that only a few almond trees would benefit from additional fertilization, while many could be considered slightly over-fertilized.</p>
+<p>The data utilized in this thesis was derived from a commercial almond orchard, which applied high nitrogen rates in line with recommendations by the Almond Board of California <span class="citation" data-cites="nitrogen2020">(<a href="references.html#ref-nitrogen2020" role="doc-biblioref">Brown et al. 2020</a>)</span>. As a result, the measured foliar nitrogen concentrations almost all fell within a healthy range, between 1.96 and 3.17%, suggesting adequate nitrogen supply for most trees (<a href="describing-processing-and-inspecting-the-data.html#fig-PairsPanel" class="quarto-xref">Figure&nbsp;<span>5.6</span></a>). According to <span class="citation" data-cites="micke1996">Micke (<a href="references.html#ref-micke1996" role="doc-biblioref">1996</a>)</span>, the optimal foliar nitrogen concentration would range between 2.2 and 2.5%, meaning that only a few almond trees would benefit from additional fertilization, while many could be considered slightly over-fertilized.</p>
 <p>It is essential to note that almonds are alternate bearing crops. In 2022, the Westfield almond orchard experienced a weak bearing year, resulting in higher foliar nitrogen concentrations compared to a strong yielding year due to less foliar nitrogen being mobilized for fruit production. Conversely, the Westwind 2021 orchard had lower nitrogen levels, leading to a higher number of nitrogen-deficient trees. This factor significantly contributes to the varying predictive power of the same model from year to year.</p>
-<p>Two critical implications arise from these observations concerning model evaluation. Firstly, the R<sup>2</sup> metric, the most intuitive measure of model performance, is influenced by the response variable’s range, as this range is part of its mathematical definition (<a href="results-of-the-model-performances.html#eq-RegressionPerformanceMetrics">Equation&nbsp;<span>7.1</span></a>). This implies that a broader range of measured nitrogen concentration generally results in increased R<sup>2</sup> values and result in a heightened sense of accuracy. Secondly, crop nitrogen status becomes more predictable when leaf nitrogen concentration is low, and plants exhibit nitrogen deficiency. This is attributed to the visual cues of nitrogen deficiency, manifesting as reduced chlorophyll content and visible leaf yellowing <span class="citation" data-cites="hawkesford2012functions">(<a href="references.html#ref-hawkesford2012functions" role="doc-biblioref">Hawkesford et al. 2012</a>)</span>. In contrast, nitrogen over-abundance leads to chlorophyll saturation without clear visual cues, making remote sensing detection more challenging <span class="citation" data-cites="munoz2013review">(<a href="references.html#ref-munoz2013review" role="doc-biblioref">Muñoz-Huerta et al. 2013</a>)</span>.</p>
+<p>Two critical implications arise from these observations concerning model evaluation. Firstly, the R<sup>2</sup> metric, the most intuitive measure of model performance, is influenced by the response variable’s range, as this range is part of its mathematical definition (<a href="results-of-the-model-performances.html#eq-RegressionPerformanceMetrics" class="quarto-xref">Equation&nbsp;<span>7.1</span></a>). This implies that a broader range of measured nitrogen concentration generally results in increased R<sup>2</sup> values and result in a heightened sense of accuracy. Secondly, crop nitrogen status becomes more predictable when leaf nitrogen concentration is low, and plants exhibit nitrogen deficiency. This is attributed to the visual cues of nitrogen deficiency, manifesting as reduced chlorophyll content and visible leaf yellowing <span class="citation" data-cites="hawkesford2012functions">(<a href="references.html#ref-hawkesford2012functions" role="doc-biblioref">Hawkesford et al. 2012</a>)</span>. In contrast, nitrogen over-abundance leads to chlorophyll saturation without clear visual cues, making remote sensing detection more challenging <span class="citation" data-cites="munoz2013review">(<a href="references.html#ref-munoz2013review" role="doc-biblioref">Muñoz-Huerta et al. 2013</a>)</span>.</p>
 <p>Several remote sensing studies investigating nitrogen concentrations have been conducted in tandem with nitrogen trials, where the experimental design specifically foresees certain blocks to be fertilized much less than others, or even not to be fertilized at all. This approach generally creates a wider range of foliar nitrogen, particularly at the lower end, which does not accurately represent real farming conditions. Due to the previously stated reasons, this increase range of the nitrogen labels result in a heightened sense of model accuracy. For instance, <span class="citation" data-cites="wang2017non">Wang et al. (<a href="references.html#ref-wang2017non" role="doc-biblioref">2017</a>)</span> predicted foliar nitrogen concentration in pear leaves from an experiment with application rates ranging between 0 and 990 kg N ha<sup>-1</sup> using spectrophotometric measurements. The authors achieved excellent predictions on their test data (R<sup>2</sup> = 0.85) and concluded that their method would enable relatively inexpensive nitrogen monitoring in pear orchards. Similar conclusions based on modelling results using data from fertilization trials can be found throughout the scientific literature and for various crops <span class="citation" data-cites="zha2020improving perich2021proximal pancorbo2021simultaneous">(<a href="references.html#ref-zha2020improving" role="doc-biblioref">Zha et al. 2020</a>, <a href="references.html#ref-pancorbo2021simultaneous" role="doc-biblioref">Pancorbo et al. 2021</a>, <a href="references.html#ref-perich2021proximal" role="doc-biblioref">Perich et al. 2021</a>)</span>.</p>
 <p>To ensure the development of remote sensing technologies applicable in commercial agriculture, it is important to test these technologies in settings that accurately reflect commercial farming conditions — especially when the conducted research promises to address the environmental problem of nitrogen leaching, rather than to detect plant stress from nitrogen deficiency. Consequently, further research focusing on remote sensing of crop nitrogen should focus on experimental settings that represent the reality of commercial farms.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-bailey2019helios" class="csl-entry" role="listitem">
 Bailey, B. N. 2019. <a href="https://doi.org/10.3389/fpls.2019.01185">Helios: A scalable 3D plant and environmental biophysical modeling framework</a>. Frontiers in Plant Science 10:1185.
 </div>
@@ -401,18 +430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -444,11 +462,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -458,8 +513,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -471,7 +535,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -515,6 +701,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -540,6 +727,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -601,12 +814,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./results-of-the-model-performances.html" class="pagination-link">
+      <a href="./results-of-the-model-performances.html" class="pagination-link" aria-label="Results of the model performances">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results of the model performances</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conclusion.html" class="pagination-link">
+      <a href="./conclusion.html" class="pagination-link" aria-label="Conclusion">
         <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -614,8 +827,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
-    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-left">
+<p>© 2023, Damian Oswald</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/discussion.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -640,6 +857,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

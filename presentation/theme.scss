@@ -1,0 +1,94 @@
+/*-- scss:defaults --*/
+
+// colors
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #eee !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #aaa !default;
+$gray-600: #777 !default;
+$gray-700: #495057 !default;
+$gray-800: #333 !default;
+$gray-900: #222 !default;
+$black:    #000 !default;
+
+$blue:    #3D5A80 !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #fc5d5e !default;
+$orange:  #fd7e14 !default;
+$yellow:  #f5e625 !default;
+$green:   #22b24c !default;
+$teal:    #20c997 !default;
+$cyan:    #369 !default;
+
+$primary:       $red !default; // for all the hyperlinks
+$secondary:     $gray-400 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $red !default;
+$danger:        $red !default;
+$light:         $gray-400 !default;
+$dark:          $gray-900 !default;
+$code-color:    $blue !default;     // for inline code
+$code-bg:       $gray-200 !default; // for inline code
+$body-color:    $black !default;     // the color of the text
+$presentation-heading-color: $black !default;     // the color of the text
+$body-bg:       $white !default;
+$link-color:    $red !default;
+//$code-block-bg: $gray-200 !default; // is also used for mermaid background, which sucks...
+$figurecaption: $gray-600 !default;
+
+// fonts
+//$font-family-sans-serif: "Helvetica", Helvetica, FreeSerif, serif !default;
+
+// headings
+//$presentation-heading-font: "Helvetica", Helvetica, FreeSerif, serif !default;
+//$presentation-heading-color: $black !default;
+
+/*-- scss:rules --*/
+
+.reveal a {
+  line-height: 1.3em;
+}
+
+// Figures
+
+.reveal {
+  .slides {
+    .slide {
+      img+p.caption {
+        font-size: 0.6em;
+      }
+    }
+  }
+}
+
+// Tables
+
+.reveal table {
+   margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.7em;
+    // font-family: sans-serif;
+    min-width: 400px;
+}
+.reveal table tbody tr:last-of-type {
+   border-bottom: 2px solid $dark;
+}
+.reveal table thead tr:last-of-type {
+   border-top: 2px solid $dark;
+   border-bottom: 2px solid $dark;
+}
+.reveal table tbody tr {
+    border-bottom: 1px solid $dark;
+}
+.reveal table caption {
+   text-align: left;
+   font-size: 1.2em;
+   font-style: italic;
+}
+

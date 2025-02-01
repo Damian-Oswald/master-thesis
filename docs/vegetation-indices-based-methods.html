@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 2&nbsp; Vegetation-indices-based methods</title>
+<title>2&nbsp; Vegetation-indices-based methods – Remote Sensing of Foliar Nitrogen in Californian Almonds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -56,17 +57,23 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a01a0c2d2b11ceb43c7631533aab2727.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,14 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,16 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
     <img src="./resources/iconDO.png" alt="" class="navbar-logo">
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/damian-oswald/master-thesis/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -111,27 +146,19 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vegetation-indices-based-methods.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Vegetation-indices-based methods</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vegetation-indices-based-methods.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Vegetation-indices-based methods</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +236,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -219,7 +246,7 @@ div.csl-indent {
   <li><a href="#evolution-of-vegetation-indices-and-their-limitations" id="toc-evolution-of-vegetation-indices-and-their-limitations" class="nav-link active" data-scroll-target="#evolution-of-vegetation-indices-and-their-limitations"><span class="header-section-number">2.1</span> Evolution of vegetation indices and their limitations</a></li>
   <li><a href="#sec-nitrogenVI" id="toc-sec-nitrogenVI" class="nav-link" data-scroll-target="#sec-nitrogenVI"><span class="header-section-number">2.2</span> Nitrogen monitoring with vegetation indices</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/vegetation-indices-based-methods.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/vegetation-indices-based-methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -239,7 +266,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p>Vegetation indices are mathematical constructs — typically expressed as ratios — that are derived from the measurement of vegetation reflectance at two or more specific wavelengths <span class="citation" data-cites="huete2002overview">(<a href="references.html#ref-huete2002overview" role="doc-biblioref">Huete et al. 2002</a>)</span>. These indices are frequently employed to evaluate the health, biophysical properties, and biochemical characteristics of vegetation. Notably, vegetation indices have been utilized for applications such as estimating plant parameters such as the leaf area index, detecting water stress in crops, and classifying various types of vegetation for weed mapping purposes <span class="citation" data-cites="jackson1981canopy zheng2009retrieving">(<a href="references.html#ref-jackson1981canopy" role="doc-biblioref">Jackson et al. 1981</a>, <a href="references.html#ref-zheng2009retrieving" role="doc-biblioref">Zheng and Moskal 2009</a>)</span>. Of particular relevance to the subject of this thesis, they have also been commonly employed for estimating chlorophyll and nitrogen content in crops <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. Precision agriculture technologies relying on vegetation indices have been well-integrated into commercial applications, an outcome that can likely be attributed to the simplicity of their implementation and their comparatively early development <span class="citation" data-cites="xue2017significant sishodia2020applications">(<a href="references.html#ref-xue2017significant" role="doc-biblioref">Xue and Su 2017</a>, <a href="references.html#ref-sishodia2020applications" role="doc-biblioref">Sishodia et al. 2020</a>)</span>.</p>
 <section id="evolution-of-vegetation-indices-and-their-limitations" class="level2" data-number="2.1">
@@ -256,11 +285,15 @@ div.csl-indent {
 </section>
 <section id="sec-nitrogenVI" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-nitrogenVI"><span class="header-section-number">2.2</span> Nitrogen monitoring with vegetation indices</h2>
-<p>Vegetation indices represent the most prevalent method for remote detection of crop nitrogen content <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. Numerous indices have been intentionally designed to estimate crop nitrogen, while others have simply been found to correlate with it <span class="citation" data-cites="herrmann2010swir">(<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">Herrmann et al. 2010</a>)</span>. These indices mostly capitalize on the correlation between crop nitrogen and chlorophyll content <span class="citation" data-cites="baret2007quantification">(<a href="references.html#ref-baret2007quantification" role="doc-biblioref">Baret et al. 2007</a>)</span>. For instance, the transformed chlorophyll absorption in reflectance index (TCARI) has demonstrated a strong correlation with chlorophyll <span class="citation" data-cites="cui2017comparison">(<a href="references.html#ref-cui2017comparison" role="doc-biblioref">Cui and Zhou 2017</a>)</span>. Some of the most notable vegetation indices employed for crop nitrogen detection can be found in <a href="#tbl-VegetationIndices">table&nbsp;<span>2.1</span></a>.</p>
+<p>Vegetation indices represent the most prevalent method for remote detection of crop nitrogen content <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. Numerous indices have been intentionally designed to estimate crop nitrogen, while others have simply been found to correlate with it <span class="citation" data-cites="herrmann2010swir">(<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">Herrmann et al. 2010</a>)</span>. These indices mostly capitalize on the correlation between crop nitrogen and chlorophyll content <span class="citation" data-cites="baret2007quantification">(<a href="references.html#ref-baret2007quantification" role="doc-biblioref">Baret et al. 2007</a>)</span>. For instance, the transformed chlorophyll absorption in reflectance index (TCARI) has demonstrated a strong correlation with chlorophyll <span class="citation" data-cites="cui2017comparison">(<a href="references.html#ref-cui2017comparison" role="doc-biblioref">Cui and Zhou 2017</a>)</span>. Some of the most notable vegetation indices employed for crop nitrogen detection can be found in <a href="#tbl-VegetationIndices" class="quarto-xref">table&nbsp;<span>2.1</span></a>.</p>
 <div class="column-page-inset-right">
-<div id="tbl-VegetationIndices" class="anchored">
-<table class="table">
-<caption>Table&nbsp;2.1: Overview of various vegetation indices that were used to estimate foliar nitrogen concentrations. <span class="math inline">\(\rho_\lambda\)</span> for the reflectance at a specific wavelength <span class="math inline">\(\lambda\)</span> (<span class="math inline">\(\rho_{530}\)</span> = green band, <span class="math inline">\(\rho_{685}\)</span> = red band, <span class="math inline">\(\rho_{720}\)</span> = red edge, <span class="math inline">\(\rho_{790}\)</span> = near-infrared). This table was adapted from <span class="citation" data-cites="herrmann2010swir">Herrmann et al. (<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">2010</a>)</span> and <span class="citation" data-cites="tian2011assessing">Tian et al. (<a href="references.html#ref-tian2011assessing" role="doc-biblioref">2011</a>)</span>.</caption>
+<div id="tbl-VegetationIndices" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[35,45,20]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-VegetationIndices-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Overview of various vegetation indices that were used to estimate foliar nitrogen concentrations. <span class="math inline">\(\rho_\lambda\)</span> for the reflectance at a specific wavelength <span class="math inline">\(\lambda\)</span> (<span class="math inline">\(\rho_{530}\)</span> = green band, <span class="math inline">\(\rho_{685}\)</span> = red band, <span class="math inline">\(\rho_{720}\)</span> = red edge, <span class="math inline">\(\rho_{790}\)</span> = near-infrared). This table was adapted from <span class="citation" data-cites="herrmann2010swir">Herrmann et al. (<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">2010</a>)</span> and <span class="citation" data-cites="tian2011assessing">Tian et al. (<a href="references.html#ref-tian2011assessing" role="doc-biblioref">2011</a>)</span>.
+</figcaption>
+<div aria-describedby="tbl-VegetationIndices-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
 <col style="width: 45%">
@@ -332,6 +365,8 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 </div>
 <p>But how exactly is a regression model employing vegetation indices constructed? The utilization of vegetation indices on multi- or hyperspectral data results in a dimensionality reduction of the original data. While the initial data possesses multiple dimensions, vegetation indices are one-dimensional. Ideally, a vegetation index employed for crop nitrogen monitoring correlates more strongly with crop nitrogen than any individual band. However, the index itself lacks a unit and, as a consequence, cannot be used directly to estimate crop nitrogen. Therefore, any vegetation index must be linked to the trait of interest <span class="math inline">\(y\)</span> through a connecting function <span class="math inline">\(f\)</span> — a so-called link function.</p>
 <p><span id="eq-VIlinkfunction"><span class="math display">\[f: g(\mathbf x) \rightarrow y \tag{2.3}\]</span></span></p>
@@ -339,7 +374,7 @@ div.csl-indent {
 <p>The linking function <span class="math inline">\(f\)</span> could even take the form of a more flexible machine learning model able to represent intricate interactions, such as a random forest or support vector machines <span class="citation" data-cites="sonobe2018crop">(<a href="references.html#ref-sonobe2018crop" role="doc-biblioref">Sonobe et al. 2018</a>)</span>. This practice, however, raises the question of the necessity for vegetation indices in the first place. Machine learning models can be applied directly to the data, enabling the direct selection of relevant features. One could, so to say, “cut out the middleman”. This effectively eliminates several of the issues addressed by <span class="citation" data-cites="atzberger2011confining">Atzberger et al. (<a href="references.html#ref-atzberger2011confining" role="doc-biblioref">2011</a>)</span>. Hence, the application of machine learning algorithms to hyperspectral data in order to estimate crop nitrogen will be the focus of the next chapter.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-atzberger2011confining" class="csl-entry" role="listitem">
 Atzberger, C., K. Richter, F. Vuolo, R. Darvishzadeh, and M. Schlerf. 2011. <a href="https://doi.org/10.1117/12.898479">Why confining to vegetation indices? Exploiting the potential of improved spectral observations using radiative transfer models</a>. Pages 263–278 Remote sensing for agriculture, ecosystems, and hydrology XIII. SPIE.
 </div>
@@ -481,18 +516,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -524,11 +548,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -538,8 +599,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -551,7 +621,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -595,6 +787,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -620,6 +813,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -681,12 +900,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./background.html" class="pagination-link">
+      <a href="./background.html" class="pagination-link" aria-label="Background">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Background</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="pagination-link">
+      <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="pagination-link" aria-label="Machine learning methods for hyperspectral data analysis">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -694,8 +913,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
-    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-left">
+<p>© 2023, Damian Oswald</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/vegetation-indices-based-methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -720,6 +943,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

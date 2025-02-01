@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 5&nbsp; Describing, processing and inspecting the data</title>
+<title>5&nbsp; Describing, processing and inspecting the data – Remote Sensing of Foliar Nitrogen in Californian Almonds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -56,17 +57,23 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a01a0c2d2b11ceb43c7631533aab2727.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,14 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,16 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
     <img src="./resources/iconDO.png" alt="" class="navbar-logo">
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/damian-oswald/master-thesis/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -111,27 +146,19 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./describing-processing-and-inspecting-the-data.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./describing-processing-and-inspecting-the-data.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +236,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -222,7 +249,7 @@ div.csl-indent {
   <li><a href="#sec-normalization" id="toc-sec-normalization" class="nav-link" data-scroll-target="#sec-normalization"><span class="header-section-number">5.4</span> Z-score normalization</a></li>
   <li><a href="#sec-exploratory" id="toc-sec-exploratory" class="nav-link" data-scroll-target="#sec-exploratory"><span class="header-section-number">5.5</span> Exploratory data analysis</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/describing-processing-and-inspecting-the-data.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/describing-processing-and-inspecting-the-data.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -242,24 +269,34 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
-<p>The data utilized for this thesis originates from the Westfield almond orchard, situated in Woodland, California, USA (38.66722 N, -121.88989 E). This orchard houses two major almond cultivars, specifically <em>Nonpareil</em> and <em>Monterey</em>, both of which were planted in 2010. An aerial image of the entire Westfield almond orchard spanning 60 ha is displayed in <a href="#fig-orthomosaic">figure&nbsp;<span>5.1</span></a>. In the context of the project, ground truth data concerning foliar nitrogen concentration was gathered from 125 target trees sampled across the site, thereby supplying the information for the response variable.</p>
-<div class="page-columns page-full"><p>This chapter outlines the methodologies implemented for data capture<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and offers an in-depth account of the data characteristics. In addition, I will clarify techniques and strategies employed in the pre-processing of both spectroradiometric data and hyperspectral images.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;It should be noted that the data capture occurred during the summer of 2022, prior to me joining the research group. However, for the sake of comprehensiveness, this chapter will provide a description of the data capture as well.</p></li></div></div>
-<div id="fig-orthomosaic" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/Orthomosaic.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.1: Orthomosaic of the almond orchard in Woodland, California, United States of America. This image was taken by Hamid Jafarbiglu in July 2022.</figcaption>
+
+<p>The data utilized for this thesis originates from the Westfield almond orchard, situated in Woodland, California, USA (38.66722 N, -121.88989 E). This orchard houses two major almond cultivars, specifically <em>Nonpareil</em> and <em>Monterey</em>, both of which were planted in 2010. An aerial image of the entire Westfield almond orchard spanning 60 ha is displayed in <a href="#fig-orthomosaic" class="quarto-xref">figure&nbsp;<span>5.1</span></a>. In the context of the project, ground truth data concerning foliar nitrogen concentration was gathered from 125 target trees sampled across the site, thereby supplying the information for the response variable.</p>
+<p>This chapter outlines the methodologies implemented for data capture<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and offers an in-depth account of the data characteristics. In addition, I will clarify techniques and strategies employed in the pre-processing of both spectroradiometric data and hyperspectral images.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;It should be noted that the data capture occurred during the summer of 2022, prior to me joining the research group. However, for the sake of comprehensiveness, this chapter will provide a description of the data capture as well.</p></div></div><div id="fig-orthomosaic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-orthomosaic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/Orthomosaic.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-orthomosaic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Orthomosaic of the almond orchard in Woodland, California, United States of America. This image was taken by Hamid Jafarbiglu in July 2022.
+</figcaption>
 </figure>
 </div>
 <section id="description-of-the-data-set" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="description-of-the-data-set"><span class="header-section-number">5.1</span> Description of the data set</h2>
-<p>Within the Westwind orchard, 125 trees were identified as target trees of interest. From each of these trees, Momtanu Chakraborty collected five to six leaves, which were subsequently weighed, photographed, dried, and weighed once more. The leaf area was calculated from the photographs. Both leaf area and leaf dry mass are crucial measurements for converting mass-based nitrogen (N<sub>%</sub>) to area-based nitrogen (N<sub>area</sub>) via the leaf mass per area (LMA, <a href="background.html#eq-LMA">Equation&nbsp;<span>1.3</span></a>). Subsequently, the dry leaves from each target tree were combined and ground using a Mixer Mill MM 400 laboratory grinder manufactured by Retsch (Haan, North Rhine-Westphalia, Germany). The pulverized samples were sent to the A&amp;L Western Laboratories (Modesto, CA 95351, USA) for nitrogen concentration analysis. In order to determine the nitrogen concentration of the samples, the laboratory employed Kjeldahl digestion.</p>
+<p>Within the Westwind orchard, 125 trees were identified as target trees of interest. From each of these trees, Momtanu Chakraborty collected five to six leaves, which were subsequently weighed, photographed, dried, and weighed once more. The leaf area was calculated from the photographs. Both leaf area and leaf dry mass are crucial measurements for converting mass-based nitrogen (N<sub>%</sub>) to area-based nitrogen (N<sub>area</sub>) via the leaf mass per area (LMA, <a href="background.html#eq-LMA" class="quarto-xref">Equation&nbsp;<span>1.3</span></a>). Subsequently, the dry leaves from each target tree were combined and ground using a Mixer Mill MM 400 laboratory grinder manufactured by Retsch (Haan, North Rhine-Westphalia, Germany). The pulverized samples were sent to the A&amp;L Western Laboratories (Modesto, CA 95351, USA) for nitrogen concentration analysis. In order to determine the nitrogen concentration of the samples, the laboratory employed Kjeldahl digestion.</p>
 <p>Regarding the leaf level data, the Digital Agriculture Laboratory team measured the reflectance and transmittance of all 741 collected leaves utilizing a HR-1024i spectroradiometer manufactured by Spectra Vista Corporation (Poughkeepsie, NY 12603, USA). Consequently, spectroradiometric data was accessible for the five to six individual leaves per tree, while the nitrogen concentration was only available for the combined set of leaves.</p>
 <p>The hyperspectral images were captured on the 12<sup>th</sup> of July 2022 by Momtanu Chakraborty and Hamid Jafarbiglu. They utilized the hyperspectral camera Pika L, manufactured by Resonon Inc.&nbsp;(Bozeman, MT 59715, USA), which was mounted on a <span class="smallcaps">Matrice 600</span> drone produced by DJI Technology Co.&nbsp;(Nanshan, Shenzhen, China). The hyperspectral camera gathers data via line-scanning, whereby hyperspectral images are recorded one line of pixels at a time using a two-dimensional dispersing element and a two-dimensional detector array <span class="citation" data-cites="elmasry2010principles">(<a href="references.html#ref-elmasry2010principles" role="doc-biblioref">El Masry and Sun 2010</a>)</span>. Although line-scanning makes it more challenging to obtain a stable image, it helps avoid the hot spot effect, which may arise in multispectral images captured around noon <span class="citation" data-cites="jafarbiglu2023impact">(<a href="references.html#ref-jafarbiglu2023impact" role="doc-biblioref">Jafarbiglu and Pourreza 2023</a>)</span>. The line-scanning sensor circumvents the hot-spot effect when the scanned line is perpendicular to the angle of solar incidence, i.e., in the east-west direction. Consequently, the hyperspectral images were captured in a north-south orientation.</p>
-<div id="tbl-data" class="anchored">
-<table class="table">
-<caption>Table&nbsp;5.1: Overview of the two datasets utilized. It is worth noting that the leaf-level data encompasses both reflectance and transmittance, with 1024 bands available for each.</caption>
+<div id="tbl-data" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[25,25,25,30,30]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Overview of the two datasets utilized. It is worth noting that the leaf-level data encompasses both reflectance and transmittance, with 1024 bands available for each.
+</figcaption>
+<div aria-describedby="tbl-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 19%">
@@ -294,75 +331,97 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
-<p>An overview of both the leaf-level and canopy-level data is presented in <a href="#tbl-data">table&nbsp;<span>5.1</span></a>. Initially, there were 125 target trees; however, one collection of leaves was lost, and the drone carrying the hyperspectral camera experienced a crash, leading to differing numbers of observations for the canopy-level data.</p>
+</figure>
+</div>
+<p>An overview of both the leaf-level and canopy-level data is presented in <a href="#tbl-data" class="quarto-xref">table&nbsp;<span>5.1</span></a>. Initially, there were 125 target trees; however, one collection of leaves was lost, and the drone carrying the hyperspectral camera experienced a crash, leading to differing numbers of observations for the canopy-level data.</p>
 </section>
 <section id="sec-SRMprocessing" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-SRMprocessing"><span class="header-section-number">5.2</span> Pre-processing the spectroradiometric data</h2>
-<p>The leaf-level data acquired from the spectroradiometer required only minimal pre-processing. Any recorded values below zero were adjusted to zero in order to rectify discrepancies. Further processing included removing noisy and overlapping regions to enhance data clarity (as to be seen in <a href="#fig-SpectroradiometerSmoothing">figure&nbsp;<span>5.2</span></a>). To align the reflectance and transmittance as closely as possible with the nitrogen labels, the weighted mean for every band was computed within each group of leaves from a single tree, whereby the measured leaf weights appropriately served as the statistical weights. The rationale behind this procedure is that heavier leaves have a more significant impact on the nitrogen label of their group, and thus should also exert a more substantial influence on the reflectance and transmittance data.</p>
+<p>The leaf-level data acquired from the spectroradiometer required only minimal pre-processing. Any recorded values below zero were adjusted to zero in order to rectify discrepancies. Further processing included removing noisy and overlapping regions to enhance data clarity (as to be seen in <a href="#fig-SpectroradiometerSmoothing" class="quarto-xref">figure&nbsp;<span>5.2</span></a>). To align the reflectance and transmittance as closely as possible with the nitrogen labels, the weighted mean for every band was computed within each group of leaves from a single tree, whereby the measured leaf weights appropriately served as the statistical weights. The rationale behind this procedure is that heavier leaves have a more significant impact on the nitrogen label of their group, and thus should also exert a more substantial influence on the reflectance and transmittance data.</p>
 <p>To conform to the requirements of the <span class="smallcaps">Prospect-Pro</span> model, the data was interpolated to specific wavelengths between 400 and 2500 nm. This interpolation was performed using local polynomial regression, utilizing the function <code>loess</code> from the R package <code>stats</code> with the parameter <code>span = 0.025</code> <span class="citation" data-cites="R2022">(<a href="references.html#ref-R2022" role="doc-biblioref">R Core Team 2022</a>)</span>.</p>
-<div id="fig-SpectroradiometerSmoothing" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/SpectroradiometricDataPreProcessing.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.2: This example illustrates the interpolation process using local polynomial regression (<strong>A</strong>). The smoothing spline was fitted through the data captured by the spectroradiometer, which is unstable at certain points and overlapping at others. The bottom figures display the distribution of the interpolated data for reflectance (<strong>B</strong>) and transmittance (<strong>C</strong>), respectively — the red areas display the center 50%, 75%, 95%, and 99% of the data.</figcaption>
+<div id="fig-SpectroradiometerSmoothing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-SpectroradiometerSmoothing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/SpectroradiometricDataPreProcessing.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SpectroradiometerSmoothing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: This example illustrates the interpolation process using local polynomial regression (<strong>A</strong>). The smoothing spline was fitted through the data captured by the spectroradiometer, which is unstable at certain points and overlapping at others. The bottom figures display the distribution of the interpolated data for reflectance (<strong>B</strong>) and transmittance (<strong>C</strong>), respectively — the red areas display the center 50%, 75%, 95%, and 99% of the data.
+</figcaption>
 </figure>
 </div>
 </section>
 <section id="sec-HSIprocessing" class="level2 page-columns page-full" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="sec-HSIprocessing"><span class="header-section-number">5.3</span> Pre-processing of the hyperspectral images</h2>
-<p>The acquired hyperspectral images were saved as batches of ENVI-files (<code>.bip</code>, band inter-leaved by line). Each of these files is essentially a three-dimensional array containing up to 2000 × 900 × 200 values: there are 200 bands, 900 pixels per line, and (at most) 2000 lines scanned. Subsequent batches of lines scanned were written to another ENVI-file. Additionally, a single file of irradiance measurements was generated for each batch of ENVI-files captured. The raw data recorded by the sensors were unitless. To convert them to radiance and irradiance, the shutter speeds and the sensor’s sensitivity at each wavelength must be considered. Reflectance can then be calculated from irradiance and radiance as shown in <a href="background.html#eq-reflectance">equation&nbsp;<span>1.2</span></a>. All these calculations were performed using the <span class="smallcaps">Spectronon Pro</span> software by Resonon Inc.&nbsp;(Bozeman, MT 59715, USA). The resulting hyperspectral images contained reflectance data and thus were standardized between 0 and 1.</p>
+<p>The acquired hyperspectral images were saved as batches of ENVI-files (<code>.bip</code>, band inter-leaved by line). Each of these files is essentially a three-dimensional array containing up to 2000 × 900 × 200 values: there are 200 bands, 900 pixels per line, and (at most) 2000 lines scanned. Subsequent batches of lines scanned were written to another ENVI-file. Additionally, a single file of irradiance measurements was generated for each batch of ENVI-files captured. The raw data recorded by the sensors were unitless. To convert them to radiance and irradiance, the shutter speeds and the sensor’s sensitivity at each wavelength must be considered. Reflectance can then be calculated from irradiance and radiance as shown in <a href="background.html#eq-reflectance" class="quarto-xref">equation&nbsp;<span>1.2</span></a>. All these calculations were performed using the <span class="smallcaps">Spectronon Pro</span> software by Resonon Inc.&nbsp;(Bozeman, MT 59715, USA). The resulting hyperspectral images contained reflectance data and thus were standardized between 0 and 1.</p>
 <p>The following step involved the georeferencing the data. Georeferencing is to the process of manipulating geographic data such that it aligns with a known coordinate system, enabling analysis and comparison with other geographic data <span class="citation" data-cites="wade2006z">(<a href="references.html#ref-wade2006z" role="doc-biblioref">Wade et al. 2006</a>)</span>. Consequently, each observational unit, in this case the hyperspectral data of every pixel, must be assigned a specific coordinate point. Orthorectification is particularly crucial in this context: aerial images must be processed to ensure they are geometrically accurate, akin to a geographic map. Orthorectification corrects for lens distortion, camera tilt, perspective, and topographic relief. This entire process was also conducted using <span class="smallcaps">Spectronon Pro</span>. However, the results were often unsatisfactory, as entire batches appeared distorted. The scanning line of the hyperspectral camera seemed to have varied its scanning angle relative to the flight direction during the drone flight, causing local image tilting. This tilting of the data was not something the georeferencing functions of <span class="smallcaps">Spectronon Pro</span> could address. To rectify the tilt, I opted to adjust the cropping polygons during the tree-cropping stage rather than improve the georeferencing, as this was a more straightforward technical solution.</p>
-<div class="page-columns page-full"><p>The objective of tree cropping is to generate a separate hyperspectral image for each tree in the orchard. This step is essential for computational reasons, as it is impractical to work with the entire dataset simultaneously.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Dividing the hyperspectral data into multiple files allows subsequent processes to be applied to individual images of cropped trees. For this cropping procedure, polygons defining the precise cut-out area for each tree needed to be established. However, as the hyperspectral images were not always accurately georeferenced, they had to be manually compared with the orthomosaic shown in <a href="#fig-orthomosaic">figure&nbsp;<span>5.1</span></a>, and the polygons had to be adjusted manually to align with the expected tree coordinates. Once all polygons were defined, the cropping was carried out using Python scripts originally authored by Ali Mohigimi and Yuto Kamiya, in addition to the QGIS software <span class="citation" data-cites="QGIS">(<a href="references.html#ref-QGIS" role="doc-biblioref">QGIS Development Team 2022</a>)</span>.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;The combined hyperspectral images had an approximate file size of 150 GB, which is far too large for programs to handle all at once.</p></li></div></div>
-<p>Once all images were cropped, the quality of the cropping was assessed. By employing a simple linear model on a transformation of the image data, it was possible to estimate whether the vegetation (determined by the NDVI) was centred in the cropped image. The fourth column in <a href="#fig-exampleCroppedImages">figure&nbsp;<span>5.3</span></a> displays an instance where the tree is not centred, resulting in a linear model slope that is opposite in direction compared to the others. Consequently, the slope of this straightforward model could serve as an indicator of the centricity of the images, enabling to make necessary readjustments during the cropping stage.</p>
+<p>The objective of tree cropping is to generate a separate hyperspectral image for each tree in the orchard. This step is essential for computational reasons, as it is impractical to work with the entire dataset simultaneously.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Dividing the hyperspectral data into multiple files allows subsequent processes to be applied to individual images of cropped trees. For this cropping procedure, polygons defining the precise cut-out area for each tree needed to be established. However, as the hyperspectral images were not always accurately georeferenced, they had to be manually compared with the orthomosaic shown in <a href="#fig-orthomosaic" class="quarto-xref">figure&nbsp;<span>5.1</span></a>, and the polygons had to be adjusted manually to align with the expected tree coordinates. Once all polygons were defined, the cropping was carried out using Python scripts originally authored by Ali Mohigimi and Yuto Kamiya, in addition to the QGIS software <span class="citation" data-cites="QGIS">(<a href="references.html#ref-QGIS" role="doc-biblioref">QGIS Development Team 2022</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;The combined hyperspectral images had an approximate file size of 150 GB, which is far too large for programs to handle all at once.</p></div></div><p>Once all images were cropped, the quality of the cropping was assessed. By employing a simple linear model on a transformation of the image data, it was possible to estimate whether the vegetation (determined by the NDVI) was centred in the cropped image. The fourth column in <a href="#fig-exampleCroppedImages" class="quarto-xref">figure&nbsp;<span>5.3</span></a> displays an instance where the tree is not centred, resulting in a linear model slope that is opposite in direction compared to the others. Consequently, the slope of this straightforward model could serve as an indicator of the centricity of the images, enabling to make necessary readjustments during the cropping stage.</p>
 <p>The average cropped image had dimensions of 56 × 38 × 200, which translates to over 400,000 values per hyperspectral image. With only 124 observations, such a number of predictors is rather excessive. To address this, the dimensions of the hyperspectral images were reduced by eliminating all spatial dimensions, retaining only the spectral dimension. However, calculating the mean reflectance of the entire image for each spectral band would have diluted the signal due to interference from shadows and soil. Consequently, the cropped images were semantically segmented into bright leaves, obscure areas, and soil, with only the bright leaf areas contributing to the retrieved mean spectral reflectance. Semantic segmentation refers to the task of assigning a class to each pixel in an image, rather than to the image as a whole <span class="citation" data-cites="guo2018review">(<a href="references.html#ref-guo2018review" role="doc-biblioref">Guo et al. 2018</a>)</span>. The semantic segmentation was performed using an extreme gradient boosting model with the R package <code>xgboost</code> <span class="citation" data-cites="chen2022">(<a href="references.html#ref-chen2022" role="doc-biblioref">Chen et al. 2022</a>)</span>. To facilitate learning, various vegetation indices were calculated for each pixel and used as features alongside the greyscale values, as opposed to using the original features.</p>
-<p>A training dataset comprising 690 observations from 23 cropped images was manually created for the machine learning model. The extreme gradient boosting model demonstrated an overall test accuracy of 0.94, with most of the error source stemming from confusion between soil and shadow. The bright leaf area exhibited a test precision of 0.99 and a test recall of 0.97, indicating that almost no non-leaf area was mislabelled as leaf, and very few leaf areas were labelled as non-leaf areas. Examples of the semantically segmented images can be viewed in <a href="#fig-exampleCroppedImages">figure&nbsp;<span>5.3</span></a>.</p>
-<p>The reflectance signal beyond 900 nm wavelength becomes highly unstable due to water vapour interference, as illustrated in <a href="background.html#fig-Electromagnetic">figure&nbsp;<span>1.3</span></a>, and does not align with the canopy’s expected magnitude of reflectance. Consequently, the data was further reduced by discarding any bands beyond 900 nm wavelength. This reduction meant that the reflectance of each tree was effectively condensed to a vector containing only 161 values.</p>
-<div class="column-page-inset-right">
-<div id="fig-exampleCroppedImages" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/Segmentation.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.3: Here, four examples of cropped trees are presented. From the original hyperspectral data, the NDVI, along with several other vegetation indices, was calculated (<strong>A</strong>). Using this information, an XGBoost model semantically segmented the cropped image (<strong>B</strong>). The slope of a linear regression model, fitted on the mean vertical NDVI values, indicated how well the cropped image was centred around the tree (<strong>C</strong>). From only the pixels classified as bright leaf area, the mean reflectance was calculated for further use (<strong>D</strong>).</figcaption>
+<p>A training dataset comprising 690 observations from 23 cropped images was manually created for the machine learning model. The extreme gradient boosting model demonstrated an overall test accuracy of 0.94, with most of the error source stemming from confusion between soil and shadow. The bright leaf area exhibited a test precision of 0.99 and a test recall of 0.97, indicating that almost no non-leaf area was mislabelled as leaf, and very few leaf areas were labelled as non-leaf areas. Examples of the semantically segmented images can be viewed in <a href="#fig-exampleCroppedImages" class="quarto-xref">figure&nbsp;<span>5.3</span></a>.</p>
+<p>The reflectance signal beyond 900 nm wavelength becomes highly unstable due to water vapour interference, as illustrated in <a href="background.html#fig-Electromagnetic" class="quarto-xref">figure&nbsp;<span>1.3</span></a>, and does not align with the canopy’s expected magnitude of reflectance. Consequently, the data was further reduced by discarding any bands beyond 900 nm wavelength. This reduction meant that the reflectance of each tree was effectively condensed to a vector containing only 161 values.</p>
+<div class="page-columns page-full">
+<div id="fig-exampleCroppedImages" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-exampleCroppedImages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<img src="resources/Segmentation.png" class="img-fluid figure-img column-page-inset-right">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exampleCroppedImages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: Here, four examples of cropped trees are presented. From the original hyperspectral data, the NDVI, along with several other vegetation indices, was calculated (<strong>A</strong>). Using this information, an XGBoost model semantically segmented the cropped image (<strong>B</strong>). The slope of a linear regression model, fitted on the mean vertical NDVI values, indicated how well the cropped image was centred around the tree (<strong>C</strong>). From only the pixels classified as bright leaf area, the mean reflectance was calculated for further use (<strong>D</strong>).
+</figcaption>
 </figure>
 </div>
 </div>
 </section>
 <section id="sec-normalization" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="sec-normalization"><span class="header-section-number">5.4</span> Z-score normalization</h2>
-<p>In multiple instances so far, one could observe that the spectral signature of plants follows a specific pattern, consistently showing different magnitudes of reflectance for the same wavelengths (e.g., <a href="#fig-exampleCroppedImages">figure&nbsp;<span>5.3</span></a> at the bottom). Light absorption is typically higher in the red and blue band areas, while it is lower in the green, red edge, and near-infrared areas. The variance of the collected data at each wavelength is not absolute but rather proportional to the reflectance’s magnitude. Importantly, the differing magnitudes of the variables do not correspond to their relative importance for predicting crop nitrogen. However, if left untreated, variables with larger magnitudes and variances may unjustly dominate certain models. A common strategy employed in machine learning to address this issue is z-score normalization. With respect to a single vector <span class="math inline">\(\mathbf x\)</span>, z-score normalization can be expressed as follows.</p>
+<p>In multiple instances so far, one could observe that the spectral signature of plants follows a specific pattern, consistently showing different magnitudes of reflectance for the same wavelengths (e.g., <a href="#fig-exampleCroppedImages" class="quarto-xref">figure&nbsp;<span>5.3</span></a> at the bottom). Light absorption is typically higher in the red and blue band areas, while it is lower in the green, red edge, and near-infrared areas. The variance of the collected data at each wavelength is not absolute but rather proportional to the reflectance’s magnitude. Importantly, the differing magnitudes of the variables do not correspond to their relative importance for predicting crop nitrogen. However, if left untreated, variables with larger magnitudes and variances may unjustly dominate certain models. A common strategy employed in machine learning to address this issue is z-score normalization. With respect to a single vector <span class="math inline">\(\mathbf x\)</span>, z-score normalization can be expressed as follows.</p>
 <p><span id="eq-zScoreNormalization"><span class="math display">\[\mathbf z = \frac{\mathbf x - \mu_x}{\sigma_x} \tag{5.1}\]</span></span></p>
-<p>Here, <span class="math inline">\(\mu_x\)</span> represents the mean of <span class="math inline">\(\mathbf x\)</span>, <span class="math inline">\(\sigma_x\)</span> denotes the standard deviation of <span class="math inline">\(\mathbf x\)</span>, and <span class="math inline">\(\mathbf z\)</span> is the z-score normalized vector. This procedure creates a vector <span class="math inline">\(\mathbf z\)</span> which has a mean of <span class="math inline">\(\mu_z = 0\)</span> and a variance of <span class="math inline">\(\sigma_z^2 = 1\)</span>, as illustrated graphically in <a href="#fig-zScoreNormalization">figure&nbsp;<span>5.4</span></a>. Z-score normalization of each column of the input data matrix <span class="math inline">\(\mathbf X\)</span> offers multiple benefits. It results in a homogeneous treatment of the error and enables iterative optimization algorithms to converge more quickly in finding the parameters of machine learning models <span class="citation" data-cites="geladi1986partial ioffe2015batch">(<a href="references.html#ref-geladi1986partial" role="doc-biblioref">Geladi and Kowalski 1986</a>, <a href="references.html#ref-ioffe2015batch" role="doc-biblioref">Ioffe and Szegedy 2015</a>)</span>. Therefore, it streamlines the training process of machine learning models — particularly when gradient descent is employed in the training process <span class="citation" data-cites="nawi2013effect">(<a href="references.html#ref-nawi2013effect" role="doc-biblioref">Nawi et al. 2013</a>)</span>.</p>
+<p>Here, <span class="math inline">\(\mu_x\)</span> represents the mean of <span class="math inline">\(\mathbf x\)</span>, <span class="math inline">\(\sigma_x\)</span> denotes the standard deviation of <span class="math inline">\(\mathbf x\)</span>, and <span class="math inline">\(\mathbf z\)</span> is the z-score normalized vector. This procedure creates a vector <span class="math inline">\(\mathbf z\)</span> which has a mean of <span class="math inline">\(\mu_z = 0\)</span> and a variance of <span class="math inline">\(\sigma_z^2 = 1\)</span>, as illustrated graphically in <a href="#fig-zScoreNormalization" class="quarto-xref">figure&nbsp;<span>5.4</span></a>. Z-score normalization of each column of the input data matrix <span class="math inline">\(\mathbf X\)</span> offers multiple benefits. It results in a homogeneous treatment of the error and enables iterative optimization algorithms to converge more quickly in finding the parameters of machine learning models <span class="citation" data-cites="geladi1986partial ioffe2015batch">(<a href="references.html#ref-geladi1986partial" role="doc-biblioref">Geladi and Kowalski 1986</a>, <a href="references.html#ref-ioffe2015batch" role="doc-biblioref">Ioffe and Szegedy 2015</a>)</span>. Therefore, it streamlines the training process of machine learning models — particularly when gradient descent is employed in the training process <span class="citation" data-cites="nawi2013effect">(<a href="references.html#ref-nawi2013effect" role="doc-biblioref">Nawi et al. 2013</a>)</span>.</p>
 <p>In addition to addressing the issue of equal variable importance, z-score normalization enhances the interpretability of many models, as coefficients are no longer relative to the variable magnitude. For these reasons, z-score normalization was applied to both leaf-level and canopy-level data before proceeding to the modelling phase.</p>
-<div id="fig-zScoreNormalization" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/zScoreNormalization.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.4: Visual explanation of z-score normalization of a dataset: The variables in the original data might exhibit significantly varying means and variances (<strong>A</strong>). Therefore, we can scale the variables with respect to their mean (<strong>B</strong>), their variance (<strong>C</strong>), or both (<strong>D</strong>). Adapted from <span class="citation" data-cites="geladi1986partial">Geladi and Kowalski (<a href="references.html#ref-geladi1986partial" role="doc-biblioref">1986</a>)</span>.</figcaption>
+<div id="fig-zScoreNormalization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zScoreNormalization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/zScoreNormalization.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zScoreNormalization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: Visual explanation of z-score normalization of a dataset: The variables in the original data might exhibit significantly varying means and variances (<strong>A</strong>). Therefore, we can scale the variables with respect to their mean (<strong>B</strong>), their variance (<strong>C</strong>), or both (<strong>D</strong>). Adapted from <span class="citation" data-cites="geladi1986partial">Geladi and Kowalski (<a href="references.html#ref-geladi1986partial" role="doc-biblioref">1986</a>)</span>.
+</figcaption>
 </figure>
 </div>
 </section>
 <section id="sec-exploratory" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-exploratory"><span class="header-section-number">5.5</span> Exploratory data analysis</h2>
-<p>In this section, a superficial exploration of the data sets, including both the predictor data listed in <a href="#tbl-data">table&nbsp;<span>5.1</span></a> as well as the response, will be conducted.</p>
-<p>All predictor data sets containing reflectance and transmittance data show extremely high multicollinearity. This becomes evident when examining the correlation matrices (<a href="#fig-exploratory">Figure&nbsp;<span>5.5</span></a> A), where bright areas indicate highly collinear variables. The collinearity is further emphasized by a principal component analysis, in which the variance explained by additional principal components rapidly diminishes and falls below 1% after only the third or fourth principal component, depending on the data set (<a href="#fig-exploratory">Figure&nbsp;<span>5.5</span></a> D).</p>
-<p>An inspection of the correlations of single wavelength reflectance or transmittance to the nitrogen concentration in <a href="#fig-exploratory">figure&nbsp;<span>5.5</span></a> C reveals that the strongest direct link occurs in the red light area at precisely 700 nm wavelength (<span class="math inline">\(r = -0.48\)</span>) for the leaf-level reflectance data. The correlation to nitrogen of the canopy-level reflectance data roughly matches the leaf-level reflectance data, although it is considerably less pronounced (<span class="math inline">\(r = -0.32\)</span>). The correlation in the red light area can be attributed to the absorption of red light by chlorophyll and its connection to nitrogen.</p>
-<p>Interestingly, the near-infrared and particularly the short-wave-infrared areas (where the absorption spectra of protein reside) appear to be less informative about the foliar nitrogen concentration (<a href="#fig-exploratory">Figure&nbsp;<span>5.5</span></a> C). Nevertheless, the information in these areas is independent of the information in the visible light area, as displayed by the correlation matrices for the leaf-level data (<a href="#fig-exploratory">Figure&nbsp;<span>5.5</span></a> A).</p>
-<div id="fig-exploratory" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/ExploratoryDataAnalysis.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.5: These plots present the correlation matrix (<strong>A</strong>), band-wise correlation with foliar nitrogen concentration (<strong>B</strong>), the z-score normalized data (<strong>C</strong>) and variance explained by the first few principal components (<strong>D</strong>) for the three data sets. The correlation matrices were generated using the absolute value of Pearson’s correlation coefficient <span class="math inline">\(r\)</span> to enhance readability. Black areas indicate no correlation, while white areas represent perfect correlation between bands — hence, the diagonal is always white.</figcaption>
+<p>In this section, a superficial exploration of the data sets, including both the predictor data listed in <a href="#tbl-data" class="quarto-xref">table&nbsp;<span>5.1</span></a> as well as the response, will be conducted.</p>
+<p>All predictor data sets containing reflectance and transmittance data show extremely high multicollinearity. This becomes evident when examining the correlation matrices (<a href="#fig-exploratory" class="quarto-xref">Figure&nbsp;<span>5.5</span></a> A), where bright areas indicate highly collinear variables. The collinearity is further emphasized by a principal component analysis, in which the variance explained by additional principal components rapidly diminishes and falls below 1% after only the third or fourth principal component, depending on the data set (<a href="#fig-exploratory" class="quarto-xref">Figure&nbsp;<span>5.5</span></a> D).</p>
+<p>An inspection of the correlations of single wavelength reflectance or transmittance to the nitrogen concentration in <a href="#fig-exploratory" class="quarto-xref">figure&nbsp;<span>5.5</span></a> C reveals that the strongest direct link occurs in the red light area at precisely 700 nm wavelength (<span class="math inline">\(r = -0.48\)</span>) for the leaf-level reflectance data. The correlation to nitrogen of the canopy-level reflectance data roughly matches the leaf-level reflectance data, although it is considerably less pronounced (<span class="math inline">\(r = -0.32\)</span>). The correlation in the red light area can be attributed to the absorption of red light by chlorophyll and its connection to nitrogen.</p>
+<p>Interestingly, the near-infrared and particularly the short-wave-infrared areas (where the absorption spectra of protein reside) appear to be less informative about the foliar nitrogen concentration (<a href="#fig-exploratory" class="quarto-xref">Figure&nbsp;<span>5.5</span></a> C). Nevertheless, the information in these areas is independent of the information in the visible light area, as displayed by the correlation matrices for the leaf-level data (<a href="#fig-exploratory" class="quarto-xref">Figure&nbsp;<span>5.5</span></a> A).</p>
+<div id="fig-exploratory" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exploratory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/ExploratoryDataAnalysis.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exploratory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.5: These plots present the correlation matrix (<strong>A</strong>), band-wise correlation with foliar nitrogen concentration (<strong>B</strong>), the z-score normalized data (<strong>C</strong>) and variance explained by the first few principal components (<strong>D</strong>) for the three data sets. The correlation matrices were generated using the absolute value of Pearson’s correlation coefficient <span class="math inline">\(r\)</span> to enhance readability. Black areas indicate no correlation, while white areas represent perfect correlation between bands — hence, the diagonal is always white.
+</figcaption>
 </figure>
 </div>
 <p>Overall, the transmittance data exhibits a weaker correlation with nitrogen than the reflectance data. However, there are spikes of negative correlations in the areas where protein reflects minimally — consequently, the correlation is negative in these parts. A similar pattern can be observed for the reflectance data, albeit less pronounced.</p>
-<p>Upon examining the pairs panel in <a href="#fig-PairsPanel">figure&nbsp;<span>5.6</span></a>, the measurements reveal notable and positive correlations among wet weight, dry weight, and leaf area. Specifically, the correlation between the wet weight of the leaves and their corresponding leaf area is particularly solid (<span class="math inline">\(r=0.91\)</span>). This finding should hardly come as a surprise.</p>
-<div id="fig-PairsPanel" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/PairsPanel.png" class="img-fluid figure-img" data-fig.pos="b"></p>
-<figcaption class="figure-caption">Figure&nbsp;5.6: Pairs panel of the ground truth data, which includes measured leaf traits. The diagonal displays histograms for each variable, while the lower triangle presents pairwise scatterplots. The upper triangle showcases Pearson’s correlation coefficient <span class="math inline">\(r\)</span> and the corresponding p-values. Non-significant correlation coefficients and their p-values are printed in grey.</figcaption>
+<p>Upon examining the pairs panel in <a href="#fig-PairsPanel" class="quarto-xref">figure&nbsp;<span>5.6</span></a>, the measurements reveal notable and positive correlations among wet weight, dry weight, and leaf area. Specifically, the correlation between the wet weight of the leaves and their corresponding leaf area is particularly solid (<span class="math inline">\(r=0.91\)</span>). This finding should hardly come as a surprise.</p>
+<div id="fig-PairsPanel" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig.pos="b">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-PairsPanel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/PairsPanel.png" class="img-fluid figure-img" data-fig.pos="b">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PairsPanel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.6: Pairs panel of the ground truth data, which includes measured leaf traits. The diagonal displays histograms for each variable, while the lower triangle presents pairwise scatterplots. The upper triangle showcases Pearson’s correlation coefficient <span class="math inline">\(r\)</span> and the corresponding p-values. Non-significant correlation coefficients and their p-values are printed in grey.
+</figcaption>
 </figure>
 </div>
-<p>Additionally, it becomes evident that mass-based nitrogen (N<sub>%</sub>) and area-based nitrogen (N<sub>area</sub>) display a very low correlation (<span class="math inline">\(r = 0.093\)</span>). This observation is particularly surprising, given that the two traits can be converted into each other through leaf mass per area (LMA), as described by <a href="background.html#eq-LMA">equation&nbsp;<span>1.3</span></a>. Leaf mass per area, calculated from dry mass and leaf area, can be loosely interpreted as leaf thickness. It is strongly and positively correlated with N<sub>area</sub> (<span class="math inline">\(r = -0.85\)</span>), but exhibits a slight negative correlation with N<sub>%</sub> (<span class="math inline">\(r = -0.43\)</span>). This relationship can be attributed to a dilution effect caused by carbohydrates on nitrogen concentration (N<sub>%</sub>): higher carbohydrate concentrations result in a measured lower concentration of nitrogen, even if the absolute nitrogen content remains unchanged.</p>
-<p>Consequently, <span class="citation" data-cites="baret2007quantification">Baret et al. (<a href="references.html#ref-baret2007quantification" role="doc-biblioref">2007</a>)</span> suggested that N<sub>area</sub> should be the preferred metric. Nonetheless, the mass-based nitrogen N<sub>%</sub> remains the chief determinant in fertilization management decisions, as it is the most important part of <a href="background.html#eq-NNI">equation&nbsp;<span>1.1</span></a>. Therefore, I will primarily focus on the estimation of nitrogen concentration in leaves and canopy rather than the area-based nitrogen.</p>
+<p>Additionally, it becomes evident that mass-based nitrogen (N<sub>%</sub>) and area-based nitrogen (N<sub>area</sub>) display a very low correlation (<span class="math inline">\(r = 0.093\)</span>). This observation is particularly surprising, given that the two traits can be converted into each other through leaf mass per area (LMA), as described by <a href="background.html#eq-LMA" class="quarto-xref">equation&nbsp;<span>1.3</span></a>. Leaf mass per area, calculated from dry mass and leaf area, can be loosely interpreted as leaf thickness. It is strongly and positively correlated with N<sub>area</sub> (<span class="math inline">\(r = -0.85\)</span>), but exhibits a slight negative correlation with N<sub>%</sub> (<span class="math inline">\(r = -0.43\)</span>). This relationship can be attributed to a dilution effect caused by carbohydrates on nitrogen concentration (N<sub>%</sub>): higher carbohydrate concentrations result in a measured lower concentration of nitrogen, even if the absolute nitrogen content remains unchanged.</p>
+<p>Consequently, <span class="citation" data-cites="baret2007quantification">Baret et al. (<a href="references.html#ref-baret2007quantification" role="doc-biblioref">2007</a>)</span> suggested that N<sub>area</sub> should be the preferred metric. Nonetheless, the mass-based nitrogen N<sub>%</sub> remains the chief determinant in fertilization management decisions, as it is the most important part of <a href="background.html#eq-NNI" class="quarto-xref">equation&nbsp;<span>1.1</span></a>. Therefore, I will primarily focus on the estimation of nitrogen concentration in leaves and canopy rather than the area-based nitrogen.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-baret2007quantification" class="csl-entry" role="listitem">
 Baret, F., V. Houlès, and M. Guerif. 2007. <a href="https://doi.org/10.1093/jxb/erl231">Quantification of plant stress using remote sensing observations and crop models: The case of nitrogen management</a>. Journal of experimental botany 58:869–880.
 </div>
@@ -436,18 +495,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -479,11 +527,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -493,8 +578,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -506,7 +600,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -550,6 +766,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -575,6 +792,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -636,12 +879,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./radiative-transfer-models.html" class="pagination-link">
+      <a href="./radiative-transfer-models.html" class="pagination-link" aria-label="Radiative transfer models">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./technical-description-of-the-modelling.html" class="pagination-link">
+      <a href="./technical-description-of-the-modelling.html" class="pagination-link" aria-label="Technical description of the modelling">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Technical description of the modelling</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -649,8 +892,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
-    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-left">
+<p>© 2023, Damian Oswald</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/describing-processing-and-inspecting-the-data.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -675,6 +922,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

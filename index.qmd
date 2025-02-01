@@ -19,6 +19,12 @@ I would also like to express my appreciation to all the members of the *Digital 
 A special acknowledgement goes to Momtanu Chakraborty, Yuto Kamiya, and Hamid Jafarbiglu for their invaluable assistance in addressing technical and scientific queries.
 Finally, I am eternally grateful to my parents, Susannah and Armin, without whom this journey would not have been possible, and to Alice, who always stood by my side.
 
+## Presentation
+
+I held my thesis's presentation on April 11, 2023, three weeks before submitting the written version. You can [open the presentation in full screen here](presentation/index.html).
+
+{{< revealjs file="presentation/index.html" height="500px" class="ratio ratio-16x9" full-screen-link=false >}}
+
 ## Attribution
 
 For attribution, please cite this work as:

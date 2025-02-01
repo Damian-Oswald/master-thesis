@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 3&nbsp; Machine learning methods for hyperspectral data analysis</title>
+<title>3&nbsp; Machine learning methods for hyperspectral data analysis – Remote Sensing of Foliar Nitrogen in Californian Almonds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -56,17 +57,23 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a01a0c2d2b11ceb43c7631533aab2727.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,14 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,16 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
     <img src="./resources/iconDO.png" alt="" class="navbar-logo">
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/damian-oswald/master-thesis/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -111,27 +146,19 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./machine-learning-methods-for-hyperspectral-data-analysis.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./machine-learning-methods-for-hyperspectral-data-analysis.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +236,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -222,7 +249,7 @@ div.csl-indent {
   <li><a href="#sec-decisiontrees" id="toc-sec-decisiontrees" class="nav-link" data-scroll-target="#sec-decisiontrees"><span class="header-section-number">3.4</span> Decision-tree-based learning</a></li>
   <li><a href="#sec-deeplearning" id="toc-sec-deeplearning" class="nav-link" data-scroll-target="#sec-deeplearning"><span class="header-section-number">3.5</span> Deep learning</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/machine-learning-methods-for-hyperspectral-data-analysis.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/machine-learning-methods-for-hyperspectral-data-analysis.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -242,22 +269,24 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
-<div class="page-columns page-full"><p>The term machine learning was first used by <span class="citation" data-cites="samuel1959machine">Samuel (<a href="references.html#ref-samuel1959machine" role="doc-biblioref">1959</a>)</span>. He described it as the “field of study that gives computers the ability to learn without being explicitly programmed”. Back then, only few people were interested in this particular field. Today, however, this could not be further from the truth: A quick <span class="smallcaps">Scopus</span> search reveals, that in 2022 alone, 18’464 scientific publications use the term “machine learning” in their title — that is more than 50 publications a day!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;The <span class="smallcaps">Scopus</span> search for <code>machine AND learning</code> was conducted on March 7, 2023. Only the document type “article” was searched for. 449’663 publications of all time contain “machine learning” in their title, abstract or keywords. 57’926 contain “machine learning” in the title only. Out of all the articles ever using “machine learning” in their title, 32% were published in 2022.</p></li></div></div>
-<p>The substantial advancements witnessed in machine learning over the past two decades can be largely ascribed to the surge in computational power, the sudden availability of copious amounts of data, and the open-source culture that enables applications through readily accessible machine learning libraries and frameworks <span class="citation" data-cites="jordan2015machine fridman2019">(<a href="references.html#ref-jordan2015machine" role="doc-biblioref">Jordan and Mitchell 2015</a>, <a href="references.html#ref-fridman2019" role="doc-biblioref">Fridman 2019</a>)</span>.</p>
+
+<p>The term machine learning was first used by <span class="citation" data-cites="samuel1959machine">Samuel (<a href="references.html#ref-samuel1959machine" role="doc-biblioref">1959</a>)</span>. He described it as the “field of study that gives computers the ability to learn without being explicitly programmed”. Back then, only few people were interested in this particular field. Today, however, this could not be further from the truth: A quick <span class="smallcaps">Scopus</span> search reveals, that in 2022 alone, 18’464 scientific publications use the term “machine learning” in their title — that is more than 50 publications a day!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The <span class="smallcaps">Scopus</span> search for <code>machine AND learning</code> was conducted on March 7, 2023. Only the document type “article” was searched for. 449’663 publications of all time contain “machine learning” in their title, abstract or keywords. 57’926 contain “machine learning” in the title only. Out of all the articles ever using “machine learning” in their title, 32% were published in 2022.</p></div></div><p>The substantial advancements witnessed in machine learning over the past two decades can be largely ascribed to the surge in computational power, the sudden availability of copious amounts of data, and the open-source culture that enables applications through readily accessible machine learning libraries and frameworks <span class="citation" data-cites="jordan2015machine fridman2019">(<a href="references.html#ref-jordan2015machine" role="doc-biblioref">Jordan and Mitchell 2015</a>, <a href="references.html#ref-fridman2019" role="doc-biblioref">Fridman 2019</a>)</span>.</p>
 <p>In this thesis, I will use the term “machine learning” as originally defined by Arthur Samuel. As per his definition, machine learning includes a variety of mathematical models from chemometrics and statistics, despite the fact that many of these models were developed prior to the coining of the term itself. The essential aspect of these models lies in their primary function for making predictions, rather than serving as statistical models. Moreover, the machine learning models evaluated in this thesis are differentiated from hand-crafted features such as vegetation indices and radiative transfer models by their fully automatic process of selecting and combining spectral bands.</p>
 <p>Owing to their exceptional predictive capabilities and handling of high-dimensional input data, machine learning algorithms have emerged as a widely adopted tool for modern hyperspectral image analysis <span class="citation" data-cites="gewali2018machine">(<a href="references.html#ref-gewali2018machine" role="doc-biblioref">Gewali et al. 2018</a>)</span>. In this chapter, various machine learning algorithms that have been extensively used on hyperspectral data will be examined. To do this, I will loosely follow the route taken by <span class="citation" data-cites="james2013introduction">James et al. (<a href="references.html#ref-james2013introduction" role="doc-biblioref">2013</a>)</span>, commencing with the ordinary least squares model and addressing why it is a poor choice for hyperspectral data, and subsequently slowly relaxing the assumptions of the linear model.</p>
 <section id="sec-stepwise" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-stepwise"><span class="header-section-number">3.1</span> Ordinary least squares and stepwise selection</h2>
 <p>The simplest and also probably most prevalently used machine learning model is the linear regression model <span class="citation" data-cites="yan2009linear">(<a href="references.html#ref-yan2009linear" role="doc-biblioref">Yan and Su 2009</a>)</span>. In its univariate form, it can be represented as follows.</p>
 <p><span id="eq-generalLinearModel"><span class="math display">\[\mathbf y = \mathbf X \boldsymbol \beta + \boldsymbol \varepsilon \tag{3.1}\]</span></span></p>
-<p>Here, <span class="math inline">\(\mathbf y\)</span> represents the labels, <span class="math inline">\(\mathbf X\)</span> denotes the design matrix comprising all predictors, <span class="math inline">\(\boldsymbol \beta\)</span> signifies the coefficients, and <span class="math inline">\(\boldsymbol \varepsilon\)</span> corresponds to the model’s errors. The customary approach for estimating the coefficients <span class="math inline">\({\boldsymbol \beta}\)</span> in <a href="#eq-generalLinearModel">equation&nbsp;<span>3.1</span></a> employs the analytical solution using the ordinary least squares estimator.</p>
+<p>Here, <span class="math inline">\(\mathbf y\)</span> represents the labels, <span class="math inline">\(\mathbf X\)</span> denotes the design matrix comprising all predictors, <span class="math inline">\(\boldsymbol \beta\)</span> signifies the coefficients, and <span class="math inline">\(\boldsymbol \varepsilon\)</span> corresponds to the model’s errors. The customary approach for estimating the coefficients <span class="math inline">\({\boldsymbol \beta}\)</span> in <a href="#eq-generalLinearModel" class="quarto-xref">equation&nbsp;<span>3.1</span></a> employs the analytical solution using the ordinary least squares estimator.</p>
 <p><span id="eq-ols"><span class="math display">\[\hat {\boldsymbol \beta} = (\mathbf X^\top\mathbf X)^{-1} \mathbf X^\top \mathbf y \tag{3.2}\]</span></span></p>
 <p>This method was (allegedly) introduced independently by <span class="citation" data-cites="legendre1806nouvelles">Legendre (<a href="references.html#ref-legendre1806nouvelles" role="doc-biblioref">1806</a>)</span> in <em>Nouvelles méthodes pour la détermination des orbites des comètes</em> (new methods for the determination of comet orbits) and <span class="citation" data-cites="gauss1809theoria">Gauss (<a href="references.html#ref-gauss1809theoria" role="doc-biblioref">1809</a>)</span> in <em>Theoria Motus Corporum Coelestium</em> (theory of the motion of the heavenly bodies), eventually being formalized at a later date by <span class="citation" data-cites="markov1912wahrscheinlichkeitsrechnung">Markov (<a href="references.html#ref-markov1912wahrscheinlichkeitsrechnung" role="doc-biblioref">1912</a>)</span>. However, it is worth noting that Markov did not contribute any novel proof <span class="citation" data-cites="plackett1949historical yan2009linear">(<a href="references.html#ref-plackett1949historical" role="doc-biblioref">Plackett 1949</a>, <a href="references.html#ref-yan2009linear" role="doc-biblioref">Yan and Su 2009</a>)</span>.</p>
 <p>In what is now known as the Gauss-Markov theorem, Markov asserts that the ordinary least squares estimator is the best linear unbiased estimator under the specific conditions that the error’s expectation is zero (<span class="math inline">\(\mathbb E(\varepsilon_i) = 0\)</span>), the error exhibits equal variance (<span class="math inline">\(\text{Var}(\varepsilon_i) = \sigma^2\)</span>), and all distinct error terms are uncorrelated (<span class="math inline">\(\text{Cov}(\varepsilon_i, \varepsilon_j) = 0\)</span>).</p>
-<p>Unprocessed hyperspectral reflectance data frequently violates the assumptions of the Gauss-Markov theorem — particularly the third assumption regarding uncorrelated errors. While equal variance can be achieved through z-score normalization (a technique described in more detail in <a href="describing-processing-and-inspecting-the-data.html#sec-normalization">section&nbsp;<span>5.4</span></a>), and the expectation of zero error might be satisfied if the response is investigated on a small enough scale, the assumption of uncorrelated error terms cannot be fulfilled while retaining all available variables or information about all bands. The crux of the problem lies in so-called multicollinearity: the reflectance of neighbouring spectral bands is typically very strongly correlated. Consequently, the reflectance at one band can be predicted linearly from others with a very high precision <span class="citation" data-cites="chlingaryan2018machine">(<a href="references.html#ref-chlingaryan2018machine" role="doc-biblioref">Chlingaryan et al. 2018</a>)</span>. Because of multicollinearity, minor changes in the data or model specification can have a disproportional effect on parameter estimates <span class="citation" data-cites="ravikanth2017extraction">(<a href="references.html#ref-ravikanth2017extraction" role="doc-biblioref">Ravikanth et al. 2017</a>)</span>.</p>
-<p>Ordinary least squares also encounter difficulties in hyperspectral data analysis due to the <em>small n, large p problem</em>. In many agricultural applications of hyperspectral data, there is often a limit to the number of samples taken, since the acquisition of observations can be both costly and labour-intensive <span class="citation" data-cites="ravikanth2017extraction">(<a href="references.html#ref-ravikanth2017extraction" role="doc-biblioref">Ravikanth et al. 2017</a>)</span>. When the design matrix <span class="math inline">\(\mathbf X\)</span> has fewer rows (observations, <span class="math inline">\(n\)</span>) than columns (parameters, <span class="math inline">\(p\)</span>), the inversion of <span class="math inline">\(\mathbf X^\top\mathbf X\)</span> in <a href="#eq-ols">equation&nbsp;<span>3.2</span></a> becomes impossible.</p>
+<p>Unprocessed hyperspectral reflectance data frequently violates the assumptions of the Gauss-Markov theorem — particularly the third assumption regarding uncorrelated errors. While equal variance can be achieved through z-score normalization (a technique described in more detail in <a href="describing-processing-and-inspecting-the-data.html#sec-normalization" class="quarto-xref">section&nbsp;<span>5.4</span></a>), and the expectation of zero error might be satisfied if the response is investigated on a small enough scale, the assumption of uncorrelated error terms cannot be fulfilled while retaining all available variables or information about all bands. The crux of the problem lies in so-called multicollinearity: the reflectance of neighbouring spectral bands is typically very strongly correlated. Consequently, the reflectance at one band can be predicted linearly from others with a very high precision <span class="citation" data-cites="chlingaryan2018machine">(<a href="references.html#ref-chlingaryan2018machine" role="doc-biblioref">Chlingaryan et al. 2018</a>)</span>. Because of multicollinearity, minor changes in the data or model specification can have a disproportional effect on parameter estimates <span class="citation" data-cites="ravikanth2017extraction">(<a href="references.html#ref-ravikanth2017extraction" role="doc-biblioref">Ravikanth et al. 2017</a>)</span>.</p>
+<p>Ordinary least squares also encounter difficulties in hyperspectral data analysis due to the <em>small n, large p problem</em>. In many agricultural applications of hyperspectral data, there is often a limit to the number of samples taken, since the acquisition of observations can be both costly and labour-intensive <span class="citation" data-cites="ravikanth2017extraction">(<a href="references.html#ref-ravikanth2017extraction" role="doc-biblioref">Ravikanth et al. 2017</a>)</span>. When the design matrix <span class="math inline">\(\mathbf X\)</span> has fewer rows (observations, <span class="math inline">\(n\)</span>) than columns (parameters, <span class="math inline">\(p\)</span>), the inversion of <span class="math inline">\(\mathbf X^\top\mathbf X\)</span> in <a href="#eq-ols" class="quarto-xref">equation&nbsp;<span>3.2</span></a> becomes impossible.</p>
 <p>If one wanted to strictly stick to linear regression using ordinary least squares, a potential workaround evading the <em>small n, large p problem</em> would be the application of a prior feature selection strategy to tackle multicollinearity (remember, vegetation indices as discussed in the chapter before essentially constituted such a feature selection method). Provided that there are more observations than parameters to estimate, feature selection methods like stepwise selection can also further create a subset of variables for the linear regression model such that it is no longer over-specified. These methods minimize a so-called information criterion. This metric balances both the model’s likelihood and penalizes over-parametrization simultaneously. The Akaike information criterion (AIC), introduced by <span class="citation" data-cites="akaike1998information">Akaike (<a href="references.html#ref-akaike1998information" role="doc-biblioref">1998</a>)</span>, serves as one such criterion for comparing the fit of various regression models. It can be calculated as follows.</p>
 <p><span id="eq-AIC"><span class="math display">\[\text{AIC} = k(p - \ln \hat {L}) \tag{3.3}\]</span></span></p>
 <p>In this equation, <span class="math inline">\(p\)</span> represents the number of parameters, <span class="math inline">\(k\)</span> is a scalar, and <span class="math inline">\(\ln \hat {L}\)</span> denotes the estimated log-likelihood of the model. A true AIC is obtained when <span class="math inline">\(k=2\)</span>, while <span class="math inline">\(k=\ln(n)\)</span> (where <span class="math inline">\(n\)</span> is the number of observations) is sometimes called the Bayesian information criterion (BIC) or Schwarz information criterion (SIC). Through stepwise selection, variables are iteratively added to and removed from the model so as to minimize the information criterion.</p>
@@ -266,12 +295,12 @@ div.csl-indent {
 </section>
 <section id="sec-regularization" class="level2 page-columns page-full" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-regularization"><span class="header-section-number">3.2</span> Regularization</h2>
-<div class="page-columns page-full"><p>Regularization is a technique extensively employed in machine learning in order to avoid overfitting and enhance the generalization of models. Applicable to linear models as well as more intricate ones, such as neural networks or decision-tree-based models, regularization operates by adding a penalty term to the original, unregularized cost function <span class="math inline">\(J\)</span>, which in turn penalizes the magnitude of the estimated coefficient. Consequently, larger coefficient estimates lead to a greater penalty <span class="citation" data-cites="james2013introduction">(<a href="references.html#ref-james2013introduction" role="doc-biblioref">James et al. 2013</a>)</span>. This process forces the regression model to strike a balance between small (or few) coefficients and an effective explanation of the data. In that sense, regularization can be understood as Occam’s Razor<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> applied to machine learning models, favouring simpler models over their more complex counterparts — even if the more complex ones could better explain the data. The underlying reasoning for this approach is that, when given enough flexibility, models inherently tend to over-explain the data. As a countermeasure, regularization restricts some of that flexibility, promoting a more balanced model.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Occam’s razor is a philosophical principle that suggests that, among competing hypotheses, the simplest one with the fewest assumptions is preferable or more likely to be true <span class="citation" data-cites="van2018occam">(<a href="references.html#ref-van2018occam" role="doc-biblioref">Van den Berg 2018</a>)</span>.</p></li></div></div>
-<p>The penalty term is typically based on various vector norms of the model coefficients, such as the <span class="math inline">\(\ell^1\)</span>-norm (referred to as lasso regularization) or the <span class="math inline">\(\ell^2\)</span>-norm (known as ridge regularization). The cost function <span class="math inline">\(J\)</span> for both lasso and ridge regression can be expressed in a single equation as follows.</p>
+<p>Regularization is a technique extensively employed in machine learning in order to avoid overfitting and enhance the generalization of models. Applicable to linear models as well as more intricate ones, such as neural networks or decision-tree-based models, regularization operates by adding a penalty term to the original, unregularized cost function <span class="math inline">\(J\)</span>, which in turn penalizes the magnitude of the estimated coefficient. Consequently, larger coefficient estimates lead to a greater penalty <span class="citation" data-cites="james2013introduction">(<a href="references.html#ref-james2013introduction" role="doc-biblioref">James et al. 2013</a>)</span>. This process forces the regression model to strike a balance between small (or few) coefficients and an effective explanation of the data. In that sense, regularization can be understood as Occam’s Razor<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> applied to machine learning models, favouring simpler models over their more complex counterparts — even if the more complex ones could better explain the data. The underlying reasoning for this approach is that, when given enough flexibility, models inherently tend to over-explain the data. As a countermeasure, regularization restricts some of that flexibility, promoting a more balanced model.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Occam’s razor is a philosophical principle that suggests that, among competing hypotheses, the simplest one with the fewest assumptions is preferable or more likely to be true <span class="citation" data-cites="van2018occam">(<a href="references.html#ref-van2018occam" role="doc-biblioref">Van den Berg 2018</a>)</span>.</p></div></div><p>The penalty term is typically based on various vector norms of the model coefficients, such as the <span class="math inline">\(\ell^1\)</span>-norm (referred to as lasso regularization) or the <span class="math inline">\(\ell^2\)</span>-norm (known as ridge regularization). The cost function <span class="math inline">\(J\)</span> for both lasso and ridge regression can be expressed in a single equation as follows.</p>
 <p><span id="eq-RLSloss"><span class="math display">\[J(\boldsymbol \beta, \mathbf X, \mathbf y) =
 \| \mathbf {y -X\boldsymbol\beta} \|_2^2 +
 \lambda \left[ \frac{1}{2}(1-\alpha)\| \boldsymbol \beta \|_2^2 + \alpha \| \boldsymbol \beta \| \right] \tag{3.4}\]</span></span></p>
-<p>Here, <span class="math inline">\(\| \cdot \|\)</span> represents the absolute value norm or the <span class="math inline">\(\ell^1\)</span>-norm, while <span class="math inline">\(\| \cdot \|_2\)</span> denotes the Euclidean norm or the <span class="math inline">\(\ell^2\)</span>-norm. It is worth noting that the first term in <a href="#eq-RLSloss">equation&nbsp;<span>3.4</span></a> (<span class="math inline">\(\| \mathbf {y -X\boldsymbol\beta} \|_2^2\)</span>) is simply the standard cost function for linear least squares regression, as it equates to the sum of squared errors. The second half constitutes the penalty term that regularizes the coefficients. The parameter <span class="math inline">\(\lambda\)</span> determines the magnitude of the penalty, as it is multiplied by a mixture of norms of the coefficient vector <span class="math inline">\(\boldsymbol \beta\)</span>. If one exclusively selects <span class="math inline">\(\alpha = 0\)</span>, that results in ridge regression, since only the <span class="math inline">\(\ell^2\)</span>-norm is employed. Conversely, choosing <span class="math inline">\(\alpha = 1\)</span> relies solely on the <span class="math inline">\(\ell^1\)</span>-norm, resulting in lasso regression. Any value between <span class="math inline">\(0 &lt; \alpha &lt; 1\)</span> yields a combination of the two, referred to as the elastic net <span class="citation" data-cites="zou2005regularization james2013introduction">(<a href="references.html#ref-zou2005regularization" role="doc-biblioref">Zou and Hastie 2005</a>, <a href="references.html#ref-james2013introduction" role="doc-biblioref">James et al. 2013</a>)</span>. Consequently, we can regard <span class="math inline">\(\lambda \in [0, \infty)\)</span> as a parameter controlling the penalty’s magnitude and <span class="math inline">\(\alpha \in [0,1]\)</span> as a parameter directing the type of regularization applied.</p>
+<p>Here, <span class="math inline">\(\| \cdot \|\)</span> represents the absolute value norm or the <span class="math inline">\(\ell^1\)</span>-norm, while <span class="math inline">\(\| \cdot \|_2\)</span> denotes the Euclidean norm or the <span class="math inline">\(\ell^2\)</span>-norm. It is worth noting that the first term in <a href="#eq-RLSloss" class="quarto-xref">equation&nbsp;<span>3.4</span></a> (<span class="math inline">\(\| \mathbf {y -X\boldsymbol\beta} \|_2^2\)</span>) is simply the standard cost function for linear least squares regression, as it equates to the sum of squared errors. The second half constitutes the penalty term that regularizes the coefficients. The parameter <span class="math inline">\(\lambda\)</span> determines the magnitude of the penalty, as it is multiplied by a mixture of norms of the coefficient vector <span class="math inline">\(\boldsymbol \beta\)</span>. If one exclusively selects <span class="math inline">\(\alpha = 0\)</span>, that results in ridge regression, since only the <span class="math inline">\(\ell^2\)</span>-norm is employed. Conversely, choosing <span class="math inline">\(\alpha = 1\)</span> relies solely on the <span class="math inline">\(\ell^1\)</span>-norm, resulting in lasso regression. Any value between <span class="math inline">\(0 &lt; \alpha &lt; 1\)</span> yields a combination of the two, referred to as the elastic net <span class="citation" data-cites="zou2005regularization james2013introduction">(<a href="references.html#ref-zou2005regularization" role="doc-biblioref">Zou and Hastie 2005</a>, <a href="references.html#ref-james2013introduction" role="doc-biblioref">James et al. 2013</a>)</span>. Consequently, we can regard <span class="math inline">\(\lambda \in [0, \infty)\)</span> as a parameter controlling the penalty’s magnitude and <span class="math inline">\(\alpha \in [0,1]\)</span> as a parameter directing the type of regularization applied.</p>
 <p>In general, regularization aids in mitigating multicollinearity issues, consequently reducing the variance of coefficient estimates. Ridge regression, based on the Euclidean norm, progressively decreases the penalty on coefficient estimates as they approach zero. This means, that for ridge regression, the variables in the model will always exert an effect, albeit a tiny one in the case of useless variables.</p>
 <p>Lasso regression on the other hand, initially introduced by <span class="citation" data-cites="tibshirani1996">Tibshirani (<a href="references.html#ref-tibshirani1996" role="doc-biblioref">1996</a>)</span>, begins to induce sparsity in the data matrix as <span class="math inline">\(\lambda\)</span> increases <span class="citation" data-cites="james2013introduction">(<a href="references.html#ref-james2013introduction" role="doc-biblioref">James et al. 2013</a>)</span>. This property means that lasso regression leads to a selection of variables that effectively explain the response. Unlike stepwise selection, lasso regression does not suffer from a high number of simultaneously used variables <span class="citation" data-cites="hastie2017extended">(<a href="references.html#ref-hastie2017extended" role="doc-biblioref">Hastie et al. 2017</a>)</span>. Lasso regression emerges as a particularly appealing tool for hyperspectral data analysis, as it facilitates the selection of a limited number of bands that best explain the response variable <span class="citation" data-cites="takayama2016optimal">(<a href="references.html#ref-takayama2016optimal" role="doc-biblioref">Takayama and Iwasaki 2016</a>)</span>.</p>
 <p>The number of selected bands can be effectively controlled via <span class="math inline">\(\lambda\)</span>. Lasso regression has already been employed for spectral band selection in spectroradiometric leaf-level data, specifically in the context of foliar nitrogen prediction in vineyards <span class="citation" data-cites="omidi2020ensemble">(<a href="references.html#ref-omidi2020ensemble" role="doc-biblioref">Omidi et al. 2020</a>)</span>.</p>
@@ -284,10 +313,10 @@ div.csl-indent {
 <p>Here, <span class="math inline">\(\mathbf W\)</span> is a <span class="math inline">\(p \times p\)</span> rotation matrix of weights. In the case of principal component analysis (PCA), the columns of <span class="math inline">\(\mathbf W\)</span> are the eigenvectors of <span class="math inline">\(\text{Cov}(\mathbf X)\)</span>. The full matrix <span class="math inline">\(\mathbf T\)</span> is thus a linear re-combination of <span class="math inline">\(\mathbf X\)</span>, but it conveniently contains maximal information in its first column, with the remaining information successively distributed in subsequent columns. The constructed variables in the score matrix, called principal components, are completely uncorrelated with each other. These principal components, also referred to as latent variables, are not directly measured but are constructed from the observed variables.</p>
 <p>The lack of multicollinearity among the latent variables in the score matrix makes them better suited for ordinary least squares regression than the observed data. The more collinear the original data, the fewer principal components are needed to capture the essence of the data. This effectively eliminates the small <span class="math inline">\(n\)</span>, large <span class="math inline">\(p\)</span> problem. After performing linear dimensionality reduction on <span class="math inline">\(\mathbf X\)</span>, linear regression can be applied to a limited number of variables in the score matrix <span class="math inline">\(\mathbf T\)</span> to avoid overfitting issues typically associated with stepwise selection <span class="citation" data-cites="hansen2003reflectance grossman1996critique">(<a href="references.html#ref-grossman1996critique" role="doc-biblioref">Grossman et al. 1996</a>, <a href="references.html#ref-hansen2003reflectance" role="doc-biblioref">Hansen and Schjoerring 2003</a>)</span>. Both principal component and partial least squares regression can thus be formulated as follows.</p>
 <p><span id="eq-pcr"><span class="math display">\[\mathbf y = \mathbf T_{[1,l]} \: \boldsymbol \beta + \boldsymbol \varepsilon \tag{3.6}\]</span></span></p>
-<p>Here, <span class="math inline">\(l\)</span> is the number of variables from <span class="math inline">\(\mathbf T\)</span> used for the regression, and the rest is analogous to <a href="#eq-generalLinearModel">equation&nbsp;<span>3.1</span></a>. The difference between principal component and partial least square regression lies in how the score matrix <span class="math inline">\(\mathbf T\)</span> and the rotation matrix <span class="math inline">\(\mathbf W\)</span> are estimated. In principal component regression, a principal component analysis is performed without considering the response <span class="math inline">\(\mathbf y\)</span>, but instead maximizing the variance in the columns of the score matrix <span class="math inline">\(\mathbf T\)</span> successively. However, this strategy could theoretically find principal components which explain maximal variance in the data, but do not in fact correlate with the labels <span class="citation" data-cites="geladi1986partial">(<a href="references.html#ref-geladi1986partial" role="doc-biblioref">Geladi and Kowalski 1986</a>)</span>.</p>
+<p>Here, <span class="math inline">\(l\)</span> is the number of variables from <span class="math inline">\(\mathbf T\)</span> used for the regression, and the rest is analogous to <a href="#eq-generalLinearModel" class="quarto-xref">equation&nbsp;<span>3.1</span></a>. The difference between principal component and partial least square regression lies in how the score matrix <span class="math inline">\(\mathbf T\)</span> and the rotation matrix <span class="math inline">\(\mathbf W\)</span> are estimated. In principal component regression, a principal component analysis is performed without considering the response <span class="math inline">\(\mathbf y\)</span>, but instead maximizing the variance in the columns of the score matrix <span class="math inline">\(\mathbf T\)</span> successively. However, this strategy could theoretically find principal components which explain maximal variance in the data, but do not in fact correlate with the labels <span class="citation" data-cites="geladi1986partial">(<a href="references.html#ref-geladi1986partial" role="doc-biblioref">Geladi and Kowalski 1986</a>)</span>.</p>
 <p>Partial least squares regression, introduced by <span class="citation" data-cites="wold1984collinearity">Wold et al. (<a href="references.html#ref-wold1984collinearity" role="doc-biblioref">1984</a>)</span>, addresses this issue by informing the estimation of the rotation matrix with both the labels and the data at the same time, thus maximizing the predictive power of the latent variables. Specifically, partial least squares estimate <span class="math inline">\(\mathbf W\)</span> to maximize the covariance between <span class="math inline">\(\mathbf y\)</span> and <span class="math inline">\(\mathbf T\)</span>:</p>
 <p><span id="eq-plsr"><span class="math display">\[\mathbf W = \arg \max_{\mathbf W} \left\{ \text{Cov} \left( \mathbf y, \mathbf {XW} \right) \right\} \qquad\text{s.t. } \mathbf W ^\top \mathbf W = \mathbf I \tag{3.7}\]</span></span></p>
-<p>In this equation, <span class="math inline">\(\mathbf I\)</span> represents the identity matrix <span class="citation" data-cites="bennett2003optimization">(<a href="references.html#ref-bennett2003optimization" role="doc-biblioref">Bennett and Embrechts 2003</a>)</span>. Note that <a href="#eq-plsr">equation&nbsp;<span>3.7</span></a> describes the maximization task for univariate partial least squares, applicable to cases with a single response variable, although the model can also be applied to multivariate cases, where a rotation matrix is found to maximize the covariance of the principal components with respect to multiple responses simultaneously.</p>
+<p>In this equation, <span class="math inline">\(\mathbf I\)</span> represents the identity matrix <span class="citation" data-cites="bennett2003optimization">(<a href="references.html#ref-bennett2003optimization" role="doc-biblioref">Bennett and Embrechts 2003</a>)</span>. Note that <a href="#eq-plsr" class="quarto-xref">equation&nbsp;<span>3.7</span></a> describes the maximization task for univariate partial least squares, applicable to cases with a single response variable, although the model can also be applied to multivariate cases, where a rotation matrix is found to maximize the covariance of the principal components with respect to multiple responses simultaneously.</p>
 <p>In summary, principal component regression maximizes the variance of the principal components with respect to <span class="math inline">\(\mathbf X\)</span> and subsequently performs a regression on <span class="math inline">\(\mathbf y\)</span>. In contrast, partial least squares regression maximizes the covariance between the components <span class="math inline">\(\mathbf T\)</span> and the independent variable <span class="math inline">\(\mathbf y\)</span>. Therefore, if the primary goal is to make predictions using linear regression analysis, partial least squares regression is generally a better alternative compared to principal component regression <span class="citation" data-cites="inoue2012diagnostic liu2022partial">(<a href="references.html#ref-inoue2012diagnostic" role="doc-biblioref">Inoue et al. 2012</a>, <a href="references.html#ref-liu2022partial" role="doc-biblioref">Liu et al. 2022</a>)</span>.</p>
 <p>Due to these properties, partial least squares regression is an excellent method for predicting a response based on hyperspectral data. It is also the most widely tested model for predicting crop nitrogen <span class="citation" data-cites="berger2020crop">(<a href="references.html#ref-berger2020crop" role="doc-biblioref">Berger et al. 2020</a>)</span>. For instance, partial least squares were successfully used by <span class="citation" data-cites="wang2017non">Wang et al. (<a href="references.html#ref-wang2017non" role="doc-biblioref">2017</a>)</span> to predict nitrogen in leaves from pear trees, with a validation R<sup>2</sup> value of 0.85.</p>
 <p>However, there are two major weaknesses to the partial least squares approach when it comes to hyperspectral data that must be considered. First, the regression method utilizes the entire spectrum of the original variables to construct the latent variables. While this can provide some insights into which bands are more explanatory for the response, it is not as straightforward as other methods for selecting a minimum number of relevant bands that can adequately explain the response. Band selection via partial least squares requires additional analysis of the model <span class="citation" data-cites="mehmood2016diversity">(<a href="references.html#ref-mehmood2016diversity" role="doc-biblioref">Mehmood and Ahmed 2016</a>)</span>. Second, partial least squares regression is inherently linear in nature. As a result, despite its powerful capabilities in modelling linear relationships, it may fail to capture complex, non-linear relationships present in the data — relationships that are known to exist between the foliar nitrogen concentration and the leaf’s reflectance.</p>
@@ -311,7 +340,7 @@ div.csl-indent {
 <p>Moreover, training artificial neural networks is more challenging due to the large number of tuning parameters that must be set adequately <span class="citation" data-cites="chlingaryan2018machine">(<a href="references.html#ref-chlingaryan2018machine" role="doc-biblioref">Chlingaryan et al. 2018</a>)</span>. And more than any of the previously discussed machine learning models, artificial neural networks exemplify a common issue with all data-driven methods: while they may excel at recognizing patterns and making predictions, they do not necessarily enhance human understanding of processes. This is why <span class="citation" data-cites="berger2020crop">Berger et al. (<a href="references.html#ref-berger2020crop" role="doc-biblioref">2020</a>)</span> advocates for further exploration of physics-based models, particularly those modelling radiative transfer.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-akaike1998information" class="csl-entry" role="listitem">
 Akaike, H. 1998. <a href="https://doi.org/10.1007/978-1-4612-1694-0_15">Information theory and an extension of the maximum likelihood principle</a>. Selected papers of Hirotugu Akaike:199–213.
 </div>
@@ -493,18 +522,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -536,11 +554,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -550,8 +605,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -563,7 +627,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -607,6 +793,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -632,6 +819,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -693,12 +906,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./vegetation-indices-based-methods.html" class="pagination-link">
+      <a href="./vegetation-indices-based-methods.html" class="pagination-link" aria-label="Vegetation-indices-based methods">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Vegetation-indices-based methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./radiative-transfer-models.html" class="pagination-link">
+      <a href="./radiative-transfer-models.html" class="pagination-link" aria-label="Radiative transfer models">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -706,8 +919,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
-    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-left">
+<p>© 2023, Damian Oswald</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/machine-learning-methods-for-hyperspectral-data-analysis.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -732,6 +949,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

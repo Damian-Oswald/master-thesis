@@ -1,0 +1,431 @@
+---
+title: Remote Sensing of Foliar Nitrogen in Californian Almonds
+subtitle: Master thesis presentation
+author:
+- name: Damian Oswald
+  email: damoswa@student.ethz.ch
+date: 2024-04-11
+date-format: long
+execute:
+  echo: false
+  eval: true
+format:
+  revealjs:
+    auto-animate: true
+    theme: [default, theme.scss]
+    slide-number: true
+    show-slide-number: all
+    preview-links: true
+    footer: Remote sensing of foliar nitrogen in Californian almonds
+    toc: true
+    toc-depth: 1
+    bibliography: references.bib
+    csl: chicago.csl
+    html-math-method: mathjax
+---
+
+# Background
+
+## Almonds and nitrogen
+
+- California is the [largest producer of almonds]{.underline} with a production share of roughly 80% [@almonds2020].
+
+::: incremental
+- Almonds are a [profitable but also intensive crop]{.underline}, where the recommended nitrogen application ranges between 130 and 285 kg N ha^-1^ a^-1^ [@nitrogen2020].
+
+- Nitrogen leaching [negatively impacts ecological systems]{.underline} and can affect the water supply quality [@yang2008mechanisms].
+
+- Remote sensing of crop nitrogen for an adequate fertilization is one of the core promises of [precision agriculture]{.underline} [@walter2017smart].
+:::
+
+## Goal of this thesis
+
+- Model the [foliar nitrogen concentration based on hyperspectral images]{.underline} or spectroradiometric measurements.
+
+::: {.fragment}
+$$
+f: \boldsymbol \rho \in \mathbb R^{d} \longrightarrow \text{N}_{\%} \in \mathbb R
+$${#eq-task}
+:::
+
+::: {.fragment}
+- Produce a [model that is generalizable]{.underline} to datasets from other orchards and other years (and possibly even other crops).
+:::
+
+## Modelling approaches
+
+I was trying out [different modelling approaches]{.underline} to predict foliar nitrogen concentration from spectral data.
+
+::: {.fragment .fade-in-then-semi-out}
+- [Hand-crafted]{.underline} features (e.g. vegetation indices).
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- [Machine learning]{.underline} (purely data-driven).
+:::
+
+::: {.fragment .fade-in}
+- Modelling [physical processes]{.underline} using radiative transfer models.
+:::
+
+::: {.fragment}
+For this presentation, the focus will heavily lie on radiative transfer models.
+:::
+
+# Explanation of the data
+
+## Location of the almond orchard
+
+```{r}
+library(leaflet)
+map <- leaflet(width = 1050, height = 550) %>%
+   addTiles() %>%
+   setView(-121.88989, 38.66722, zoom = 7) %>%
+   addMarkers(lng = -121.88989, lat = 38.66722, popup = "Westfield almond orchard")
+map
+```
+
+## Hyperspectral data
+
+![Westwind almond orchard in Woodland, CA (*left*).   Explanation of hyperspectral images (*right*).](resources/Orthomosaic.jpg){#fig-orthomosaic}
+
+## Pre-processing of the data
+
+![Segmentation process to extract the mean spectral reflectance from the hyperspectral images.](resources/Segmentation.png){#fig-segmentation}
+
+## Irradiance, radiance, and reflectance
+
+::: {.r-stack}
+![](resources/Electromagnetic_02.png)
+
+![](resources/Electromagnetic_03.png){.fragment}
+
+![](resources/Electromagnetic_04.png){.fragment}
+:::
+<!-- ![](resources/Electromagnetic_01.png){.fragment} -->
+<!-- ::: -->
+
+## Overview of the data sets
+
+[Leaf-level and canopy-level data]{.underline} was used for this thesis, both referring to the same target trees.
+
+::: {.fragment}
++-----------+----------------+-------------------+---------------+-----------------------+
+| **Level** |**Observations**| **Bands**         | **Range**     | **Sensor**            |
++===========+================+===================+===============+=======================+
+| Leaf      | 124            | 1024              | 338 - 2512 nm | HR-1024i              | 
++-----------+----------------+-------------------+---------------+-----------------------+
+| Canopy    | 107            | 151               | 385 - 900 nm  | Pika L                |
++-----------+----------------+-------------------+---------------+-----------------------+
+
+: Overview of the two datasets used. {#tbl-data tbl-colwidths="[25,25,25,30,30]"}
+:::
+
+<!-- ## Correlations -->
+
+<!-- ![Correlation matrices of canopy- and leaf-level datasets (**A**) as well as band-wise correlations to the measured foliar nitrogen concentration (**B**).](resources/exploratory.png){#fig-exploratory} -->
+
+# Leaf-level radiative transfer modelling
+
+## The [Prospect]{.smallcaps} model
+
+- [Prospect]{.smallcaps} (leaf optical property spectra) is a radiative transfer model first introduced by @jacquemoud1992utilisation.
+
+::: {.fragment}
+- It [simulates the reflectance and transmittance]{.underline} of a leaf given the [content of plant pigments]{.underline} (and some other plant parameters).
+$$
+f: [\mathbf c, N, \alpha] \in \mathbb R^{9} \rightarrow [\boldsymbol \rho, \boldsymbol \tau] \in \mathbb R^{2\times 2101}
+$${#eq-prospectpro}
+:::
+
+::: {.fragment}
+- The function $f$ is constructed from [established laws of physics]{.underline}.
+:::
+
+## The parameters of [Prospect]{.smallcaps}
+
++-------------+----------+------------------------------------------------------+------------------------+
+| Abbreviation|          | Parameter                                            | Unit                   |
++=============+==========+======================================================+========================+
+| \           | `CHL`\   | **Chlorophyll content**\                             |$\mu \text{g cm}^{-2}$\ |
+| \           | `CAR`\   | Carotenoid content\                                  |$\mu \text{g cm}^{-2}$\ |
+| \           | `ANT`\   | Anthocyanin content\                                 |$\mu \text{g cm}^{-2}$\ |
+| $\mathbf c$ | `BROWN`\ | Tannin content\                                      |$-$\                    |
+|             | `EWT`\   | Equivalent water thickness\                          |$\text{g cm}^{-2}$\     |
+|             | `PROT`\  | **Protein content**\                                 |$\text{g cm}^{-2}$\     |
+|             | `CBC`    | Carbon-based constituent content                     |$\text{g cm}^{-2}$      |
++-------------+----------+------------------------------------------------------+------------------------+
+| $N$         | `N`      | Leaf mesophyll structure parameter                   |                        |
++-------------+----------+------------------------------------------------------+------------------------+
+| $\alpha$    | `alpha`  | Solid angle for incident light at surface of leaf    |$^{\circ}$              |
++-------------+----------+------------------------------------------------------+------------------------+
+
+: Input variables of the [Prospect]{.smallcaps} model as documented by @feret2022package. {#tbl-SAC tbl-colwidths="[5,10,90,20]"}
+
+## Physics behind [Prospect]{.smallcaps} {.smaller .scrollable}
+
+We start out with equations describing s- and p-polarized transmission and reflection by @fresnel1821, where $n$ is the refractive index.
+$$
+\scriptstyle
+t_s(\theta, n) = \frac{4\sqrt{1-\sin^2 \theta} \sqrt{n^2-\sin^2 \theta}}{\left(\sqrt{1-\sin^2 \theta} + \sqrt{n^2-\sin^2 \theta}\right)^2}
+\qquad
+t_p(\theta, n) = \frac{4n^2\sqrt{1-\sin^2 \theta} \sqrt{n^2-\sin^2 \theta}}{\left(n^2\sqrt{1-\sin^2 \theta} + \sqrt{n^2-\sin^2 \theta}\right)^2}
+$${#eq-fresnel}
+We are interested in the transmissivity for diffuse light coming from all angles $\theta$ between $0$ and $\frac{\pi}{2}$.
+$$
+\scriptstyle
+\overline{T} = \frac{\int_0^{2\pi} d\varphi \int_0^{\alpha} t(\theta,n) \cos \theta \sin\theta d \theta}{\int_0^{2\pi} d\varphi \int_0^{\alpha}  \cos \theta \sin\theta d \theta}
+$${#eq-integration}
+The Fresnel equations were integrated by @allen1973transmission for a general case of the maximum incidence angle $\alpha$, both for s-polarized transmissivity:
+
+$$
+\scriptstyle
+\begin{aligned}
+T_s(\alpha, n) =
+\frac{1}{96}\frac{(n^2-1)^4}{\left[\sqrt{\left(\sin^2 \alpha -\frac{1}{2} (n^2 + 1)\right)^2 -\frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha +\frac{1}{2}  (n^2 + 1)\right]^3} -
+\\\
+\frac{1}{4}\frac{n^4 - 2n^2 +1}{\sqrt{\left(\sin^2 \alpha -\frac{1}{2} (n^2 + 1)\right)^2 -\frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha + \frac{1}{2} (n^2 + 1)} -
+\\\
+\frac{1}{2} \left( \sqrt{\left(\sin^2 \alpha -\frac{1}{2} (n^2 + 1)\right)^2 -\frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha + \frac{1}{2} (n^2 + 1) \right) +
+\\\
+\frac{1}{12} \frac{(n^2 - 1)^4}{(n + 1)^6} + \frac{1}{2} \frac{(n^2-1)^2}{(n+1)^2} + \frac{1}{4} (n^2+2n+1)
+\end{aligned}
+$${#eq-Ts}
+
+As well as for p-polarized transmissivity:
+
+$$
+\scriptstyle
+\begin{aligned}
+T_p(\alpha, n) =
+\frac{-2 n^2}{(n^2 + 1)^2} \left[ \sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2 - \frac{1}{4} (n^2 - 1)^2} - \sin^2 \alpha + \frac{1}{2} (n^2 + 1) - \frac{1}{2} (n + 1)^2 \right] -
+\\\
+\frac{2  n^2  (n^2 + 1)}{(n^2-1)^2}  \cdot \ln \left[ \sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2 - \frac{1}{4} (n^2 - 1)^2} -
+\frac{\sin^2 \alpha - \frac{1}{2}(n^2 + 1)}{(n+1)^2}
+\right] +
+\\\
+\frac{1}{2} n^2 \left\{ \left[ \sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2 - \frac{1}{4} (n^2 - 1)^2} - \sin^2\alpha - \frac{1}{2} (n^2 + 1)\right]^{-1} - \frac{2}{(n + 1)^2} \right\} +
+\\
+\frac{16n^4 (n^4 + 1)}{(n^2+1)^3(n^2-1)^2} \cdot \ln \left[\frac{
+2 (n^2 + 1)  \left(\sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2} - \sin^2 \alpha + \frac{1}{2}  (n^2 + 1)\right)
+- (n^2 - 1)^2}{(n^2 + 1)(n + 1)^2  - (n^2-1)^2} \right] +
+\\\
+\frac{16 n^6}{(n^2 + 1)^3} \left[
+{2 (n^2 + 1)  \left(\sqrt{\left(\sin^2 \alpha - \frac{1}{2} (n^2 + 1)\right)^2} - \sin^2 \alpha + \frac{1}{2}  (n^2 + 1)\right)
+- (n^2 - 1)^2} \right]^{-1} -
+\\\
+\frac{16n^6}{(n^2 + 1)^3\left( (n^2 + 1)   (n + 1)^2 - (n^2 - 1)^2 \right)}
+\end{aligned}
+$${#eq-Tp}
+
+Combine the two above to get the average transmissivity $\overline{T}$ as a function of $\alpha$ and $n$.
+
+$$
+\scriptstyle
+\overline{T}(\alpha, n) = \frac{T_s(\alpha, n) + T_p(\alpha, n)}{2 \cdot \sin^2 \alpha}
+$${#eq-Tav}
+
+The overall absorption coefficients $k$ of a wavelength $\lambda$ can be calculated as a weighted sum of specific absorption coefficients $s$, where the weights are the content of the plant pigments. These specific absorption coefficients were empirically estimated by @feret2021prospect.
+
+$$
+\scriptstyle
+k_\lambda = \frac{1}{N} \sum_i c_i s_{i,\lambda}
+$${#eq-k}
+
+Given this coefficient vector, we can calculate the transmission for isotropic light $\varphi$ for every wavelength $\lambda$ with $k = k_\lambda$ using the upper incomplete gamma function according to the Beer-Lambert law [@lambert1760photometria; @beer1852bestimmung].
+
+$$
+\scriptstyle
+\varphi =
+(1 - k) \cdot e^{-k} + k^2 \cdot \Gamma(k) =
+(1 - k) \cdot e^{-k} + k^2 \cdot \int_k^\infty \frac{e^{-t}}{t} dt
+$${#eq-phi}
+
+Given all of the equations above, @jacquemoud1992utilisation wrote the first implementation of the [Prospect]{.smallcaps} model. 
+$$
+\scriptstyle
+\begin{aligned}
+A = \frac{ \varphi \: \overline T(90, n)} { n^2\left[1 - \varphi^2 \: \left(1 - n^{-2} \: \overline T(90, n) \right)^2\right] }
+\qquad
+B = \overline T(90, n) \: A
+\\[15pt]
+C = 1 - \overline T(90, n) + \varphi \: B \: \left(1 - \frac{\overline T(90, n)}{n^2}\right)
+\\[15pt]
+D = \sqrt{(1 + C + B) \: (1 + C - B) \: (1 - C + B) \: (1 - C - B)}
+\qquad
+E = \frac{1 + C^2 - B^2 + D}{2\,C}
+\\[15pt]
+F = \frac{1 - C^2 + B^2 + D}{2\,B}
+\qquad
+G = F^{N-1}
+\qquad
+H = \frac{E \, (G^2 - 1)}{E^2 \, G^2 - 1}
+\end{aligned}
+$${#eq-substitutions}
+Everything can be put together to get the spectral reflectance $\rho$ and transmittance $\tau$ of a leaf.
+$$
+\scriptstyle
+\rho = 1 - \overline T(\alpha, n) \left[ 1 + \varphi \, A \left(1 - \frac{\overline T(90, n)}{n^2}  \right) + \frac{A \, H \, B}{1 - H \, C}  \right]
+$${#eq-rho}
+$$
+\scriptstyle
+\tau =  \frac{\overline T(\alpha, n) \, A \, G \, (E^2 - 1)}{(E^2 \, G^2 - 1) \, (1 - H \, C)}
+$${#eq-tau}
+
+## Interactive demonstration
+
+<iframe id="scaled-frame" width = 100% height = 100% frameborder="no" src=" https://damiansmasterthesis.shinyapps.io/shinyapp/"> </iframe>
+
+## The inversion problem
+
+- Radiative transfer models are constructed in the [forward mode]{.underline}: we calculate the reflectance given leaf parameters.
+
+::: {.fragment}
+- In reality, we are dealing with the [inverse problem]{.underline}: we already know the reflectance, but want to find the parameters. This is called the [backward mode]{.underline}.
+$$
+f: x \to y \qquad \qquad f^{-1}: y \to x
+$${#eq-inversion}
+:::
+
+::: {.fragment}
+- The inversion can be achieved via (1) [optimization]{.underline}, (2) a [look-up table]{.underline} or (3) [machine learning]{.underline}.
+:::
+
+# Canopy-level radiative transfer modelling
+
+## The [Less]{.smallcaps} model
+
+- The [Less]{.smallcaps} model (large-scale emulation system for forest simulation) is a [ray tracing model]{.underline} developed by @qi2019less.
+
+. . .
+
+- It simulates a [three-dimensional scene]{.underline} given the spectral reflectance of every material used.
+
+. . .
+
+- [Less]{.smallcaps} is [computationally much more intensive]{.underline} than [Prospect]{.smallcaps} and also includes many more parameters.
+
+. . .
+
+- The inversion of [Less]{.smallcaps} was achieved using a [look-up table]{.underline}.
+
+<!-- ## Simulated parameters -->
+
+<!-- The generated look-up table for the canopy-level reflectance is based on 16'000 distinct simulation runs of [Less]{.smallcaps}. -->
+
+<!-- | Parameter              | Values                                                             | -->
+<!-- | ---------------------- | ------------------------------------------------------------------ | -->
+<!-- | Chlorophyll            | {20.0, 22.5, 25.0, 27.5, 30.0, 32.5, 35.0, 37.5, 40.0, 42.5 45.0}  | -->
+<!-- | Anthocyanin            | {2.75, 3.00, 3.25, 3.5, 3.75}                                      | -->
+<!-- | Carotenoid             | {2.0, 3.0, 4.0, 5.0, 6.0}                                          | -->
+<!-- | Dry matter             | {0.006, 0.007, 0.008, 0.009, 0.010}                                | -->
+<!-- | Leaf area index        | {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}                              | -->
+
+<!-- : The look-up table generated with [Less]{.smallcaps}. {#tbl-Less} -->
+
+## Modelling the orchard scene
+
+![The preliminarily used three-dimensional model of an almond tree (**A**) and how it is arranged to represent a tree in the orchard (**B**).](resources/Less3dExplanation.png){#fig-Less1}
+
+## Observation vs. simulation
+
+![An RGB representation of the hyperspectral data which was observed (**C**) compared to the one that was simulated (**D**).](resources/LessSimulatedObserved.png){#fig-Less2}
+
+<!-- ## How this looks in an image -->
+
+<!-- ![Spatial reflectance given only reflectance information from one single wavelength.](resources/Reflectance.gif) -->
+
+## Look-up-table regression
+
+- Generated a look-up table containing [16'500 simulations]{.underline}.
+
+:::{.fragment}
+- Given one observation, we [find its closest match]{.underline} in the look-up table by minimizing a cost function $J$.
+$$
+J =  \frac{1}{d} \sum_{\lambda=1}^d w_i\left( \rho_{\lambda,\text{obs.}} - \rho_{\lambda,\text{sim.}} \right)^2
+$${#eq-LUTminimization}
+:::
+:::{.fragment}
+- Make smooth predictions by applying [hyper-dimensional interpolation]{.underline} (multicubic polynomial surrogate model).
+:::
+
+# Results of the model performances
+
+## Leaf level results (area-based N)
+
+![Results based on a 50 times repeated 20-fold cross validation.](resources/Results_SRM_N_area.png){#fig-resultsSRM}
+
+## Leaf level results (mass-based N)
+
+![Results based on a 50 times repeated 20-fold cross validation.](resources/Results_SRM.png){#fig-resultsSRM}
+
+## Canopy level results
+
+![Results based on a 50 times repeated 20-fold cross validation.](resources/Results_HSI.png){#fig-resultsHSI}
+
+# Discussion
+
+## Machine learning or physics?
+
+- Machine learning models [work well, but they tend not to be robust]{.underline} if applied to settings outside their training data.
+
+. . .
+
+- [Physics-based models may provide this robustness]{.underline} while maintaining a similar level of accuracy [@berger2018evaluation].
+
+. . .
+
+- These models also [push the understanding]{.underline} of the subject more than machine learning models do.
+
+. . .
+
+- Machine learning serves well as an indicator of [what level of accuracy should be expected]{.underline}.
+
+## Range of the nitrogen measurements
+
+- Data set covers a commercial almond orchard [fertilized according to the recommendations]{.underline}. The measured N~%~ ranges between 1.96 and 3.17%.
+
+. . .
+
+- Much of the published research focuses on fertilization trials, where [nitrogen deficiency is artificially induced]{.underline}.
+
+. . .
+
+<!-- - Focusing on mass-based nitrogen on a leaf level gives a [wrong impression of the accuracy]{.underline}, as it's tightly connected to the leaf mass. -->
+- Healthy distrust of nitrogen measurements -- they are [no absolute ground truth]{.underline}.
+  
+
+## Improving canopy-level predictions
+
+- Include [information in the short-wave infrared spectrum]{.underline} from more advanced sensors.
+
+. . .
+
+<!-- - Satellite imagery is constantly improving in [spectral, spatial and temporal resolution]{.underline} [@berger2020crop]. -->
+- [Spatial information]{.underline} can be combined with spectral information to predict foliar nitrogen concentrations.
+
+## Conclusion
+
+- Nitrogen remote sensing research should focus on crops that are [fertilized according to standard practice]{.underline}.
+
+. . .
+
+- Radiative transfer models are promising as a robust method of [estimating plant traits]{.underline} which can be connected to N~%~.
+
+. . .
+
+- [Prospect]{.smallcaps} predictions shows discrepancies with observed data: chlorophyll could be [split into chlorophyll a and b]{.underline}.
+
+. . .
+
+- Spectral resolution is not that important -- but the range covered is (especially [short-wave infrared]{.underline}).
+
+## {background-video="resources/westwind.mp4"}
+
+## References
+
+
+
+<!-- ## The role of nitrogen in plant leaves -->
+
+<!-- ![Nitrogen as key component of biomass and its proportional allocation in a C~3~ plant leaf. Adapted from @chapin1987plant.](resources/NitrogenInPlants.png){#fig-NitrogenInPlants} -->

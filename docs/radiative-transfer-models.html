@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 4&nbsp; Radiative transfer models</title>
+<title>4&nbsp; Radiative transfer models – Remote Sensing of Foliar Nitrogen in Californian Almonds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -56,17 +57,23 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a01a0c2d2b11ceb43c7631533aab2727.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,14 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,16 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
     <img src="./resources/iconDO.png" alt="" class="navbar-logo">
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/damian-oswald/master-thesis/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -111,27 +146,19 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./radiative-transfer-models.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./radiative-transfer-models.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Radiative transfer models</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +236,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -230,7 +257,7 @@ div.csl-indent {
   <li><a href="#model-inversion-via-machine-learning" id="toc-model-inversion-via-machine-learning" class="nav-link" data-scroll-target="#model-inversion-via-machine-learning">Model inversion via machine learning</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/radiative-transfer-models.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/radiative-transfer-models.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -250,13 +277,19 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
+
 <p>Radiative transfer describes the energy exchange through electromagnetic radiation, with varying influences from different chemical compounds <span class="citation" data-cites="verrelst2017global">(<a href="references.html#ref-verrelst2017global" role="doc-biblioref">Verrelst and Rivera 2017</a>)</span>. Radiative transfer models leverage this physical knowledge by simulating energy transfer from plant leaves or vegetation canopies, enabling the retrieval of vegetation properties from remotely sensed data <span class="citation" data-cites="yang2020spart">(<a href="references.html#ref-yang2020spart" role="doc-biblioref">Yang et al. 2020</a>)</span>. Compared to machine learning approaches, radiative transfer models provide enhanced generalizability and robustness, as they embody a physical process rather than merely extracting a signal from data <span class="citation" data-cites="berger2018evaluation">(<a href="references.html#ref-berger2018evaluation" role="doc-biblioref">Berger et al. 2018</a>)</span>.</p>
-<div id="fig-PlateModel" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/PlateModel.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.1: This image depicts an anonymous artist’s conception of cross section of a maple leaf on the left, and a graphical illustration of a simple radiative transfer model on the right. The model consists of 100 circular arcs simulating the scattering of light through the leaf. The illustration was originally published by <span class="citation" data-cites="allen1973willstatter">Allen et al. (<a href="references.html#ref-allen1973willstatter" role="doc-biblioref">1973</a>)</span>.</figcaption>
+<div id="fig-PlateModel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-PlateModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/PlateModel.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PlateModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: This image depicts an anonymous artist’s conception of cross section of a maple leaf on the left, and a graphical illustration of a simple radiative transfer model on the right. The model consists of 100 circular arcs simulating the scattering of light through the leaf. The illustration was originally published by <span class="citation" data-cites="allen1973willstatter">Allen et al. (<a href="references.html#ref-allen1973willstatter" role="doc-biblioref">1973</a>)</span>.
+</figcaption>
 </figure>
 </div>
 <section id="leaf-level-radiative-transfer-models" class="level2" data-number="4.1">
@@ -266,10 +299,14 @@ div.csl-indent {
 <p>Over the past four decades, the initial <span class="smallcaps">Prospect</span> model has undergone several updates to encompass leaf mass, tannins, anthocyanins, and carotenoids <span class="citation" data-cites="fourty1996leaf jacquemoud1996estimating baret1997estimation fourty1998spectral">(<a href="references.html#ref-fourty1996leaf" role="doc-biblioref">Fourty et al. 1996</a>, <a href="references.html#ref-jacquemoud1996estimating" role="doc-biblioref">Jacquemoud et al. 1996</a>, <a href="references.html#ref-baret1997estimation" role="doc-biblioref">Baret and Fourty 1997</a>, <a href="references.html#ref-fourty1998spectral" role="doc-biblioref">Fourty and Baret 1998</a>)</span>. For a long period, protein and other non-protein carbon-based compounds were consolidated into a single variable due to the challenge of disentangling them <span class="citation" data-cites="jacquemoud2000comparison">(<a href="references.html#ref-jacquemoud2000comparison" role="doc-biblioref">Jacquemoud et al. 2000</a>)</span>.</p>
 <p>In a notable development, the newest iteration of the <span class="smallcaps">Prospect</span> model, <span class="smallcaps">Prospect-Pro</span>, <span class="citation" data-cites="feret2021prospect">Féret et al. (<a href="references.html#ref-feret2021prospect" role="doc-biblioref">2021</a>)</span> successfully disentangled these components by splitting the earlier used variable of leaf mass into protein content and other carbon-based content, which include cellulose, lignin, hemicellulose, starch, and sugars. <span class="smallcaps">Prospect-Pro</span> was calibrated and validated using the leaf optical properties experiment (<span class="smallcaps">Lopex</span>) dataset, which comprises measurements from over fifty plant species collected in northern Italy <span class="citation" data-cites="hosgood1995leaf">(<a href="references.html#ref-hosgood1995leaf" role="doc-biblioref">Hosgood et al. 1995</a>)</span>. This model incorporates seven distinct classes of absorbing compounds, collectively referred to as vector <span class="math inline">\(\mathbf c\)</span>.</p>
 <p><span id="eq-prospectpro"><span class="math display">\[f: [N, \mathbf c, \alpha] \in \mathbb R^{9} \rightarrow [\boldsymbol \rho, \boldsymbol \tau] \in \mathbb R^{2\times 2101} \tag{4.2}\]</span></span></p>
-<p><span class="smallcaps">Prospect-Pro</span> also enables the adjustment of the solid angle <span class="math inline">\(\alpha\)</span> for incident light on the leaf surface, initially determined to be <span class="math inline">\(\alpha = 60^\circ\)</span> by <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span> using a limited dataset. Subsequently, <span class="citation" data-cites="feret2008prospect">Féret et al. (<a href="references.html#ref-feret2008prospect" role="doc-biblioref">2008</a>)</span> discovered that <span class="math inline">\(\alpha = 40^\circ\)</span> was a more accurate value. An overview of the parameters used in <span class="smallcaps">Prospect-Pro</span> can be found in <a href="#tbl-prospect">table&nbsp;<span>4.1</span></a>.</p>
-<div id="tbl-prospect" class="anchored">
-<table class="table">
-<caption>Table&nbsp;4.1: Input variables of the <span class="smallcaps">Prospect-Pro</span> model as documented by <span class="citation" data-cites="feret2022package">Féret and de Boissieu (<a href="references.html#ref-feret2022package" role="doc-biblioref">2022a</a>)</span>. The rows 2 - 7 show the elements of the constituents vector <span class="math inline">\(\mathbf c\)</span>.</caption>
+<p><span class="smallcaps">Prospect-Pro</span> also enables the adjustment of the solid angle <span class="math inline">\(\alpha\)</span> for incident light on the leaf surface, initially determined to be <span class="math inline">\(\alpha = 60^\circ\)</span> by <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span> using a limited dataset. Subsequently, <span class="citation" data-cites="feret2008prospect">Féret et al. (<a href="references.html#ref-feret2008prospect" role="doc-biblioref">2008</a>)</span> discovered that <span class="math inline">\(\alpha = 40^\circ\)</span> was a more accurate value. An overview of the parameters used in <span class="smallcaps">Prospect-Pro</span> can be found in <a href="#tbl-prospect" class="quarto-xref">table&nbsp;<span>4.1</span></a>.</p>
+<div id="tbl-prospect" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[5,20,90,20]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prospect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Input variables of the <span class="smallcaps">Prospect-Pro</span> model as documented by <span class="citation" data-cites="feret2022package">Féret and de Boissieu (<a href="references.html#ref-feret2022package" role="doc-biblioref">2022a</a>)</span>. The rows 2 - 7 show the elements of the constituents vector <span class="math inline">\(\mathbf c\)</span>.
+</figcaption>
+<div aria-describedby="tbl-prospect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 4%">
 <col style="width: 15%">
@@ -327,6 +364,8 @@ Protein content<br>
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>The <span class="smallcaps">Prospect</span> calculations rely on well-established laws of physics, with the Fresnel equations serving as the foundation. These equations describe the reflection and transmission of electromagnetic radiation between distinct optical media <span class="citation" data-cites="fresnel1821">(<a href="references.html#ref-fresnel1821" role="doc-biblioref">Fresnel 1821</a>)</span>. Both <span class="math inline">\(s\)</span> and <span class="math inline">\(p\)</span> polarizations are included in the equations, which necessitate a refractive index <span class="math inline">\(n\)</span> — assumed to be <span class="math inline">\(n &gt; 1\)</span> for the leaf and <span class="math inline">\(n = 1\)</span> for air — and an angle of incidence <span class="math inline">\(\theta\)</span>.</p>
 <p><span id="eq-fresnel"><span class="math display">\[t_s = \frac{4\sqrt{1-\sin^2 \theta} \sqrt{n^2-\sin^2 \theta}}{\left(\sqrt{1-\sin^2 \theta} + \sqrt{n^2-\sin^2 \theta}\right)^2}
 \quad
@@ -334,11 +373,15 @@ t_p = \frac{4n^2\sqrt{1-\sin^2 \theta} \sqrt{n^2-\sin^2 \theta}}{\left(n^2\sqrt{
 \tag{4.3}\]</span></span></p>
 <p>As the focus lies on the transmissivity for diffuse light originating from all angles <span class="math inline">\(\theta\)</span> between 0 and <span class="math inline">\(\frac{\pi}{2}\)</span>, it is necessary to integrate across all possible angles to obtain the average transmissivity <span class="math inline">\(\overline{T}\)</span>.</p>
 <p><span id="eq-TAVunintegrated"><span class="math display">\[\overline{T} = \frac{\int_0^{2\pi} d\varphi \int_0^{\alpha} t(\theta,n) \cos \theta \sin\theta d \theta}{\int_0^{2\pi} d\varphi \int_0^{\alpha}  \cos \theta \sin\theta d \theta} \tag{4.4}\]</span></span></p>
-<p>The integration for the special case where the maximum incidence angle <span class="math inline">\(\alpha\)</span> equals <span class="math inline">\(\frac{\pi}{2}\)</span> was performed by <span class="citation" data-cites="stern1964transmission">Stern (<a href="references.html#ref-stern1964transmission" role="doc-biblioref">1964</a>)</span>. Subsequently, <span class="citation" data-cites="allen1973transmission">Allen (<a href="references.html#ref-allen1973transmission" role="doc-biblioref">1973</a>)</span> conducted the integration of the average transmissivity <span class="math inline">\(\overline{T}\)</span> for a generalized angle of incidence <span class="math inline">\(\alpha\)</span>. This approach is currently employed in the <span class="smallcaps">Prospect-Pro</span> computation <span class="citation" data-cites="feret2022package">(<a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022a</a>)</span>. The expression for average transmissivity is rather complex, as to be seen in <a href="#eq-TavTsTp">equation&nbsp;<span>4.5</span></a>. A visual representation of how the average transmissivity varies as a function of the refractive index <span class="math inline">\(n\)</span> and the angular range <span class="math inline">\(\alpha\)</span> can be found in <a href="#fig-SAC">figure&nbsp;<span>4.3</span></a>, displayed at the bottom.</p>
-<div id="fig-LeafStructure" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/LeafStructure.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.2: The <span class="smallcaps">Prospect</span> model simplifies a leaf’s structure by representing it as a flat plane, rather than accounting for its complex three-dimensional form, which consists of various components and a textured surface (<strong>A</strong>, created using content by <span class="citation" data-cites="wheeler2011">Wheeler (<a href="references.html#ref-wheeler2011" role="doc-biblioref">2011</a>)</span>). In the sketch inspired by <span class="citation" data-cites="jacquemoud1992utilisation">Jacquemoud (<a href="references.html#ref-jacquemoud1992utilisation" role="doc-biblioref">1992</a>)</span> (<strong>B</strong>), the different angles incorporated in <a href="#eq-TAVunintegrated">equation&nbsp;<span>4.4</span></a> are illustrated: the general angles for azimuth (<span class="math inline">\(\varphi\)</span>) and zenith (<span class="math inline">\(\theta\)</span>) as well as the angle of maximum incident (<span class="math inline">\(\alpha\)</span>). In addition to that, the arrows indicate the reflectance (<span class="math inline">\(\rho\)</span>) and transmittance (<span class="math inline">\(\tau\)</span>).</figcaption>
+<p>The integration for the special case where the maximum incidence angle <span class="math inline">\(\alpha\)</span> equals <span class="math inline">\(\frac{\pi}{2}\)</span> was performed by <span class="citation" data-cites="stern1964transmission">Stern (<a href="references.html#ref-stern1964transmission" role="doc-biblioref">1964</a>)</span>. Subsequently, <span class="citation" data-cites="allen1973transmission">Allen (<a href="references.html#ref-allen1973transmission" role="doc-biblioref">1973</a>)</span> conducted the integration of the average transmissivity <span class="math inline">\(\overline{T}\)</span> for a generalized angle of incidence <span class="math inline">\(\alpha\)</span>. This approach is currently employed in the <span class="smallcaps">Prospect-Pro</span> computation <span class="citation" data-cites="feret2022package">(<a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022a</a>)</span>. The expression for average transmissivity is rather complex, as to be seen in <a href="#eq-TavTsTp" class="quarto-xref">equation&nbsp;<span>4.5</span></a>. A visual representation of how the average transmissivity varies as a function of the refractive index <span class="math inline">\(n\)</span> and the angular range <span class="math inline">\(\alpha\)</span> can be found in <a href="#fig-SAC" class="quarto-xref">figure&nbsp;<span>4.3</span></a>, displayed at the bottom.</p>
+<div id="fig-LeafStructure" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-LeafStructure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/LeafStructure.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-LeafStructure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: The <span class="smallcaps">Prospect</span> model simplifies a leaf’s structure by representing it as a flat plane, rather than accounting for its complex three-dimensional form, which consists of various components and a textured surface (<strong>A</strong>, created using content by <span class="citation" data-cites="wheeler2011">Wheeler (<a href="references.html#ref-wheeler2011" role="doc-biblioref">2011</a>)</span>). In the sketch inspired by <span class="citation" data-cites="jacquemoud1992utilisation">Jacquemoud (<a href="references.html#ref-jacquemoud1992utilisation" role="doc-biblioref">1992</a>)</span> (<strong>B</strong>), the different angles incorporated in <a href="#eq-TAVunintegrated" class="quarto-xref">equation&nbsp;<span>4.4</span></a> are illustrated: the general angles for azimuth (<span class="math inline">\(\varphi\)</span>) and zenith (<span class="math inline">\(\theta\)</span>) as well as the angle of maximum incident (<span class="math inline">\(\alpha\)</span>). In addition to that, the arrows indicate the reflectance (<span class="math inline">\(\rho\)</span>) and transmittance (<span class="math inline">\(\tau\)</span>).
+</figcaption>
 </figure>
 </div>
 <p><span class="math display">\[
@@ -380,17 +423,21 @@ T_p(\alpha, n) =
 \tag{4.5}\]</span></span></p>
 <p>In the <span class="smallcaps">Prospect-Pro</span> model, reflectance and transmittance depend on multiple variables, as well as numerous fixed, empirically estimated parameters. These parameters encompass the refractive index (<span class="math inline">\(n\)</span>) and specific absorption coefficients (<span class="math inline">\(s\)</span>), which all are individually fitted for each absorbing compound in <span class="math inline">\(\mathbf c\)</span> across a diverse range of plant species. Additionally, these parameters are estimated for every wavelength <span class="math inline">\(\lambda\)</span> between 400 and 2500 nm. As a result, <span class="smallcaps">Prospect-Pro</span> relies on a total of 8 × 2101 = 16’808 empirically estimated internal parameters. With these parameters in hand, the overall absorption coefficient can be computed as follows.</p>
 <p><span id="eq-k"><span class="math display">\[k_\lambda = \frac{1}{N} \sum_i c_i s_{i,\lambda} \tag{4.6}\]</span></span></p>
-<p>Here, <span class="math inline">\(c_i\)</span> represents the content of the <span class="math inline">\(i\)</span><sup>th</sup> constituent in the vector <span class="math inline">\(\mathbf c\)</span> (as detailed in <a href="#tbl-prospect">table&nbsp;<span>4.1</span></a>), and <span class="math inline">\(s_i\)</span> denotes the specific absorption coefficient of the <span class="math inline">\(i\)</span><sup>th</sup> constituent and the <span class="math inline">\(\lambda\)</span><sup>th</sup> wavelength. Although the computation of reflectance and transmittance is not linear with respect to <span class="math inline">\(k\)</span>, it is still possible to discern the bandwidths in which a particular compound’s presence would have an impact based on the specific absorption coefficients <span class="math inline">\(s\)</span> displayed in <a href="#fig-SAC">figure&nbsp;<span>4.3</span></a>.</p>
-<div id="fig-SAC" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/SpecPROSPECT.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.3: <em>Top:</em> This figure shows the refractive index (<strong>n</strong>) and the eight specific absorption coefficients (<span class="math inline">\(s\)</span>) for different constituents of the <span class="smallcaps">Prospect-Pro</span> model as functions of the wavelength <span class="math inline">\(\lambda\)</span>. This encompasses the parameters chlorophyll content (<strong>CHL</strong>), carotenoid content (<strong>CAR</strong>), anthocyanin content (<strong>ANT</strong>), brown pigment content (<strong>BROWN</strong>), equivalent water thickness (<strong>EWT</strong>), leaf mass per area (<strong>LMA</strong>), protein content (<strong>PROT</strong>), and (non-protein) carbon-based constituents content (<strong>CBC</strong>). <em>Bottom:</em> The average transmissivity <span class="math inline">\(\overline{T}\)</span> of a plane dielectric surface for different values of the refractive index <span class="math inline">\(n\)</span> over the angular range <span class="math inline">\(\alpha\)</span>. Adapted from <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span>.</figcaption>
+<p>Here, <span class="math inline">\(c_i\)</span> represents the content of the <span class="math inline">\(i\)</span><sup>th</sup> constituent in the vector <span class="math inline">\(\mathbf c\)</span> (as detailed in <a href="#tbl-prospect" class="quarto-xref">table&nbsp;<span>4.1</span></a>), and <span class="math inline">\(s_i\)</span> denotes the specific absorption coefficient of the <span class="math inline">\(i\)</span><sup>th</sup> constituent and the <span class="math inline">\(\lambda\)</span><sup>th</sup> wavelength. Although the computation of reflectance and transmittance is not linear with respect to <span class="math inline">\(k\)</span>, it is still possible to discern the bandwidths in which a particular compound’s presence would have an impact based on the specific absorption coefficients <span class="math inline">\(s\)</span> displayed in <a href="#fig-SAC" class="quarto-xref">figure&nbsp;<span>4.3</span></a>.</p>
+<div id="fig-SAC" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-SAC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/SpecPROSPECT.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SAC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: <em>Top:</em> This figure shows the refractive index (<strong>n</strong>) and the eight specific absorption coefficients (<span class="math inline">\(s\)</span>) for different constituents of the <span class="smallcaps">Prospect-Pro</span> model as functions of the wavelength <span class="math inline">\(\lambda\)</span>. This encompasses the parameters chlorophyll content (<strong>CHL</strong>), carotenoid content (<strong>CAR</strong>), anthocyanin content (<strong>ANT</strong>), brown pigment content (<strong>BROWN</strong>), equivalent water thickness (<strong>EWT</strong>), leaf mass per area (<strong>LMA</strong>), protein content (<strong>PROT</strong>), and (non-protein) carbon-based constituents content (<strong>CBC</strong>). <em>Bottom:</em> The average transmissivity <span class="math inline">\(\overline{T}\)</span> of a plane dielectric surface for different values of the refractive index <span class="math inline">\(n\)</span> over the angular range <span class="math inline">\(\alpha\)</span>. Adapted from <span class="citation" data-cites="jacquemoud1990prospect">Jacquemoud and Baret (<a href="references.html#ref-jacquemoud1990prospect" role="doc-biblioref">1990</a>)</span>.
+</figcaption>
 </figure>
 </div>
 <p>Utilizing the overall absorption coefficient <span class="math inline">\(k\)</span>, the transmission for isotropic light <span class="math inline">\(\varphi\)</span> can be calculated for each wavelength <span class="math inline">\(\lambda\)</span> with <span class="math inline">\(k = k_\lambda\)</span> using the upper incomplete gamma function in accordance with the Beer-Lambert law <span class="citation" data-cites="lambert1760photometria beer1852bestimmung">(<a href="references.html#ref-lambert1760photometria" role="doc-biblioref">Lambert 1760</a>, <a href="references.html#ref-beer1852bestimmung" role="doc-biblioref">Beer 1852</a>)</span>.</p>
 <p><span id="eq-phi"><span class="math display">\[\varphi = (1 - k) \cdot e^{-k} + k^2 \cdot \Gamma(k) = \\
 (1 - k) \cdot e^{-k} + k^2 \cdot \int_k^\infty \frac{e^{-t}}{t} dt \tag{4.7}\]</span></span></p>
-<p>In the case of <span class="smallcaps">Prospect-Pro</span>, the upper incomplete Gamma function <span class="math inline">\(\Gamma(k)\)</span> is simplified and computed according to <span class="citation" data-cites="expint">Goulet (<a href="references.html#ref-expint" role="doc-biblioref">2016</a>)</span>. Using this information, the final equations for transmittance <span class="math inline">\(\tau\)</span> and reflectance <span class="math inline">\(\rho\)</span> can be expressed (<a href="#eq-rhoAndTau">Equation&nbsp;<span>4.9</span></a>). Due to space limitations, the substituting terms <span class="math inline">\(A, B, C, D, E, F\)</span>, and <span class="math inline">\(G\)</span> are employed (<a href="#eq-substitutions">Equation&nbsp;<span>4.8</span></a>).</p>
+<p>In the case of <span class="smallcaps">Prospect-Pro</span>, the upper incomplete Gamma function <span class="math inline">\(\Gamma(k)\)</span> is simplified and computed according to <span class="citation" data-cites="expint">Goulet (<a href="references.html#ref-expint" role="doc-biblioref">2016</a>)</span>. Using this information, the final equations for transmittance <span class="math inline">\(\tau\)</span> and reflectance <span class="math inline">\(\rho\)</span> can be expressed (<a href="#eq-rhoAndTau" class="quarto-xref">Equation&nbsp;<span>4.9</span></a>). Due to space limitations, the substituting terms <span class="math inline">\(A, B, C, D, E, F\)</span>, and <span class="math inline">\(G\)</span> are employed (<a href="#eq-substitutions" class="quarto-xref">Equation&nbsp;<span>4.8</span></a>).</p>
 <p><span id="eq-substitutions"><span class="math display">\[\begin{aligned}
 A = \frac{ \varphi \: \overline T(90, n)} { n^2\left[1 - \varphi^2 \: \left(1 - n^{-2} \: \overline T(90, n) \right)^2\right] }
 \qquad
@@ -411,11 +458,15 @@ H = \frac{E \, (G^2 - 1)}{E^2 \, G^2 - 1}
 <p><span id="eq-rhoAndTau"><span class="math display">\[\rho = 1 - \overline T(\alpha, n) \left[ 1 + \varphi \, A \left(1 - \frac{\overline T(90, n)}{n^2}  \right) + \frac{A \, H \, B}{1 - H \, C}  \right]
 \quad
 \tau =  \frac{\overline T(\alpha, n) \, A \, G \, (E^2 - 1)}{(E^2 \, G^2 - 1) \, (1 - H \, C)} \tag{4.9}\]</span></span></p>
-<p>The impact of distinct compounds on absorption is demonstrated in <a href="#fig-ProspectModelOutput">figure&nbsp;<span>4.4</span></a>. This figure vividly portrays the absorption of electromagnetic radiation by proteins in the short-wave-infrared spectrum, specifically within the range of 1500 to 2500 nm wavelength. In contrast to carbon-based compounds, proteins exhibit no absorption in the near-infrared or visible light spectra.</p>
-<div id="fig-ProspectModelOutput" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/ProspectModelOutput.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4.4: This figure illustrates the output of the <span class="smallcaps">Prospect-Pro</span> model. Every plot shows an overlay of 20 model runs where only one variable is changing <em>ceteris paribus</em>. The three variables illustrated are chlorophyll content (<strong>A</strong>: <code>CHL</code> <span class="math inline">\(\in [10,70]\; \mu\text{g} \: \text{cm}^{-2}\)</span>), (non-protein) carbon-based content (<strong>B</strong>: <code>CBC</code> <span class="math inline">\(\in [0,0.02] \; \text{g} \: \text{cm}^{-2}\)</span>), and protein content (<strong>C</strong>: <code>PROT</code> <span class="math inline">\(\in [0,0.02] \; \text{g} \: \text{cm}^{-2}\)</span>).</figcaption>
+<p>The impact of distinct compounds on absorption is demonstrated in <a href="#fig-ProspectModelOutput" class="quarto-xref">figure&nbsp;<span>4.4</span></a>. This figure vividly portrays the absorption of electromagnetic radiation by proteins in the short-wave-infrared spectrum, specifically within the range of 1500 to 2500 nm wavelength. In contrast to carbon-based compounds, proteins exhibit no absorption in the near-infrared or visible light spectra.</p>
+<div id="fig-ProspectModelOutput" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ProspectModelOutput-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/ProspectModelOutput.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ProspectModelOutput-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: This figure illustrates the output of the <span class="smallcaps">Prospect-Pro</span> model. Every plot shows an overlay of 20 model runs where only one variable is changing <em>ceteris paribus</em>. The three variables illustrated are chlorophyll content (<strong>A</strong>: <code>CHL</code> <span class="math inline">\(\in [10,70]\; \mu\text{g} \: \text{cm}^{-2}\)</span>), (non-protein) carbon-based content (<strong>B</strong>: <code>CBC</code> <span class="math inline">\(\in [0,0.02] \; \text{g} \: \text{cm}^{-2}\)</span>), and protein content (<strong>C</strong>: <code>PROT</code> <span class="math inline">\(\in [0,0.02] \; \text{g} \: \text{cm}^{-2}\)</span>).
+</figcaption>
 </figure>
 </div>
 </section>
@@ -425,10 +476,14 @@ H = \frac{E \, (G^2 - 1)}{E^2 \, G^2 - 1}
 <section id="one-dimensional-canopy-reflectance-models" class="level3">
 <h3 class="anchored" data-anchor-id="one-dimensional-canopy-reflectance-models">One-dimensional canopy reflectance models</h3>
 <p>The radiative transfer model <span class="smallcaps">Sail</span> (<u>s</u>cattering by <u>a</u>rbitrary <u>i</u>nclined <u>l</u>eaves) was one of the earliest models to simulate the bidirectional reflectance of a canopy. <span class="smallcaps">Sail</span> makes reflectance a function of both solar incident and viewing angles <span class="citation" data-cites="verhoef1984light verhoef1985earth">(<a href="references.html#ref-verhoef1984light" role="doc-biblioref">Verhoef 1984</a>, <a href="references.html#ref-verhoef1985earth" role="doc-biblioref">1985</a>)</span>. As implied by its name, <span class="smallcaps">Sail</span> represents the canopy through the simulation of numerous randomly inclined leaves situated above the soil. These leaves are assumed to be uniformly distributed in space but inclined according to a specific leaf inclination angle distribution function.</p>
-<p>The most recent iteration of the <span class="smallcaps">Sail</span> model is known as <span class="smallcaps">4Sail</span>. While it simulates the same process as the original version, <span class="smallcaps">4Sail</span> is more numerically robust and optimized for enhanced speed <span class="citation" data-cites="verhoef2007unified">(<a href="references.html#ref-verhoef2007unified" role="doc-biblioref">Verhoef et al. 2007</a>)</span>. The parameters used in the <span class="smallcaps">Sail</span> model can be found in <a href="#tbl-SAIL">table&nbsp;<span>4.2</span></a>.</p>
-<div id="tbl-SAIL" class="anchored">
-<table class="table">
-<caption>Table&nbsp;4.2: Input variables of the <span class="smallcaps">4Sail</span> model as documented by <span class="citation" data-cites="feret2022prosail">Féret and de Boissieu (<a href="references.html#ref-feret2022prosail" role="doc-biblioref">2022b</a>)</span>.</caption>
+<p>The most recent iteration of the <span class="smallcaps">Sail</span> model is known as <span class="smallcaps">4Sail</span>. While it simulates the same process as the original version, <span class="smallcaps">4Sail</span> is more numerically robust and optimized for enhanced speed <span class="citation" data-cites="verhoef2007unified">(<a href="references.html#ref-verhoef2007unified" role="doc-biblioref">Verhoef et al. 2007</a>)</span>. The parameters used in the <span class="smallcaps">Sail</span> model can be found in <a href="#tbl-SAIL" class="quarto-xref">table&nbsp;<span>4.2</span></a>.</p>
+<div id="tbl-SAIL" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[20,70,10]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-SAIL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Input variables of the <span class="smallcaps">4Sail</span> model as documented by <span class="citation" data-cites="feret2022prosail">Féret and de Boissieu (<a href="references.html#ref-feret2022prosail" role="doc-biblioref">2022b</a>)</span>.
+</figcaption>
+<div aria-describedby="tbl-SAIL-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 70%">
@@ -471,6 +526,8 @@ Relative azimuth angle between sun and sensor</td>
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>In order to achieve accurate modelling with the <span class="smallcaps">Sail</span> model, specifying the reflectance and transmittance of leaves is crucial. These values can either be measured directly and integrated into the model or derived from the <span class="smallcaps">Prospect</span> model’s predictions. The coupling of these models was first accomplished by <span class="citation" data-cites="baret1992modeled">Baret et al. (<a href="references.html#ref-baret1992modeled" role="doc-biblioref">1992</a>)</span> following the development of the initial <span class="smallcaps">Prospect</span> model. This combined model is known as <span class="smallcaps">Prosail</span>, and its latest implementation unifies <span class="smallcaps">4Sail</span> and <span class="smallcaps">Prospect-Pro</span> <span class="citation" data-cites="jacquemoud2009prospect">(<a href="references.html#ref-jacquemoud2009prospect" role="doc-biblioref">Jacquemoud et al. 2009</a>)</span>. <span class="smallcaps">Prosail</span> provides an effective means of extending plant pigment retrieval techniques from leaf-level analysis to canopy-level assessment, thereby enriching the scope of vegetation studies.</p>
 <p>The <span class="smallcaps">Prosail</span> model simplifies light transport through a canopy into a one-dimensional process, in which light can travel either downwards or upwards. The canopy is assumed to consist of a homogeneous distribution of leaves. This simplification imposes certain limitations on the applicability of <span class="smallcaps">Prosail</span> and similar one-dimensional radiative transfer models <span class="citation" data-cites="bailey2020one">(<a href="references.html#ref-bailey2020one" role="doc-biblioref">Bailey et al. 2020</a>)</span>. Although the assumption proves reasonably effective for modelling canopies that can be approximated as a homogeneous mass, such as grass, wheat, or soybeans, it may not be well-suited for more heterogeneous canopies. As a result, the <span class="smallcaps">Prosail</span> model is not the most suitable choice for examining crops with intricate canopy structures such as almond trees — alternative models should be considered and explored for these specific applications.</p>
 </section>
@@ -497,12 +554,12 @@ f: x \to y \qquad \qquad f^{-1}: y\to x
 \tag{4.10}\]</span></span> Upon successful model inversion, the output of the model becomes its input and vice versa. Unfortunately, inverting radiative transfer models such as <span class="smallcaps">Prospect</span> is considered mathematically ill-posed and cannot be accomplished algebraically by simply re-writing the equations <span class="citation" data-cites="daun2017">(<a href="references.html#ref-daun2017" role="doc-biblioref">Daun 2017</a>)</span>. Consequently, alternative methods must be employed to achieve the model inversion. Specifically, the inversion of a radiative transfer model can be achieved through mathematical optimization, look-up tables, or machine learning techniques.</p>
 <section id="mathematical-optimization" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="mathematical-optimization">Mathematical optimization</h3>
-<div class="page-columns page-full"><p>The conventional approach to inverting <span class="smallcaps">Prospect-Pro</span> involves mathematical optimization, specifically sequential quadratic programming <span class="citation" data-cites="feret2022package borchers2022pracma">(<a href="references.html#ref-borchers2022pracma" role="doc-biblioref">Borchers 2022</a>, <a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022a</a>)</span>. This iterative optimization algorithm seeks to identify the parameters <span class="math inline">\(\boldsymbol \theta\)</span> for the model <span class="math inline">\(f\)</span> in order to minimize a cost function <span class="math inline">\(J\)</span>. Typically, the mean squared error is employed as the cost function, which represents the sum of the squared difference between the model’s predictions (<span class="math inline">\(f(\boldsymbol {\theta})_\lambda\)</span>) and the observed reflectance and transmittance data. <span id="eq-minimization"><span class="math display">\[
+<p>The conventional approach to inverting <span class="smallcaps">Prospect-Pro</span> involves mathematical optimization, specifically sequential quadratic programming <span class="citation" data-cites="feret2022package borchers2022pracma">(<a href="references.html#ref-borchers2022pracma" role="doc-biblioref">Borchers 2022</a>, <a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022a</a>)</span>. This iterative optimization algorithm seeks to identify the parameters <span class="math inline">\(\boldsymbol \theta\)</span> for the model <span class="math inline">\(f\)</span> in order to minimize a cost function <span class="math inline">\(J\)</span>. Typically, the mean squared error is employed as the cost function, which represents the sum of the squared difference between the model’s predictions (<span class="math inline">\(f(\boldsymbol {\theta})_\lambda\)</span>) and the observed reflectance and transmittance data. <span id="eq-minimization"><span class="math display">\[
 \boldsymbol {\hat \theta}
 = \arg \min_{\boldsymbol {\theta}} J(\boldsymbol \theta, \boldsymbol \rho) =
 \arg \min_{\boldsymbol {\theta}} \sum_{\lambda=1}^{n} \left( f(\boldsymbol {\theta})_\lambda - \rho_\lambda \right)^2
-\tag{4.11}\]</span></span> Note that the formula in <a href="#eq-minimization">equation&nbsp;<span>4.11</span></a> only relates to reflectance but works analogous for transmittance as well. The optimization algorithm operates by iteratively running the model, numerically approximating the gradient (<span class="math inline">\(\nabla_J\)</span>) and the Hessian (<span class="math inline">\(\mathbf H_J\)</span>) of the cost function <span class="math inline">\(J\)</span>, and utilizing this information to adjust the parameters. This iteration is stopped when the gradient becomes sufficiently small (<span class="math inline">\(\nabla_J \approx \mathbf 0\)</span>). Inverting the <span class="smallcaps">Prospect-Pro</span> model necessitates approximately 132 model runs on average<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to achieve a tolerance level of 10<sup>−6</sup>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;This statement highlights that the average number of model evaluations required for inverting the <span class="smallcaps">Prospect-Pro</span> model on the almond dataset was 132. While this number may vary for different datasets, the differences are not expected to be extreme, remaining within the same order of magnitude.</p></li></div></div>
-<p>As an alternative to the maximum likelihood estimation effectively executed via the minimization task in <a href="#eq-minimization">equation&nbsp;<span>4.11</span></a>, a Bayesian framework could be employed to identify the model’s parameters <span class="citation" data-cites="daun2017">(<a href="references.html#ref-daun2017" role="doc-biblioref">Daun 2017</a>)</span>. This method requires information on the prior distribution of the parameter to compute the posterior probability distribution. Although it is computationally more demanding than the maximum likelihood estimation, it offers the advantage of producing credibility intervals for the parameters based on their joint distribution. For instance, <span class="citation" data-cites="zhang2005estimating">Zhang et al. (<a href="references.html#ref-zhang2005estimating" role="doc-biblioref">2005</a>)</span> and more recently <span class="citation" data-cites="shiklomanov2021cutting">Shiklomanov et al. (<a href="references.html#ref-shiklomanov2021cutting" role="doc-biblioref">2021</a>)</span> employed a Bayesian calibration method to invert the <span class="smallcaps">Prosail-2</span> and <span class="smallcaps">Prospect-5</span> models, respectively. Both teams utilized a Markov Chain Monte Carlo (MCMC) algorithm to achieve this inversion.</p>
+\tag{4.11}\]</span></span> Note that the formula in <a href="#eq-minimization" class="quarto-xref">equation&nbsp;<span>4.11</span></a> only relates to reflectance but works analogous for transmittance as well. The optimization algorithm operates by iteratively running the model, numerically approximating the gradient (<span class="math inline">\(\nabla_J\)</span>) and the Hessian (<span class="math inline">\(\mathbf H_J\)</span>) of the cost function <span class="math inline">\(J\)</span>, and utilizing this information to adjust the parameters. This iteration is stopped when the gradient becomes sufficiently small (<span class="math inline">\(\nabla_J \approx \mathbf 0\)</span>). Inverting the <span class="smallcaps">Prospect-Pro</span> model necessitates approximately 132 model runs on average<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to achieve a tolerance level of 10<sup>−6</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;This statement highlights that the average number of model evaluations required for inverting the <span class="smallcaps">Prospect-Pro</span> model on the almond dataset was 132. While this number may vary for different datasets, the differences are not expected to be extreme, remaining within the same order of magnitude.</p></div></div><p>As an alternative to the maximum likelihood estimation effectively executed via the minimization task in <a href="#eq-minimization" class="quarto-xref">equation&nbsp;<span>4.11</span></a>, a Bayesian framework could be employed to identify the model’s parameters <span class="citation" data-cites="daun2017">(<a href="references.html#ref-daun2017" role="doc-biblioref">Daun 2017</a>)</span>. This method requires information on the prior distribution of the parameter to compute the posterior probability distribution. Although it is computationally more demanding than the maximum likelihood estimation, it offers the advantage of producing credibility intervals for the parameters based on their joint distribution. For instance, <span class="citation" data-cites="zhang2005estimating">Zhang et al. (<a href="references.html#ref-zhang2005estimating" role="doc-biblioref">2005</a>)</span> and more recently <span class="citation" data-cites="shiklomanov2021cutting">Shiklomanov et al. (<a href="references.html#ref-shiklomanov2021cutting" role="doc-biblioref">2021</a>)</span> employed a Bayesian calibration method to invert the <span class="smallcaps">Prosail-2</span> and <span class="smallcaps">Prospect-5</span> models, respectively. Both teams utilized a Markov Chain Monte Carlo (MCMC) algorithm to achieve this inversion.</p>
 <p>There are three primary drawbacks associated with employing mathematical optimization as an inversion technique for radiative transfer models. The first drawback concerns the feasibility of the approach, which diminishes as the computational cost for a single evaluation of the model becomes too large. This typically occurs when the radiative transfer model grows increasingly complex and computationally demanding, thereby reducing the efficacy of mathematical optimization as an inversion method. The second disadvantage emerges when handling a substantial number of observations that necessitate individual parameter retrieval. In these instances, mathematical optimization loses its effectiveness, as the information obtained from inverting the model for one observation cannot be utilized for another. The final concern involves the risk of becoming trapped in a local minimum, contingent upon the selection of initial parameters. If these limitations prove to be insurmountable, it is prudent to explore alternative solutions such as look-up tables or machine learning techniques, which might offer greater efficiency and effectiveness in addressing such challenges. Consequently, for the inversion of more intricate models like <span class="smallcaps">Less</span>, mathematical optimization is not the most suitable approach.</p>
 </section>
 <section id="look-up-tables" class="level3">
@@ -516,7 +573,7 @@ f: x \to y \qquad \qquad f^{-1}: y\to x
 <p><span class="citation" data-cites="verrelst2015replacing">Verrelst et al. (<a href="references.html#ref-verrelst2015replacing" role="doc-biblioref">2015</a>)</span> refer to machine learning models that approximate the inverse of a radiative transfer model as emulators. The authors argue that the most significant advantages of emulators are their ability to interpolate effectively in regions where the radiative transfer model has not been executed and their rapid prediction capabilities compared to methods like look-up tables.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-allen1973transmission" class="csl-entry" role="listitem">
 Allen, W. A. 1973. <a href="https://doi.org/10.1364/JOSA.63.000664">Transmission of isotropic light across a dielectric surface in two and three dimensions</a>. JOSA 63:664–666.
 </div>
@@ -711,18 +768,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -754,11 +800,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -768,8 +851,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -781,7 +873,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -825,6 +1039,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -850,6 +1065,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -911,12 +1152,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="pagination-link">
+      <a href="./machine-learning-methods-for-hyperspectral-data-analysis.html" class="pagination-link" aria-label="Machine learning methods for hyperspectral data analysis">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Machine learning methods for hyperspectral data analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./describing-processing-and-inspecting-the-data.html" class="pagination-link">
+      <a href="./describing-processing-and-inspecting-the-data.html" class="pagination-link" aria-label="Describing, processing and inspecting the data">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -924,8 +1165,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
-    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-left">
+<p>© 2023, Damian Oswald</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/radiative-transfer-models.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -950,6 +1195,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

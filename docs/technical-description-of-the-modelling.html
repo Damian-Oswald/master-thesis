@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Remote Sensing of Foliar Nitrogen in Californian Almonds - 6&nbsp; Technical description of the modelling</title>
+<title>6&nbsp; Technical description of the modelling – Remote Sensing of Foliar Nitrogen in Californian Almonds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -56,17 +57,23 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a01a0c2d2b11ceb43c7631533aab2727.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,14 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,16 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="https://damianoswald.com/index.html" class="navbar-brand navbar-brand-logo">
     <img src="./resources/iconDO.png" alt="" class="navbar-logo">
     </a>
   </div>
-        <div class="quarto-navbar-tools ms-auto tools-wide">
-    <a href="https://github.com/damian-oswald/master-thesis/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <a href="https://github.com/damian-oswald/master-thesis/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Remote-Sensing-of-Foliar-Nitrogen-in-Californian-Almonds.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -111,27 +146,19 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./technical-description-of-the-modelling.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Technical description of the modelling</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./technical-description-of-the-modelling.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Technical description of the modelling</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -209,7 +236,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -224,7 +251,7 @@ div.csl-indent {
   <li><a href="#canopy-level-radiative-modelling" id="toc-canopy-level-radiative-modelling" class="nav-link" data-scroll-target="#canopy-level-radiative-modelling">Canopy level radiative modelling</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/damian-oswald/master-thesis/blob/main/technical-description-of-the-modelling.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/technical-description-of-the-modelling.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -244,13 +271,19 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
-<p>In this chapter, the focus lies on exploring the process of modelling crop nitrogen at both the leaf and canopy levels. To guarantee a just and impartial comparison of the various modelling techniques, all models were provided with identical data — insofar they can make use of it. Furthermore, a machine learning paradigm was employed not solely for the training of machine learning models, but also for all models involved. As a result, certain parameters of the hand-crafted feature approach or the radiative transfer modelling approach were considered as hyperparameters and selected through cross-validation (this will be explained in more detail in <a href="#sec-hypertuning">section&nbsp;<span>6.2</span></a>).</p>
-<p>An extensive comparison was carried out, examining a total of 23 different models for their effectiveness. It is relevant to acknowledge that there is a considerable overlap among some of these models. A comprehensive list of the evaluated models can be found in <a href="#tbl-ModellingApproaches">table&nbsp;<span>6.1</span></a>, where the method names in the third column are consistently used in subsequent plots and tables to simplify referencing and interpreting the results.</p>
-<div id="tbl-ModellingApproaches" class="anchored">
-<table class="table">
-<caption>Table&nbsp;6.1: Here, an overview of the modelling techniques that were evaluated is presented. It is worth noting that the precise definitions of the vegetation indices mentioned below are available in <a href="vegetation-indices-based-methods.html#tbl-VegetationIndices">table&nbsp;<span>2.1</span></a>.</caption>
+
+<p>In this chapter, the focus lies on exploring the process of modelling crop nitrogen at both the leaf and canopy levels. To guarantee a just and impartial comparison of the various modelling techniques, all models were provided with identical data — insofar they can make use of it. Furthermore, a machine learning paradigm was employed not solely for the training of machine learning models, but also for all models involved. As a result, certain parameters of the hand-crafted feature approach or the radiative transfer modelling approach were considered as hyperparameters and selected through cross-validation (this will be explained in more detail in <a href="#sec-hypertuning" class="quarto-xref">section&nbsp;<span>6.2</span></a>).</p>
+<p>An extensive comparison was carried out, examining a total of 23 different models for their effectiveness. It is relevant to acknowledge that there is a considerable overlap among some of these models. A comprehensive list of the evaluated models can be found in <a href="#tbl-ModellingApproaches" class="quarto-xref">table&nbsp;<span>6.1</span></a>, where the method names in the third column are consistently used in subsequent plots and tables to simplify referencing and interpreting the results.</p>
+<div id="tbl-ModellingApproaches" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[30,30,40]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ModellingApproaches-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Here, an overview of the modelling techniques that were evaluated is presented. It is worth noting that the precise definitions of the vegetation indices mentioned below are available in <a href="vegetation-indices-based-methods.html#tbl-VegetationIndices" class="quarto-xref">table&nbsp;<span>2.1</span></a>.
+</figcaption>
+<div aria-describedby="tbl-ModellingApproaches-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 30%">
 <col style="width: 30%">
@@ -316,27 +349,37 @@ Canopy-level</td>
 </tbody>
 </table>
 </div>
-<section id="modelling-with-hand-crafted-features" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="modelling-with-hand-crafted-features"><span class="header-section-number">6.1</span> Modelling with hand-crafted features</h2>
-<p>This section presents the approaches taken to model crop nitrogen by employing vegetation indices. Ten relevant vegetation indices were computed according to the equations specified in <a href="vegetation-indices-based-methods.html#tbl-VegetationIndices">table&nbsp;<span>2.1</span></a>. While a myriad of vegetation indices exist to model various plant traits, the focus in this thesis was placed on indices that have been utilized for modelling crop nitrogen in scientific literature, as documented by <span class="citation" data-cites="herrmann2010swir">Herrmann et al. (<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">2010</a>)</span> and <span class="citation" data-cites="tian2011assessing">Tian et al. (<a href="references.html#ref-tian2011assessing" role="doc-biblioref">2011</a>)</span>. Upon calculating the vegetation indices, a simple linear regression model was fitted using ordinary least squares regression. Consequently, every model within the <em>single vegetation indices</em> group in <a href="#tbl-ModellingApproaches">table&nbsp;<span>6.1</span></a> has only two parameters: an intercept (<span class="math inline">\(\beta_0\)</span>) and a slope (<span class="math inline">\(\beta_1\)</span>).</p>
-<p>Moreover, multiple linear regression models were evaluated, with all of the vegetation indices initially available. To prevent overfitting, stepwise selection was employed to choose a suitable subset from all the vegetation indices. Utilizing the Bayesian information criterion (<a href="machine-learning-methods-for-hyperspectral-data-analysis.html#eq-AIC">Equation&nbsp;<span>3.3</span></a> with <span class="math inline">\(k = \ln n\)</span>) resulted in superior model performance compared to using the Akaike information criterion. The stepwise regression was executed with the <code>step</code> function from the R package <code>stats</code> <span class="citation" data-cites="R2022">(<a href="references.html#ref-R2022" role="doc-biblioref">R Core Team 2022</a>)</span>, where sequential replacement was the specific strategy of choice (<code>direction = "both"</code>).</p>
-<p>Stepwise selection was also employed as a strategy to identify a suitable subset of bands for a multiple linear model. However, this approach was only used after implementing other algorithms that initially chose a smaller subset of bands from the original data. This was due to the declining performance of stepwise selection as the number of variables added to the model increases <span class="citation" data-cites="hastie2017extended">(<a href="references.html#ref-hastie2017extended" role="doc-biblioref">Hastie et al. 2017</a>)</span>. Consequently, two algorithms that generate a prior subset of bands were examined in the context of this thesis: the recursive feature selection algorithm and the square feature selection algorithm. Both aim to identify bands that exhibit minimal correlation with one another, and both rely on the covariance matrix (<span class="math inline">\(\boldsymbol \Sigma\)</span>) of the z-score normalized data for this purpose.</p>
-<p>The recursive feature selection algorithm is a straightforward method that iteratively selects bands with the highest pairwise covariance from <span class="math inline">\(\boldsymbol \Sigma\)</span>, eliminating the one with a higher shared covariance among all other bands. This process is repeated until the dataset is reduced to the desired <span class="math inline">\(d\)</span> dimensions. To refine this approach, <span class="math inline">\(d\)</span> was treated as a hyperparameter and chosen using cross-validation (<a href="#tbl-hyperparameters">Table&nbsp;<span>6.2</span></a>).</p>
-<div id="fig-FeatureSelection" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/CovarianceMatrix.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.1: The square feature selection algorithm selects bands based on the covariance matrix (<span class="math inline">\(\boldsymbol \Sigma\)</span>). It attempts to fit a square within the area of <span class="math inline">\(\boldsymbol \Sigma\)</span> that is larger than a predetermined threshold. In this instance, the square feature selection algorithm was applied to the canopy-level reflectance (<strong>A</strong>), leaf-level reflectance (<strong>B</strong>), and leaf-level transmittance (<strong>C</strong>), respectively. The threshold employed for this illustration was <span class="math inline">\(s = 0.95\)</span>, corresponding to the white areas on the matrix diagonals. The numbering of the squares refers to their ordered size. All axes on these plots indicate the wavelength in nanometres.</figcaption>
 </figure>
 </div>
-<p>On the other hand, the square feature selection algorithm seeks to identify a square subset centred on the diagonal of <span class="math inline">\(\boldsymbol \Sigma\)</span>, with the constraint that the square may only contain covariance values larger than a specific threshold <span class="math inline">\(s\)</span> (<a href="#fig-FeatureSelection">Figure&nbsp;<span>6.1</span></a>). The centre of the largest possible square corresponds to the selected band. All bands within that square are then removed from <span class="math inline">\(\mathbf X\)</span>, and the procedure is repeated <span class="math inline">\(d\)</span> times to find <span class="math inline">\(d\)</span> uncorrelated bands. As a result, in this implementation, both <span class="math inline">\(s\)</span> and <span class="math inline">\(d\)</span> were treated as hyperparameters that required fine-tuning. The optimal combinations of parameters derived from this fine-tuning process are presented in <a href="#tbl-hyperparameters">table&nbsp;<span>6.2</span></a>.</p>
+<section id="modelling-with-hand-crafted-features" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="modelling-with-hand-crafted-features"><span class="header-section-number">6.1</span> Modelling with hand-crafted features</h2>
+<p>This section presents the approaches taken to model crop nitrogen by employing vegetation indices. Ten relevant vegetation indices were computed according to the equations specified in <a href="vegetation-indices-based-methods.html#tbl-VegetationIndices" class="quarto-xref">table&nbsp;<span>2.1</span></a>. While a myriad of vegetation indices exist to model various plant traits, the focus in this thesis was placed on indices that have been utilized for modelling crop nitrogen in scientific literature, as documented by <span class="citation" data-cites="herrmann2010swir">Herrmann et al. (<a href="references.html#ref-herrmann2010swir" role="doc-biblioref">2010</a>)</span> and <span class="citation" data-cites="tian2011assessing">Tian et al. (<a href="references.html#ref-tian2011assessing" role="doc-biblioref">2011</a>)</span>. Upon calculating the vegetation indices, a simple linear regression model was fitted using ordinary least squares regression. Consequently, every model within the <em>single vegetation indices</em> group in <a href="#tbl-ModellingApproaches" class="quarto-xref">table&nbsp;<span>6.1</span></a> has only two parameters: an intercept (<span class="math inline">\(\beta_0\)</span>) and a slope (<span class="math inline">\(\beta_1\)</span>).</p>
+<p>Moreover, multiple linear regression models were evaluated, with all of the vegetation indices initially available. To prevent overfitting, stepwise selection was employed to choose a suitable subset from all the vegetation indices. Utilizing the Bayesian information criterion (<a href="machine-learning-methods-for-hyperspectral-data-analysis.html#eq-AIC" class="quarto-xref">Equation&nbsp;<span>3.3</span></a> with <span class="math inline">\(k = \ln n\)</span>) resulted in superior model performance compared to using the Akaike information criterion. The stepwise regression was executed with the <code>step</code> function from the R package <code>stats</code> <span class="citation" data-cites="R2022">(<a href="references.html#ref-R2022" role="doc-biblioref">R Core Team 2022</a>)</span>, where sequential replacement was the specific strategy of choice (<code>direction = "both"</code>).</p>
+<p>Stepwise selection was also employed as a strategy to identify a suitable subset of bands for a multiple linear model. However, this approach was only used after implementing other algorithms that initially chose a smaller subset of bands from the original data. This was due to the declining performance of stepwise selection as the number of variables added to the model increases <span class="citation" data-cites="hastie2017extended">(<a href="references.html#ref-hastie2017extended" role="doc-biblioref">Hastie et al. 2017</a>)</span>. Consequently, two algorithms that generate a prior subset of bands were examined in the context of this thesis: the recursive feature selection algorithm and the square feature selection algorithm. Both aim to identify bands that exhibit minimal correlation with one another, and both rely on the covariance matrix (<span class="math inline">\(\boldsymbol \Sigma\)</span>) of the z-score normalized data for this purpose.</p>
+<p>The recursive feature selection algorithm is a straightforward method that iteratively selects bands with the highest pairwise covariance from <span class="math inline">\(\boldsymbol \Sigma\)</span>, eliminating the one with a higher shared covariance among all other bands. This process is repeated until the dataset is reduced to the desired <span class="math inline">\(d\)</span> dimensions. To refine this approach, <span class="math inline">\(d\)</span> was treated as a hyperparameter and chosen using cross-validation (<a href="#tbl-hyperparameters" class="quarto-xref">Table&nbsp;<span>6.2</span></a>).</p>
+<div id="fig-FeatureSelection" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-FeatureSelection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/CovarianceMatrix.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-FeatureSelection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: The square feature selection algorithm selects bands based on the covariance matrix (<span class="math inline">\(\boldsymbol \Sigma\)</span>). It attempts to fit a square within the area of <span class="math inline">\(\boldsymbol \Sigma\)</span> that is larger than a predetermined threshold. In this instance, the square feature selection algorithm was applied to the canopy-level reflectance (<strong>A</strong>), leaf-level reflectance (<strong>B</strong>), and leaf-level transmittance (<strong>C</strong>), respectively. The threshold employed for this illustration was <span class="math inline">\(s = 0.95\)</span>, corresponding to the white areas on the matrix diagonals. The numbering of the squares refers to their ordered size. All axes on these plots indicate the wavelength in nanometres.
+</figcaption>
+</figure>
+</div>
+<p>On the other hand, the square feature selection algorithm seeks to identify a square subset centred on the diagonal of <span class="math inline">\(\boldsymbol \Sigma\)</span>, with the constraint that the square may only contain covariance values larger than a specific threshold <span class="math inline">\(s\)</span> (<a href="#fig-FeatureSelection" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>). The centre of the largest possible square corresponds to the selected band. All bands within that square are then removed from <span class="math inline">\(\mathbf X\)</span>, and the procedure is repeated <span class="math inline">\(d\)</span> times to find <span class="math inline">\(d\)</span> uncorrelated bands. As a result, in this implementation, both <span class="math inline">\(s\)</span> and <span class="math inline">\(d\)</span> were treated as hyperparameters that required fine-tuning. The optimal combinations of parameters derived from this fine-tuning process are presented in <a href="#tbl-hyperparameters" class="quarto-xref">table&nbsp;<span>6.2</span></a>.</p>
 </section>
 <section id="sec-hypertuning" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-hypertuning"><span class="header-section-number">6.2</span> Training the machine learning models</h2>
 <p>In general, numerous machine learning models possess the flexibility to fit any given data perfectly. However, the ultimate objective is not a perfect fit but to accurately approximate the true data generating function. To prevent overfitting, these models typically employ parameters that regulate their complexity or the scale of estimated parameters. These parameters, referred to as hyperparameters, are distinct from the model’s internal parameters, as they must be explicitly defined. The optimization of hyperparameters plays a crucial role in ensuring the effective performance of machine learning models. To circumvent overfitting, data is typically divided randomly into training and validation sets. Models are calibrated using the training set, while performance metrics are assessed on the validation set. This approach can lead to noisy performance estimates, particularly in smaller datasets, depending on the arbitrary data split. Consequently, cross-validation has become a widely adopted technique, wherein the dataset <span class="math inline">\(\mathcal D\)</span> is partitioned into <span class="math inline">\(K\)</span> folds. For each fold <span class="math inline">\(k \in \{1,2,\dots,K\}\)</span>, a model <span class="math inline">\(f\)</span> is trained based on <span class="math inline">\(\mathcal D_{\lnot k}\)</span> and validated on <span class="math inline">\(\mathcal D_{k}\)</span>. To further increase the stability of the results, this process may be repeated <span class="math inline">\(r\)</span> times <span class="citation" data-cites="stone1974cross">(<a href="references.html#ref-stone1974cross" role="doc-biblioref">Stone 1974</a>)</span>. Ultimately, the average performance across all folds and repetitions can be employed to assess the model’s effectiveness.</p>
-<p>The optimized hyperparameters for the machine learning models can be found in <a href="#tbl-hyperparameters">table&nbsp;<span>6.2</span></a>. These models were developed utilizing the statistical software and programming language R, in conjunction with a variety of packages such as <code>stats</code>, <code>caret</code>, <code>pls</code>, <code>randomForest</code>, <code>xgboost</code>, and <code>Cubist</code> <span class="citation" data-cites="R2022 kuhn2022caret liland2022pls chen2022 kuhn2023 liaw2002randomForest">(<a href="references.html#ref-liaw2002randomForest" role="doc-biblioref">Liaw and Wiener 2002</a>, <a href="references.html#ref-chen2022" role="doc-biblioref">Chen et al. 2022</a>, <a href="references.html#ref-kuhn2022caret" role="doc-biblioref">Kuhn 2022</a>, <a href="references.html#ref-liland2022pls" role="doc-biblioref">Liland et al. 2022</a>, <a href="references.html#ref-R2022" role="doc-biblioref">R Core Team 2022</a>, <a href="references.html#ref-kuhn2023" role="doc-biblioref">Kuhn and Quinlan 2023</a>)</span>.</p>
-<div id="tbl-hyperparameters" class="anchored">
-<table class="table">
-<caption>Table&nbsp;6.2: List of hyperparameters for the feature selection and machine learning algorithms. The optimized hyperparameters are individually provided for the leaf-level data (LL) both for area- and mass-based nitrogen, and for the canopy-level data (CL).</caption>
+<p>The optimized hyperparameters for the machine learning models can be found in <a href="#tbl-hyperparameters" class="quarto-xref">table&nbsp;<span>6.2</span></a>. These models were developed utilizing the statistical software and programming language R, in conjunction with a variety of packages such as <code>stats</code>, <code>caret</code>, <code>pls</code>, <code>randomForest</code>, <code>xgboost</code>, and <code>Cubist</code> <span class="citation" data-cites="R2022 kuhn2022caret liland2022pls chen2022 kuhn2023 liaw2002randomForest">(<a href="references.html#ref-liaw2002randomForest" role="doc-biblioref">Liaw and Wiener 2002</a>, <a href="references.html#ref-chen2022" role="doc-biblioref">Chen et al. 2022</a>, <a href="references.html#ref-kuhn2022caret" role="doc-biblioref">Kuhn 2022</a>, <a href="references.html#ref-liland2022pls" role="doc-biblioref">Liland et al. 2022</a>, <a href="references.html#ref-R2022" role="doc-biblioref">R Core Team 2022</a>, <a href="references.html#ref-kuhn2023" role="doc-biblioref">Kuhn and Quinlan 2023</a>)</span>.</p>
+<div id="tbl-hyperparameters" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[37,27,15,12,9]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hyperparameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: List of hyperparameters for the feature selection and machine learning algorithms. The optimized hyperparameters are individually provided for the leaf-level data (LL) both for area- and mass-based nitrogen, and for the canopy-level data (CL).
+</figcaption>
+<div aria-describedby="tbl-hyperparameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 37%">
 <col style="width: 27%">
@@ -464,6 +507,8 @@ Canopy-level</td>
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 </section>
 <section id="running-the-radiative-transfer-models" class="level2 page-columns page-full" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="running-the-radiative-transfer-models"><span class="header-section-number">6.3</span> Running the radiative transfer models</h2>
@@ -471,9 +516,13 @@ Canopy-level</td>
 <section id="leaf-level-radiative-modelling" class="level3">
 <h3 class="anchored" data-anchor-id="leaf-level-radiative-modelling">Leaf level radiative modelling</h3>
 <p>At the leaf level, radiative transfer modelling was conducted utilizing <span class="smallcaps">Prospect-Pro</span>, which is available as one of the functions incorporated within the R package <code>prospect</code> <span class="citation" data-cites="feret2022package">(<a href="references.html#ref-feret2022package" role="doc-biblioref">Féret and de Boissieu 2022</a>)</span>. Generally, the most favourable results were obtained by employing the inversion technique of optimal spectral subdomains, as proposed by <span class="citation" data-cites="spafford2021spectral">Spafford et al. (<a href="references.html#ref-spafford2021spectral" role="doc-biblioref">2021</a>)</span>. This method enhances model inversion by concentrating on spectral subdomains for each constituent and maximizing the fit within that range, rather than over the entire spectrum.</p>
-<div id="tbl-range" class="anchored">
-<table class="table">
-<caption>Table&nbsp;6.3: Parameter search range for both a conservative parameter estimation and a relaxed parameter estimation with wider lower- and upper bounds.</caption>
+<div id="tbl-range" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.3: Parameter search range for both a conservative parameter estimation and a relaxed parameter estimation with wider lower- and upper bounds.
+</figcaption>
+<div aria-describedby="tbl-range-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 36%">
 <col style="width: 34%">
@@ -523,27 +572,37 @@ Carbon-based constituents</td>
 </tbody>
 </table>
 </div>
-<p>During the initial modelling phase, relatively restrictive box constraints were imposed on the parameters, meaning that no parameter was permitted to exceed the range specified in <a href="#tbl-range">table&nbsp;<span>6.3</span></a>. Possible correlations among parameters were disregarded for constraining the search space. The conservative parameter range was derived from <span class="citation" data-cites="camino2021detection">Camino et al. (<a href="references.html#ref-camino2021detection" role="doc-biblioref">2021</a>)</span>, who retrieved the same parameters from almonds for detecting <em>Xylella fastidiosa</em>.</p>
+</figure>
+</div>
+<p>During the initial modelling phase, relatively restrictive box constraints were imposed on the parameters, meaning that no parameter was permitted to exceed the range specified in <a href="#tbl-range" class="quarto-xref">table&nbsp;<span>6.3</span></a>. Possible correlations among parameters were disregarded for constraining the search space. The conservative parameter range was derived from <span class="citation" data-cites="camino2021detection">Camino et al. (<a href="references.html#ref-camino2021detection" role="doc-biblioref">2021</a>)</span>, who retrieved the same parameters from almonds for detecting <em>Xylella fastidiosa</em>.</p>
 <p>Nonetheless, as many parameters retrieved by <span class="smallcaps">Prospect-Pro</span> in this phase resided at the lower or upper bounds, the parameter restrictions were relaxed in a subsequent phase. Parameters obtained under relaxed constraints generally resulted in a better alignment between simulated and observed data, as well as improved leaf-level predictions of foliar nitrogen concentration. Interestingly, reduced discrepancies between simulated and observed data did not consistently lead to enhanced nitrogen predictions. For instance, increasing the maximum incident angle <span class="math inline">\(\alpha\)</span> in <span class="smallcaps">Prospect-Pro</span> to <span class="math inline">\(\alpha = 80^\circ\)</span> decreased the difference between simulated and observed data, but worsened predictions of the foliar nitrogen concentration based on the retrieved parameters. Consequently, the maximum incident angle was set to <span class="math inline">\(\alpha = 40^\circ\)</span> as proposed by <span class="citation" data-cites="feret2008prospect">Féret et al. (<a href="references.html#ref-feret2008prospect" role="doc-biblioref">2008</a>)</span>.</p>
 <p>After successfully retrieving the plant parameters, they needed to be associated with the measured nitrogen labels. This was accomplished by employing stepwise selection to a multiple linear model, which allowed for the inclusion of all plant parameters as input variables. The fundamental assumption here is that the foliar nitrogen concentration can be modelled as a linear response to the concentrations of chlorophyll and protein.</p>
 </section>
 <section id="canopy-level-radiative-modelling" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="canopy-level-radiative-modelling">Canopy level radiative modelling</h3>
 <p>To model radiative transfer at the canopy level, the ray tracing model <span class="smallcaps">Less</span> was adapted. This three-dimensional forest scene simulator offers a freely accessible graphical user interface (GUI) and can be downloaded via the model’s website (<a href="https://lessrt.org" class="uri">https://lessrt.org</a>). Unfortunately, <span class="smallcaps">Less</span> does not provide an application programming interface (API), limiting customization possibilities for the simulations.</p>
-<p>A virtual scene of an almond tree, where reflectance may interact with neighbouring trees and the soil, was created using a single three-dimensional model of an almond tree. This model was obtained from the <a href="https://www.cgtrader.com/">cgtrader</a> platform, where it was sold by the anonymous artist <span class="smallcaps">XFrog</span>. <span class="smallcaps">Less</span> enables users to upload any <code>.obj</code> file and arrange the objects as desired. Thus, a typical orchard scene could be recreated in <span class="smallcaps">Less</span>, with a central focus tree surrounded by 24 other trees in a 5 × 5 grid design. The trees were aligned similarly to the average trees in the Westwind orchard, with an inter-row distance of 6.73 m and a distance of 4.56 m between trees along the rows. The generated data cubes had dimensions of 56 × 38 × 200 = 425’600 values, closely corresponding to the average dimensions of the cropped hyperspectral images. The simulated image was specified to be orthographic, akin to the georectified real image (<a href="#fig-lessmodelling">Figure&nbsp;<span>6.2</span></a>).</p>
-<div id="fig-lessmodelling" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="resources/LESS.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;6.2: Illustration of the three-dimensional object of an almond tree used in the simulation (<strong>A</strong>) and the model’s alignment to replicate the orchard scene (<strong>B</strong>). To generate predictions with <span class="smallcaps">Less</span>, observed hyperspectral images (<strong>C</strong>) must be compared with simulated hyperspectral images (<strong>D</strong>). It is important to note that the two images shown here are RGB reconstructions derived from hyperspectral data.</figcaption>
+<p>A virtual scene of an almond tree, where reflectance may interact with neighbouring trees and the soil, was created using a single three-dimensional model of an almond tree. This model was obtained from the <a href="https://www.cgtrader.com/">cgtrader</a> platform, where it was sold by the anonymous artist <span class="smallcaps">XFrog</span>. <span class="smallcaps">Less</span> enables users to upload any <code>.obj</code> file and arrange the objects as desired. Thus, a typical orchard scene could be recreated in <span class="smallcaps">Less</span>, with a central focus tree surrounded by 24 other trees in a 5 × 5 grid design. The trees were aligned similarly to the average trees in the Westwind orchard, with an inter-row distance of 6.73 m and a distance of 4.56 m between trees along the rows. The generated data cubes had dimensions of 56 × 38 × 200 = 425’600 values, closely corresponding to the average dimensions of the cropped hyperspectral images. The simulated image was specified to be orthographic, akin to the georectified real image (<a href="#fig-lessmodelling" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>).</p>
+<div id="fig-lessmodelling" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lessmodelling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="resources/LESS.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lessmodelling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Illustration of the three-dimensional object of an almond tree used in the simulation (<strong>A</strong>) and the model’s alignment to replicate the orchard scene (<strong>B</strong>). To generate predictions with <span class="smallcaps">Less</span>, observed hyperspectral images (<strong>C</strong>) must be compared with simulated hyperspectral images (<strong>D</strong>). It is important to note that the two images shown here are RGB reconstructions derived from hyperspectral data.
+</figcaption>
 </figure>
 </div>
 <p><span class="smallcaps">Less</span> requires defining camera settings that closely approximate the actual settings on the day of data capture. In order to recreate the conditions of the data capture, the camera distance to the ground was set at 100 m above ground level. Simulated spectral bands were configured to align with those from the hyperspectral data. The view zenith angle and view azimuth angle were set to 0° and 180°, respectively. The solar zenith angle was set to 20°, while the solar azimuth angle was set to 240°. Sky cloudiness was not considered.</p>
 <p>The hyperspectral signatures of leaves in the scene were based on the simulated spectral reflectance and transmittance of <span class="smallcaps">Prospect-D</span>. Given that the hyperspectral data did not encompass the short-wave-infrared spectrum, there was no need for <span class="smallcaps">Prospect-Pro</span> and its ability to simulate absorption caused by protein. The soil in the simulated scene was assigned the same reflectance as the bare soil in the hyperspectral images of the orchard.</p>
 <p><span class="smallcaps">Less</span> generates output files of simulated radiance in the <code>.bsq</code> format, which closely resembles the data captured by the hyperspectral camera. Consequently, the output of <span class="smallcaps">Less</span> had to undergo similar processing steps as real observations to obtain comparable results: calculating reflectance from radiance and irradiance, semantically segmenting the hyperspectral image, and ultimately computing the mean reflectance of the bright canopy. As a result, a single simulated hyperspectral image from <span class="smallcaps">Less</span> could be reduced to a vector of reflectance data — represented as one row in the generated look-up table.</p>
-<p>The look-up table was constructed by running <span class="smallcaps">Less</span> for numerous parameter combinations (<a href="#tbl-LessParameters">Table&nbsp;<span>6.4</span></a>), with the parameter ranges informed by the retrieved leaf-level ranges. The leaf area index (LAI) was the sole parameter not retrieved by <span class="smallcaps">Prospect-D</span>. This parameter was controlled exclusively by the size of the trees in the scene, resulting in a reduced leaf area over the same ground. All generated hyperspectral images were subsequently condensed to their reflectance vectors and stored as rows in a large matrix. This matrix effectively functions as the look-up table, as the exact parameters generating each reflectance entry are known and stored in a separate parameter matrix.</p>
-<div id="tbl-LessParameters" class="anchored">
-<table class="table">
-<caption>Table&nbsp;6.4: The selected parameters for the look-up table generated using <span class="smallcaps">Less</span>. Each possible combination of these parameters was simulated once.</caption>
+<p>The look-up table was constructed by running <span class="smallcaps">Less</span> for numerous parameter combinations (<a href="#tbl-LessParameters" class="quarto-xref">Table&nbsp;<span>6.4</span></a>), with the parameter ranges informed by the retrieved leaf-level ranges. The leaf area index (LAI) was the sole parameter not retrieved by <span class="smallcaps">Prospect-D</span>. This parameter was controlled exclusively by the size of the trees in the scene, resulting in a reduced leaf area over the same ground. All generated hyperspectral images were subsequently condensed to their reflectance vectors and stored as rows in a large matrix. This matrix effectively functions as the look-up table, as the exact parameters generating each reflectance entry are known and stored in a separate parameter matrix.</p>
+<div id="tbl-LessParameters" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[35,65]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LessParameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.4: The selected parameters for the look-up table generated using <span class="smallcaps">Less</span>. Each possible combination of these parameters was simulated once.
+</figcaption>
+<div aria-describedby="tbl-LessParameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
 <col style="width: 65%">
@@ -578,16 +637,18 @@ Carbon-based constituents</td>
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 <p>The look-up table <span class="math inline">\(\mathbf L\)</span> can be used to make a prediction for a single observation <span class="math inline">\(\mathbf x\)</span> by identifying the closest match between the observed and simulated reflectance based on a specific cost function <span class="math inline">\(J\)</span>. The most direct approach to this involves minimizing the Euclidean norm of the error between the <span class="math inline">\(i\)</span><sup>th</sup> simulation in the look-up table <span class="math inline">\(\mathbf L_{(i)}\)</span> and the observation <span class="math inline">\(\mathbf x\)</span>.</p>
 <p><span id="eq-LUTminimization"><span class="math display">\[J(i) = \| \mathbf L_{(i)} - \mathbf x \|_2^2
 \qquad
 i^* = \arg \min_{i \in \{1 .. d\}} J(i) \tag{6.1}\]</span></span></p>
 <p>In this context, <span class="math inline">\(i\)</span> represents the index of the simulated reflectance, and <span class="math inline">\(d\)</span> denotes the total number of simulations in the look-up table. To ensure a consistent treatment of the error, it is crucial that both the look-up table and the observed reflectance undergo z-score normalization prior to determining <span class="math inline">\(i^*\)</span>.</p>
-<p>A straightforward method for performing regression using the look-up table <span class="math inline">\(\mathbf L\)</span> involves calculating the cost <span class="math inline">\(J\)</span> with respect to a single observation for each row in <span class="math inline">\(\mathbf L\)</span>, and then selecting <span class="math inline">\(i^*\)</span> associated with the lowest cost <span class="math inline">\(J(i)\)</span> as written in <a href="#eq-LUTminimization">equation&nbsp;<span>6.1</span></a>. Given that the parameter matrix is <span class="math inline">\(\mathbf P\)</span>, the retrieved parameters are <span class="math inline">\(\mathbf P_{(i^*)}\)</span>, or the parameters in the <span class="math inline">\(i^*\)</span><sup>th</sup> row of <span class="math inline">\(\mathbf P\)</span>. This implies that the retrieved parameters may only be any combination of those listed in <a href="#tbl-LessParameters">table&nbsp;<span>6.4</span></a>, resulting in discrete predictions.</p>
-<div class="page-columns page-full"><p>To enable the retrieval of continuous parameters, a hyper-dimensional interpolation must be applied to the look-up table. This involves modelling the cost <span class="math inline">\(J\)</span> with respect to a single observation as a function of the parameters, an approach known as surrogate modelling <span class="citation" data-cites="gramacy2020surrogates">(<a href="references.html#ref-gramacy2020surrogates" role="doc-biblioref">Gramacy 2020</a>)</span>. Gaussian processes would be the most mathematically elegant surrogate model; however, due to their computational inefficiency, a multicubic polynomial surrogate model was chosen instead.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> To facilitate surrogate modelling, a subset of the parameter matrix <span class="math inline">\(\mathbf P\)</span> was created after computing <span class="math inline">\(J\)</span>, which includes only the closest neighbours of the found parameters <span class="math inline">\(\mathbf P_{(i^*)}\)</span>. The multicubic polynomial was fitted to this subset to model <span class="math inline">\(J\)</span> as a response to the parameters, allowing for easy minimization and therefore the retrieval of smooth parameters.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Bear in mind that the surrogate model must be re-trained once for each observation, making computational efficiency an important aspect of this step.</p></li></div></div>
+<p>A straightforward method for performing regression using the look-up table <span class="math inline">\(\mathbf L\)</span> involves calculating the cost <span class="math inline">\(J\)</span> with respect to a single observation for each row in <span class="math inline">\(\mathbf L\)</span>, and then selecting <span class="math inline">\(i^*\)</span> associated with the lowest cost <span class="math inline">\(J(i)\)</span> as written in <a href="#eq-LUTminimization" class="quarto-xref">equation&nbsp;<span>6.1</span></a>. Given that the parameter matrix is <span class="math inline">\(\mathbf P\)</span>, the retrieved parameters are <span class="math inline">\(\mathbf P_{(i^*)}\)</span>, or the parameters in the <span class="math inline">\(i^*\)</span><sup>th</sup> row of <span class="math inline">\(\mathbf P\)</span>. This implies that the retrieved parameters may only be any combination of those listed in <a href="#tbl-LessParameters" class="quarto-xref">table&nbsp;<span>6.4</span></a>, resulting in discrete predictions.</p>
+<p>To enable the retrieval of continuous parameters, a hyper-dimensional interpolation must be applied to the look-up table. This involves modelling the cost <span class="math inline">\(J\)</span> with respect to a single observation as a function of the parameters, an approach known as surrogate modelling <span class="citation" data-cites="gramacy2020surrogates">(<a href="references.html#ref-gramacy2020surrogates" role="doc-biblioref">Gramacy 2020</a>)</span>. Gaussian processes would be the most mathematically elegant surrogate model; however, due to their computational inefficiency, a multicubic polynomial surrogate model was chosen instead.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> To facilitate surrogate modelling, a subset of the parameter matrix <span class="math inline">\(\mathbf P\)</span> was created after computing <span class="math inline">\(J\)</span>, which includes only the closest neighbours of the found parameters <span class="math inline">\(\mathbf P_{(i^*)}\)</span>. The multicubic polynomial was fitted to this subset to model <span class="math inline">\(J\)</span> as a response to the parameters, allowing for easy minimization and therefore the retrieval of smooth parameters.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list" style="display: none">
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Bear in mind that the surrogate model must be re-trained once for each observation, making computational efficiency an important aspect of this step.</p></div></div><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-camino2021detection" class="csl-entry" role="listitem">
 Camino, C., R. Calderón, S. Parnell, H. Dierkes, Y. Chemin, M. Román-Écija, M. Montes-Borrego, B. B. Landa, J. A. Navas-Cortes, P. J. Zarco-Tejada, and others. 2021. <a href="https://doi.org/10.1016/j.rse.2021.112420">Detection of xylella fastidiosa in almond orchards by synergic use of an epidemic spread model and remotely sensed plant traits</a>. Remote Sensing of Environment 260:112420.
 </div>
@@ -674,18 +735,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -717,11 +767,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -731,8 +818,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -744,7 +840,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -788,6 +1006,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -813,6 +1032,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -874,12 +1119,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./describing-processing-and-inspecting-the-data.html" class="pagination-link">
+      <a href="./describing-processing-and-inspecting-the-data.html" class="pagination-link" aria-label="Describing, processing and inspecting the data">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Describing, processing and inspecting the data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./results-of-the-model-performances.html" class="pagination-link">
+      <a href="./results-of-the-model-performances.html" class="pagination-link" aria-label="Results of the model performances">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Results of the model performances</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -887,8 +1132,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">© 2023, Damian Oswald</div>   
-    <div class="nav-footer-center">Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</div>
+    <div class="nav-footer-left">
+<p>© 2023, Damian Oswald</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Remote Sensing of Foliar Nitrogen in Californian Almonds (2023)</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/damian-oswald/master-thesis/blob/main/technical-description-of-the-modelling.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/damian-oswald/master-thesis/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -913,6 +1162,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 
